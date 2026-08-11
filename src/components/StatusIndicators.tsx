@@ -15,7 +15,7 @@ function getStatusColorClass(status: EngineStatus): string {
 export const StatusIndicators: React.FC = () => {
   const statusMap = useModelStatus();
 
-  const layers: Array<{ key: keyof typeof statusMap; label: string }> = [
+  const layers: Array<{ key: 'regex' | 'entropy' | 'llm'; label: string }> = [
     { key: 'regex', label: 'Regex' },
     { key: 'entropy', label: 'Entropy' },
     { key: 'llm', label: 'LLM' },
@@ -28,7 +28,7 @@ export const StatusIndicators: React.FC = () => {
       className="hidden md:flex items-center gap-3 px-3 py-1.5 rounded-lg bg-surface-light-bg/50 dark:bg-surface-dark-bg/50 border border-surface-light-border dark:border-surface-dark-border text-xs text-surface-light-textSecondary dark:text-surface-dark-textSecondary"
     >
       {layers.map(({ key, label }) => {
-        const status = statusMap[key];
+        const status: EngineStatus = statusMap[key] ?? 'unavailable';
         const dotColorClass = getStatusColorClass(status);
         return (
           <div key={key} className="flex items-center gap-1.5" title={`${label} Engine: ${status}`}>

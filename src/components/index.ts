@@ -5,3 +5,4 @@ export * from './StatusIndicators';
 export * from './DesignTokenShowcase';
 export * from './ThemeToggle';
 export * from './ScannerLayout';
+export * from './StatusBar';

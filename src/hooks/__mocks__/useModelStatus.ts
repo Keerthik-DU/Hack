@@ -1,9 +1,12 @@
-import { ModelStatusMap, EngineStatus } from '../useModelStatus';
+import { ModelStatusMap, EngineStatus, ModelLifecycleState } from '../useModelStatus';
 
 export const mockDefaultModelStatus: ModelStatusMap = {
   regex: 'ready',
   entropy: 'ready',
-  llm: 'unavailable',
+  llm: 'ready',
+  webgpuAvailable: true,
+  modelState: 'ready',
+  downloadProgress: 100,
 };
 
 export function createMockModelStatus(overrides?: Partial<ModelStatusMap>): ModelStatusMap {
@@ -11,6 +14,27 @@ export function createMockModelStatus(overrides?: Partial<ModelStatusMap>): Mode
     ...mockDefaultModelStatus,
     ...overrides,
   };
+}
+
+export function createMockModelLifecycleStatus(
+  modelState: ModelLifecycleState,
+  downloadProgress = 0
+): ModelStatusMap {
+  return createMockModelStatus({
+    modelState,
+    downloadProgress,
+    llm:
+      modelState === 'ready' ? 'ready' : modelState === 'downloading' ? 'loading' : 'unavailable',
+  });
+}
+
+export function createMockWebGPUUnavailableStatus(): ModelStatusMap {
+  return createMockModelStatus({
+    webgpuAvailable: false,
+    modelState: 'unavailable',
+    llm: 'unavailable',
+    degradedMessage: 'Running in standard mode — regex and entropy scanning fully active',
+  });
 }
 
 export function getStatusDotColor(status: EngineStatus): string {
