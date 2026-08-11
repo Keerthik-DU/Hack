@@ -32,6 +32,7 @@ export default defineConfig({
         'src/components/About/**/*.tsx',
         'src/hooks/useModelStatus.ts',
         'src/infra/input-sanitizer.ts',
+        'src/orchestration/text-preprocessor.ts',
         'src/test/helpers/**/*.ts',
       ],
       exclude: [
@@ -42,6 +43,7 @@ export default defineConfig({
         'src/types/index.ts',
         'src/contexts/index.ts',
         'src/infra/index.ts',
+        'src/orchestration/index.ts',
         '**/*.d.ts',
         '**/*.test.ts',
         '**/*.test.tsx',
