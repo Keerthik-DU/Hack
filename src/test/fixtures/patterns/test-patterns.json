@@ -1,0 +1,62 @@
+[
+  {
+    "id": "valid-pattern-1",
+    "secretType": "aws_access_key",
+    "regex": "AKIA[0-9A-Z]{16}",
+    "keywords": ["AKIA", "aws"],
+    "category": "aws",
+    "severity": "critical"
+  },
+  {
+    "id": "valid-pattern-2",
+    "secretType": "token",
+    "regex": "ghp_[a-zA-Z0-9]{36}",
+    "keywords": ["ghp_", "github"],
+    "category": "github",
+    "severity": "high"
+  },
+  {
+    "id": "valid-pattern-3",
+    "secretType": "api_key",
+    "regex": "sk_live_[0-9a-zA-Z]{24}",
+    "keywords": ["sk_live_", "stripe"],
+    "category": "stripe",
+    "severity": "critical"
+  },
+  {
+    "id": "valid-pattern-4",
+    "secretType": "private_key",
+    "regex": "-----BEGIN PRIVATE KEY-----",
+    "keywords": ["BEGIN", "PRIVATE KEY"],
+    "category": "private_key",
+    "severity": "critical"
+  },
+  {
+    "id": "valid-pattern-5",
+    "secretType": "jwt",
+    "regex": "eyJ[A-Za-z0-9_-]+\\.eyJ[A-Za-z0-9_-]+",
+    "keywords": ["eyJ"],
+    "category": "jwt",
+    "severity": "medium"
+  },
+  {
+    "id": "invalid-regex-1",
+    "secretType": "generic_secret",
+    "regex": "[a-z",
+    "keywords": ["invalid"],
+    "category": "generic"
+  },
+  {
+    "id": "invalid-regex-2",
+    "secretType": "token",
+    "regex": "(?[:bad)",
+    "keywords": ["bad"],
+    "category": "generic"
+  },
+  {
+    "id": "schema-violating-entry",
+    "regex": "valid_regex_missing_secret_type",
+    "keywords": ["missing"],
+    "category": "generic"
+  }
+]

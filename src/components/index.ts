@@ -7,4 +7,5 @@ export * from './ThemeToggle';
 export * from './ScannerLayout';
 export * from './StatusBar';
 export * from './PasteInputPanel';
+export * from './ScanButton';
 export * from './__fixtures__/paste-inputs';
