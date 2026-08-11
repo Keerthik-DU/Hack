@@ -28,6 +28,7 @@ export default defineConfig({
         'src/components/StatusIndicators.tsx',
         'src/components/ScannerLayout/ScannerLayout.tsx',
         'src/components/StatusBar.tsx',
+        'src/components/PasteInputPanel.tsx',
         'src/components/About/**/*.tsx',
         'src/hooks/useModelStatus.ts',
         'src/infra/input-sanitizer.ts',
