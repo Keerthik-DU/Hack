@@ -4,7 +4,7 @@ import path from 'path';
 export default defineConfig({
   test: {
     globals: true,
-    environment: 'node',
+    environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
     include: ['src/**/*.{test,spec}.{ts,tsx}'],
     coverage: {
@@ -17,15 +17,23 @@ export default defineConfig({
         functions: 80,
         lines: 80,
       },
-      include: ['src/styles/tokens.ts', 'src/types/**/*.ts', 'src/test/helpers/**/*.ts'],
+      include: [
+        'src/styles/tokens.ts',
+        'src/types/**/*.ts',
+        'src/contexts/**/*.tsx',
+        'src/components/ThemeToggle.tsx',
+        'src/test/helpers/**/*.ts',
+      ],
       exclude: [
         'node_modules/',
         'dist/',
         'coverage/',
         'src/test/setup.ts',
         'src/types/index.ts',
+        'src/contexts/index.ts',
         '**/*.d.ts',
         '**/*.test.ts',
+        '**/*.test.tsx',
       ],
     },
   },

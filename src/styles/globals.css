@@ -7,6 +7,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes fadeRotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+.animate-fade-rotate-in {
+  animation: fadeRotateIn 0.3s ease-out forwards;
+}
+
 :root {
   --bg-primary: #ffffff;
   --bg-card: #f9fafb;
