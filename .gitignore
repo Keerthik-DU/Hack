@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Production build outputs
+dist/
+
+# Test coverage
+coverage/
+
+# Environment files
+.env*
+!.env.example
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Logs & OS metadata
+*.log
+.DS_Store
+Thumbs.db
