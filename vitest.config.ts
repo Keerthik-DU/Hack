@@ -27,6 +27,7 @@ export default defineConfig({
         'src/components/PrivacyBadge.tsx',
         'src/components/StatusIndicators.tsx',
         'src/components/ScannerLayout/ScannerLayout.tsx',
+        'src/components/StatusBar.tsx',
         'src/hooks/useModelStatus.ts',
         'src/test/helpers/**/*.ts',
       ],
