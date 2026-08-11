@@ -5,6 +5,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
+    pool: 'forks',
     setupFiles: ['./src/test/setup.ts'],
     include: ['src/**/*.{test,spec}.{ts,tsx}'],
     coverage: {
@@ -25,6 +26,7 @@ export default defineConfig({
         'src/components/AppHeader.tsx',
         'src/components/PrivacyBadge.tsx',
         'src/components/StatusIndicators.tsx',
+        'src/components/ScannerLayout/ScannerLayout.tsx',
         'src/hooks/useModelStatus.ts',
         'src/test/helpers/**/*.ts',
       ],
