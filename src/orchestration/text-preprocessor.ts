@@ -25,14 +25,7 @@ export interface LLMPromptContext {
   contextEndLine: number;
 }
 
-const SENSITIVE_KEYWORDS = [
-  'password',
-  'secret',
-  'token',
-  'key',
-  'api_key',
-  'credential',
-];
+const SENSITIVE_KEYWORDS = ['password', 'secret', 'token', 'key', 'api_key', 'credential'];
 
 /**
  * Splits input text into structured line objects with 0-based line numbers
@@ -82,7 +75,9 @@ export function prepareForRegex(text: string): RegexInputLine[] {
  */
 function extractLHSVariableName(lineText: string): string | undefined {
   // 1. JS / Py / .env assignment: const KEY = ..., KEY = ...
-  const stdAssignmentMatch = lineText.match(/(?:(?:const|let|var|export)\s+)?([A-Za-z0-9_$-]+)\s*(?:=|=>|:)/);
+  const stdAssignmentMatch = lineText.match(
+    /(?:(?:const|let|var|export)\s+)?([A-Za-z0-9_$-]+)\s*(?:=|=>|:)/
+  );
   if (stdAssignmentMatch && stdAssignmentMatch[1]) {
     return stdAssignmentMatch[1].trim();
   }
@@ -103,9 +98,7 @@ function checkKeywordProximity(lineText: string, variableName?: string): boolean
   const lowerLine = lineText.toLowerCase();
   const lowerVar = variableName?.toLowerCase() ?? '';
 
-  return SENSITIVE_KEYWORDS.some(
-    (kw) => lowerLine.includes(kw) || lowerVar.includes(kw)
-  );
+  return SENSITIVE_KEYWORDS.some((kw) => lowerLine.includes(kw) || lowerVar.includes(kw));
 }
 
 /**
@@ -218,10 +211,7 @@ export function prepareForLLM(
 
   return findings.map((finding) => {
     // 0-based line index normalized from finding.lineNumber (1-based)
-    const targetLineIndex = Math.max(
-      0,
-      Math.min(lines.length - 1, finding.lineNumber - 1)
-    );
+    const targetLineIndex = Math.max(0, Math.min(lines.length - 1, finding.lineNumber - 1));
 
     const startLineIndex = Math.max(0, targetLineIndex - contextLines);
     const endLineIndex = Math.min(lines.length - 1, targetLineIndex + contextLines);

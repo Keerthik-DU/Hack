@@ -1,9 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import {
-  prepareForRegex,
-  prepareForEntropy,
-  prepareForLLM,
-} from '../text-preprocessor';
+import { prepareForRegex, prepareForEntropy, prepareForLLM } from '../text-preprocessor';
 import {
   jsCodeSample,
   pythonCodeSample,
@@ -72,11 +68,17 @@ describe('TextPreprocessor Module (Stage 2 Data Pipeline)', () => {
     it('extracts candidates from multi-format code samples (Python, YAML, JSON, .env, HCL)', () => {
       // Python
       const pyCandidates = prepareForEntropy(pythonCodeSample);
-      expect(pyCandidates.some((c) => c.metadata.variableName === 'AWS_SECRET_ACCESS_KEY')).toBe(true);
+      expect(pyCandidates.some((c) => c.metadata.variableName === 'AWS_SECRET_ACCESS_KEY')).toBe(
+        true
+      );
 
       // YAML
       const yamlCandidates = prepareForEntropy(yamlCodeSample);
-      expect(yamlCandidates.some((c) => c.value === 'mock_long_token_string_exceeding_twenty_chars_easily')).toBe(true);
+      expect(
+        yamlCandidates.some(
+          (c) => c.value === 'mock_long_token_string_exceeding_twenty_chars_easily'
+        )
+      ).toBe(true);
 
       // JSON
       const jsonCandidates = prepareForEntropy(jsonCodeSample);
@@ -84,7 +86,9 @@ describe('TextPreprocessor Module (Stage 2 Data Pipeline)', () => {
 
       // .env
       const envCandidates = prepareForEntropy(envCodeSample);
-      expect(envCandidates.some((c) => c.metadata.variableName === 'AWS_SECRET_ACCESS_KEY')).toBe(true);
+      expect(envCandidates.some((c) => c.metadata.variableName === 'AWS_SECRET_ACCESS_KEY')).toBe(
+        true
+      );
 
       // Terraform HCL
       const hclCandidates = prepareForEntropy(terraformHclCodeSample);
@@ -160,7 +164,8 @@ describe('TextPreprocessor Module (Stage 2 Data Pipeline)', () => {
 
   describe('Performance Benchmark', () => {
     it('completes prepareForRegex and prepareForEntropy on 100,000-character input in under 50ms', () => {
-      const lineSample = 'const MOCK_KEY = "mock_secret_value_sample_token_1234567890"; // comment key\n';
+      const lineSample =
+        'const MOCK_KEY = "mock_secret_value_sample_token_1234567890"; // comment key\n';
       const largeText = lineSample.repeat(1300); // ~101,000 characters
       expect(largeText.length).toBeGreaterThan(100000);
 
