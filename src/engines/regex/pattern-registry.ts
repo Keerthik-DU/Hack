@@ -1,5 +1,5 @@
 import { PatternDefinition, CompiledPattern } from '../types';
-import defaultPatternsData from './patterns.json';
+import defaultPatternsData from '@/patterns/v1/patterns.json';
 
 /**
  * Infrastructure registry loading pattern definitions, compiling regexes into native RegExp objects,

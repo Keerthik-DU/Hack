@@ -1,0 +1,402 @@
+[
+  {
+    "id": "aws-access-key-id",
+    "secretType": "aws_access_key",
+    "regex": "(?:A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+    "keywords": ["AKIA", "AGPA", "AIDA", "AROA", "AIPA", "ANPA", "ANVA", "ASIA", "aws"],
+    "category": "cloud-provider",
+    "severity": "critical"
+  },
+  {
+    "id": "aws-secret-access-key",
+    "secretType": "aws_access_key",
+    "regex": "aws_(?:secret_access_key|secret_key)\\s*[:=]\\s*[\"']?([A-Za-z0-9/+=]{40})[\"']?",
+    "keywords": ["aws_secret_access_key", "aws_secret_key", "secret_access_key"],
+    "category": "cloud-provider",
+    "severity": "critical"
+  },
+  {
+    "id": "github-pat-classic",
+    "secretType": "token",
+    "regex": "ghp_[a-zA-Z0-9]{36}",
+    "keywords": ["ghp_", "github"],
+    "category": "version-control",
+    "severity": "critical"
+  },
+  {
+    "id": "github-pat-fine-grained",
+    "secretType": "token",
+    "regex": "github_pat_[a-zA-Z0-9]{22}_[a-zA-Z0-9]{59}",
+    "keywords": ["github_pat_", "github"],
+    "category": "version-control",
+    "severity": "critical"
+  },
+  {
+    "id": "github-oauth-token",
+    "secretType": "token",
+    "regex": "gho_[a-zA-Z0-9]{36}",
+    "keywords": ["gho_", "github"],
+    "category": "version-control",
+    "severity": "critical"
+  },
+  {
+    "id": "github-user-token",
+    "secretType": "token",
+    "regex": "ghu_[a-zA-Z0-9]{36}",
+    "keywords": ["ghu_", "github"],
+    "category": "version-control",
+    "severity": "high"
+  },
+  {
+    "id": "github-server-token",
+    "secretType": "token",
+    "regex": "ghs_[a-zA-Z0-9]{36}",
+    "keywords": ["ghs_", "github"],
+    "category": "version-control",
+    "severity": "high"
+  },
+  {
+    "id": "slack-webhook-url",
+    "secretType": "token",
+    "regex": "https://hooks\\.slack\\.com/services/T[a-zA-Z0-9_]+/B[a-zA-Z0-9_]+/[a-zA-Z0-9_]+",
+    "keywords": ["hooks.slack.com", "slack"],
+    "category": "messaging",
+    "severity": "high"
+  },
+  {
+    "id": "slack-bot-token",
+    "secretType": "token",
+    "regex": "xoxb-[0-9]{10,13}-[0-9]{10,13}-[a-zA-Z0-9]{24}",
+    "keywords": ["xoxb-", "slack"],
+    "category": "messaging",
+    "severity": "critical"
+  },
+  {
+    "id": "slack-user-token",
+    "secretType": "token",
+    "regex": "xoxp-[0-9]{10,13}-[0-9]{10,13}-[a-zA-Z0-9]{24}",
+    "keywords": ["xoxp-", "slack"],
+    "category": "messaging",
+    "severity": "critical"
+  },
+  {
+    "id": "stripe-live-key",
+    "secretType": "api_key",
+    "regex": "sk_live_[0-9a-zA-Z]{24}",
+    "keywords": ["sk_live_", "stripe"],
+    "category": "payment",
+    "severity": "critical"
+  },
+  {
+    "id": "stripe-test-key",
+    "secretType": "api_key",
+    "regex": "sk_test_[0-9a-zA-Z]{24}",
+    "keywords": ["sk_test_", "stripe"],
+    "category": "payment",
+    "severity": "medium"
+  },
+  {
+    "id": "stripe-restricted-key",
+    "secretType": "api_key",
+    "regex": "rk_live_[0-9a-zA-Z]{24}",
+    "keywords": ["rk_live_", "stripe"],
+    "category": "payment",
+    "severity": "critical"
+  },
+  {
+    "id": "gcp-api-key",
+    "secretType": "api_key",
+    "regex": "AIzaSy[a-zA-Z0-9_-]{33}",
+    "keywords": ["AIzaSy", "gcp"],
+    "category": "cloud-provider",
+    "severity": "critical"
+  },
+  {
+    "id": "gcp-service-account",
+    "secretType": "generic_secret",
+    "regex": "\"type\":\\s*\"service_account\"",
+    "keywords": ["service_account", "gcp"],
+    "category": "cloud-provider",
+    "severity": "high"
+  },
+  {
+    "id": "azure-storage-key",
+    "secretType": "generic_secret",
+    "regex": "AccountKey=[a-zA-Z0-9+/=]{88}",
+    "keywords": ["AccountKey=", "azure"],
+    "category": "cloud-provider",
+    "severity": "critical"
+  },
+  {
+    "id": "azure-ad-client-secret",
+    "secretType": "generic_secret",
+    "regex": "client_secret\\s*[:=]\\s*[\"']?([a-zA-Z0-9_.~-]{34,40})[\"']?",
+    "keywords": ["client_secret", "azure"],
+    "category": "cloud-provider",
+    "severity": "high"
+  },
+  {
+    "id": "private-key-rsa",
+    "secretType": "private_key",
+    "regex": "-----BEGIN RSA PRIVATE KEY-----",
+    "keywords": ["BEGIN RSA PRIVATE KEY"],
+    "category": "generic-credential",
+    "severity": "critical"
+  },
+  {
+    "id": "private-key-dsa",
+    "secretType": "private_key",
+    "regex": "-----BEGIN DSA PRIVATE KEY-----",
+    "keywords": ["BEGIN DSA PRIVATE KEY"],
+    "category": "generic-credential",
+    "severity": "critical"
+  },
+  {
+    "id": "private-key-ec",
+    "secretType": "private_key",
+    "regex": "-----BEGIN EC PRIVATE KEY-----",
+    "keywords": ["BEGIN EC PRIVATE KEY"],
+    "category": "generic-credential",
+    "severity": "critical"
+  },
+  {
+    "id": "private-key-pgp",
+    "secretType": "private_key",
+    "regex": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
+    "keywords": ["BEGIN PGP PRIVATE KEY BLOCK"],
+    "category": "generic-credential",
+    "severity": "critical"
+  },
+  {
+    "id": "private-key-openssh",
+    "secretType": "private_key",
+    "regex": "-----BEGIN OPENSSH PRIVATE KEY-----",
+    "keywords": ["BEGIN OPENSSH PRIVATE KEY"],
+    "category": "generic-credential",
+    "severity": "critical"
+  },
+  {
+    "id": "npm-access-token",
+    "secretType": "token",
+    "regex": "npm_[a-zA-Z0-9]{36}",
+    "keywords": ["npm_"],
+    "category": "generic-credential",
+    "severity": "critical"
+  },
+  {
+    "id": "pypi-api-token",
+    "secretType": "token",
+    "regex": "pypi-AgEIcHlwaS5vcmc[a-zA-Z0-9_-]{50,}",
+    "keywords": ["pypi-AgEIcHlwaS5vcmc", "pypi"],
+    "category": "generic-credential",
+    "severity": "critical"
+  },
+  {
+    "id": "twilio-api-key",
+    "secretType": "api_key",
+    "regex": "SK[0-9a-fA-F]{32}",
+    "keywords": ["SK", "twilio"],
+    "category": "messaging",
+    "severity": "high"
+  },
+  {
+    "id": "twilio-account-sid",
+    "secretType": "generic_secret",
+    "regex": "AC[0-9a-fA-F]{32}",
+    "keywords": ["AC", "twilio"],
+    "category": "messaging",
+    "severity": "medium"
+  },
+  {
+    "id": "sendgrid-api-key",
+    "secretType": "api_key",
+    "regex": "SG\\.[a-zA-Z0-9_-]{22}\\.[a-zA-Z0-9_-]{43}",
+    "keywords": ["SG.", "sendgrid"],
+    "category": "messaging",
+    "severity": "critical"
+  },
+  {
+    "id": "mailgun-api-key",
+    "secretType": "api_key",
+    "regex": "key-[0-9a-fA-F]{32}",
+    "keywords": ["key-", "mailgun"],
+    "category": "messaging",
+    "severity": "high"
+  },
+  {
+    "id": "heroku-api-key",
+    "secretType": "api_key",
+    "regex": "heroku[a-z0-9_]*\\s*[:=]\\s*[\"']?([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})[\"']?",
+    "keywords": ["heroku"],
+    "category": "cloud-provider",
+    "severity": "high"
+  },
+  {
+    "id": "digitalocean-pat",
+    "secretType": "token",
+    "regex": "dop_v1_[a-f0-9]{64}",
+    "keywords": ["dop_v1_", "digitalocean"],
+    "category": "cloud-provider",
+    "severity": "critical"
+  },
+  {
+    "id": "datadog-api-key",
+    "secretType": "api_key",
+    "regex": "datadog[a-z0-9_]*\\s*[:=]\\s*[\"']?([a-f0-9]{32})[\"']?",
+    "keywords": ["datadog"],
+    "category": "infrastructure",
+    "severity": "high"
+  },
+  {
+    "id": "openai-api-key",
+    "secretType": "api_key",
+    "regex": "sk-[a-zA-Z0-9]{32,48}",
+    "keywords": ["sk-", "openai"],
+    "category": "generic-credential",
+    "severity": "critical"
+  },
+  {
+    "id": "anthropic-api-key",
+    "secretType": "api_key",
+    "regex": "sk-ant-[a-zA-Z0-9_-]{40,64}",
+    "keywords": ["sk-ant-", "anthropic"],
+    "category": "generic-credential",
+    "severity": "critical"
+  },
+  {
+    "id": "docker-config-auth",
+    "secretType": "token",
+    "regex": "\"auth\":\\s*\"[A-Za-z0-9+/=]{20,}\"",
+    "keywords": ["\"auth\":", "docker"],
+    "category": "infrastructure",
+    "severity": "high"
+  },
+  {
+    "id": "gitlab-pat",
+    "secretType": "token",
+    "regex": "glpat-[a-zA-Z0-9_-]{20}",
+    "keywords": ["glpat-", "gitlab"],
+    "category": "version-control",
+    "severity": "critical"
+  },
+  {
+    "id": "terraform-cloud-token",
+    "secretType": "token",
+    "regex": "[a-zA-Z0-9]+\\.atlasv1\\.[a-zA-Z0-9_-]{60,}",
+    "keywords": [".atlasv1.", "terraform"],
+    "category": "infrastructure",
+    "severity": "high"
+  },
+  {
+    "id": "telegram-bot-token",
+    "secretType": "token",
+    "regex": "[0-9]{8,10}:AA[a-zA-Z0-9_-]{33}",
+    "keywords": [":AA", "telegram"],
+    "category": "messaging",
+    "severity": "high"
+  },
+  {
+    "id": "discord-bot-token",
+    "secretType": "token",
+    "regex": "[MN][A-Za-z0-9_-]{23,25}\\.[A-Za-z0-9_-]{6}\\.[A-Za-z0-9_-]{27}",
+    "keywords": ["discord"],
+    "category": "messaging",
+    "severity": "high"
+  },
+  {
+    "id": "shopify-access-token",
+    "secretType": "token",
+    "regex": "shpat_[a-fA-F0-9]{32}",
+    "keywords": ["shpat_", "shopify"],
+    "category": "payment",
+    "severity": "high"
+  },
+  {
+    "id": "segment-write-key",
+    "secretType": "api_key",
+    "regex": "segment[a-z0-9_]*\\s*[:=]\\s*[\"']?([a-zA-Z0-9]{32})[\"']?",
+    "keywords": ["segment"],
+    "category": "infrastructure",
+    "severity": "medium"
+  },
+  {
+    "id": "sentry-dsn",
+    "secretType": "generic_secret",
+    "regex": "https://[a-f0-9]{32}@o[0-9]+\\.ingest\\.sentry\\.io/[0-9]+",
+    "keywords": ["sentry.io", "sentry"],
+    "category": "infrastructure",
+    "severity": "medium"
+  },
+  {
+    "id": "square-access-token",
+    "secretType": "token",
+    "regex": "sq0atp-[0-9A-Za-z_-]{22}",
+    "keywords": ["sq0atp-", "square"],
+    "category": "payment",
+    "severity": "critical"
+  },
+  {
+    "id": "postman-api-key",
+    "secretType": "api_key",
+    "regex": "PMAK-[a-f0-9]{24}-[a-f0-9]{32}",
+    "keywords": ["PMAK-", "postman"],
+    "category": "infrastructure",
+    "severity": "high"
+  },
+  {
+    "id": "vault-token",
+    "secretType": "token",
+    "regex": "hvs\\.[a-zA-Z0-9_-]{24,}",
+    "keywords": ["hvs.", "vault"],
+    "category": "infrastructure",
+    "severity": "critical"
+  },
+  {
+    "id": "hubspot-api-key",
+    "secretType": "api_key",
+    "regex": "hubspot[a-z0-9_]*\\s*[:=]\\s*[\"']?([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})[\"']?",
+    "keywords": ["hubspot"],
+    "category": "generic-credential",
+    "severity": "high"
+  },
+  {
+    "id": "circleci-token",
+    "secretType": "token",
+    "regex": "circle[a-z0-9_]*\\s*[:=]\\s*[\"']?([0-9a-f]{40})[\"']?",
+    "keywords": ["circle"],
+    "category": "infrastructure",
+    "severity": "high"
+  },
+  {
+    "id": "codecov-token",
+    "secretType": "token",
+    "regex": "codecov[a-z0-9_]*\\s*[:=]\\s*[\"']?([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})[\"']?",
+    "keywords": ["codecov"],
+    "category": "version-control",
+    "severity": "medium"
+  },
+  {
+    "id": "databricks-token",
+    "secretType": "token",
+    "regex": "dapi[a-f0-9]{32}",
+    "keywords": ["dapi", "databricks"],
+    "category": "cloud-provider",
+    "severity": "high"
+  },
+  {
+    "id": "asana-pat",
+    "secretType": "token",
+    "regex": "1/[0-9]{16}:[a-f0-9]{32}",
+    "keywords": ["asana"],
+    "category": "generic-credential",
+    "severity": "medium"
+  },
+  {
+    "id": "airtable-api-key",
+    "secretType": "api_key",
+    "regex": "pat[a-zA-Z0-9]{14}\\.[a-f0-9]{64}",
+    "keywords": ["pat", "airtable"],
+    "category": "generic-credential",
+    "severity": "high"
+  }
+]

@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { PatternRegistry } from '../regex/pattern-registry';
 import testPatternsFixture from '@/test/fixtures/patterns/test-patterns.json';
-import defaultPatternsJson from '../regex/patterns.json';
+import defaultPatternsJson from '@/patterns/v1/patterns.json';
 
 describe('PatternRegistry Module', () => {
   beforeEach(() => {
@@ -136,11 +136,11 @@ describe('PatternRegistry Module', () => {
       const registry = new PatternRegistry();
 
       expect(registry.getPatternCount()).toBe(defaultPatternsJson.length);
-      expect(registry.getPatternCount()).toBeGreaterThanOrEqual(6);
+      expect(registry.getPatternCount()).toBe(50);
 
-      const awsPatterns = registry.getPatternsByCategory('aws');
+      const awsPatterns = registry.getPatternsByCategory('cloud-provider');
       expect(awsPatterns.length).toBeGreaterThan(0);
-      expect(awsPatterns[0].id).toBe('aws-access-key-id');
+      expect(awsPatterns.some((p) => p.id === 'aws-access-key-id')).toBe(true);
     });
   });
 
