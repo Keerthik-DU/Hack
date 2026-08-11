@@ -35,6 +35,7 @@ export default defineConfig({
         'src/hooks/useScanEngine.ts',
         'src/infra/input-sanitizer.ts',
         'src/orchestration/text-preprocessor.ts',
+        'src/engines/regex/pattern-registry.ts',
         'src/test/helpers/**/*.ts',
       ],
       exclude: [
@@ -46,6 +47,7 @@ export default defineConfig({
         'src/contexts/index.ts',
         'src/infra/index.ts',
         'src/orchestration/index.ts',
+        'src/engines/index.ts',
         '**/*.d.ts',
         '**/*.test.ts',
         '**/*.test.tsx',

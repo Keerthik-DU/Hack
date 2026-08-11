@@ -1,0 +1,50 @@
+[
+  {
+    "id": "aws-access-key-id",
+    "secretType": "aws_access_key",
+    "regex": "(?:A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+    "keywords": ["AKIA", "AGPA", "AIDA", "AROA", "AIPA", "ANPA", "ANVA", "ASIA", "aws"],
+    "category": "aws",
+    "severity": "critical"
+  },
+  {
+    "id": "github-pat",
+    "secretType": "token",
+    "regex": "ghp_[a-zA-Z0-9]{36}",
+    "keywords": ["ghp_", "github", "token"],
+    "category": "github",
+    "severity": "critical"
+  },
+  {
+    "id": "slack-webhook-url",
+    "secretType": "token",
+    "regex": "https://hooks\\.slack\\.com/services/T[a-zA-Z0-9_]+/B[a-zA-Z0-9_]+/[a-zA-Z0-9_]+",
+    "keywords": ["hooks.slack.com", "slack", "webhook"],
+    "category": "slack",
+    "severity": "high"
+  },
+  {
+    "id": "stripe-api-key",
+    "secretType": "api_key",
+    "regex": "sk_live_[0-9a-zA-Z]{24}",
+    "keywords": ["sk_live_", "stripe", "api_key"],
+    "category": "stripe",
+    "severity": "critical"
+  },
+  {
+    "id": "generic-private-key",
+    "secretType": "private_key",
+    "regex": "-----BEGIN (?:RSA|DSA|EC|OPENSSH|PRIVATE) KEY-----",
+    "keywords": ["BEGIN", "PRIVATE KEY", "RSA", "DSA", "EC", "OPENSSH"],
+    "category": "private_key",
+    "severity": "critical"
+  },
+  {
+    "id": "json-web-token",
+    "secretType": "jwt",
+    "regex": "eyJ[A-Za-z0-9_-]+\\.[eE]yJ[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+",
+    "keywords": ["eyJ", "jwt", "bearer"],
+    "category": "jwt",
+    "severity": "medium"
+  }
+]
