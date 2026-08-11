@@ -22,6 +22,10 @@ export default defineConfig({
         'src/types/**/*.ts',
         'src/contexts/**/*.tsx',
         'src/components/ThemeToggle.tsx',
+        'src/components/AppHeader.tsx',
+        'src/components/PrivacyBadge.tsx',
+        'src/components/StatusIndicators.tsx',
+        'src/hooks/useModelStatus.ts',
         'src/test/helpers/**/*.ts',
       ],
       exclude: [
