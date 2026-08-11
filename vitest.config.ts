@@ -36,6 +36,7 @@ export default defineConfig({
         'src/infra/input-sanitizer.ts',
         'src/orchestration/text-preprocessor.ts',
         'src/engines/regex/pattern-registry.ts',
+        'src/engines/regex/regex-engine.ts',
         'src/test/helpers/**/*.ts',
       ],
       exclude: [
