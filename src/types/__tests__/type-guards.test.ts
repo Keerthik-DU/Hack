@@ -8,13 +8,22 @@ import {
   isResultMessage,
   isErrorMessage,
 } from '../worker';
-import { createMockFinding, createMockWorkerMessage } from './fixtures';
+import {
+  createMockFinding,
+  createMockWorkerMessage,
+  createMockScanProgress,
+  createMockScanCapabilities,
+} from './fixtures';
 import { ErrorCode } from '../scan';
 
 describe('WorkerMessage Type Guards', () => {
   it('correctly identifies valid worker message formats', () => {
     expect(isWorkerMessage(createMockWorkerMessage('INIT_MODEL'))).toBe(true);
+    expect(isWorkerMessage(createMockWorkerMessage('MODEL_PROGRESS'))).toBe(true);
+    expect(isWorkerMessage(createMockWorkerMessage('MODEL_READY'))).toBe(true);
+    expect(isWorkerMessage(createMockWorkerMessage('ANALYZE'))).toBe(true);
     expect(isWorkerMessage(createMockWorkerMessage('RESULT'))).toBe(true);
+    expect(isWorkerMessage(createMockWorkerMessage('ERROR'))).toBe(true);
     expect(isWorkerMessage(null)).toBe(false);
     expect(isWorkerMessage('invalid')).toBe(false);
     expect(isWorkerMessage({ type: 'UNKNOWN_TYPE' })).toBe(false);
@@ -76,12 +85,21 @@ describe('WorkerMessage Type Guards', () => {
   });
 });
 
-describe('Finding Object Integrity', () => {
+describe('Finding & Progress Fixtures Integrity', () => {
   it('instantiates valid Finding objects via factory', () => {
     const finding = createMockFinding();
     expect(finding.id).toBeDefined();
     expect(finding.secretType).toBe('api_key');
     expect(finding.maskedValue).toContain('*');
     expect(finding.rawValue).toBeUndefined();
+  });
+
+  it('instantiates valid ScanProgress and ScanCapabilities objects', () => {
+    const progress = createMockScanProgress();
+    expect(progress.stage).toBe('Layer 1 Regex Scan');
+    expect(progress.percentage).toBe(33);
+
+    const capabilities = createMockScanCapabilities();
+    expect(capabilities.regexAvailable).toBe(true);
   });
 });
