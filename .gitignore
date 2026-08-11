@@ -11,6 +11,15 @@ coverage/
 .env*
 !.env.example
 
+# Mock secrets, test credentials, and scanner validation data
+src/test/fixtures/secrets/
+src/test/fixtures/**/sample-*.json
+src/test/fixtures/**/mock-*.json
+src/test/fixtures/**/secrets-*.json
+*.sample.json
+*.secrets.json
+*.mock.json
+
 # IDE & Editor files
 .vscode/
 .idea/
