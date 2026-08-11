@@ -1,23 +1,13 @@
 import React from 'react';
-import { Header } from '@/components';
+import { Header, DesignTokenShowcase } from '@/components';
 import '@/styles/globals.css';
 
 export const App: React.FC = () => {
   return (
-    <div className="app-container">
+    <div className="min-h-screen bg-surface-light-bg dark:bg-surface-dark-bg text-surface-light-textPrimary dark:text-surface-dark-textPrimary transition-colors duration-300">
       <Header />
-      <main className="main-content">
-        <div className="card hero-card">
-          <h2>Zero-Trust Local Secret Scanning</h2>
-          <p>
-            Paste your code, logs, or configuration files to detect exposed API keys, credentials,
-            and sensitive data client-side before sending to third-party tools.
-          </p>
-          <div className="status-banner">
-            <span className="status-dot"></span>
-            <span>Client-Side Engine Ready — 100% Air-Gapped Privacy</span>
-          </div>
-        </div>
+      <main className="container mx-auto py-8 px-4">
+        <DesignTokenShowcase />
       </main>
     </div>
   );
