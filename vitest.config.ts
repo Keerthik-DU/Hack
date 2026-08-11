@@ -28,7 +28,10 @@ export default defineConfig({
         'src/components/StatusIndicators.tsx',
         'src/components/ScannerLayout/ScannerLayout.tsx',
         'src/components/StatusBar.tsx',
+        'src/components/PasteInputPanel.tsx',
+        'src/components/About/**/*.tsx',
         'src/hooks/useModelStatus.ts',
+        'src/infra/input-sanitizer.ts',
         'src/test/helpers/**/*.ts',
       ],
       exclude: [
@@ -38,6 +41,7 @@ export default defineConfig({
         'src/test/setup.ts',
         'src/types/index.ts',
         'src/contexts/index.ts',
+        'src/infra/index.ts',
         '**/*.d.ts',
         '**/*.test.ts',
         '**/*.test.tsx',

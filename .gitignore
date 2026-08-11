@@ -16,6 +16,8 @@ src/test/fixtures/secrets/
 src/test/fixtures/**/sample-*.json
 src/test/fixtures/**/mock-*.json
 src/test/fixtures/**/secrets-*.json
+src/components/__fixtures__/
+src/components/**/__fixtures__/
 *.sample.json
 *.secrets.json
 *.mock.json

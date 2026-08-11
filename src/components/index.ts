@@ -6,3 +6,5 @@ export * from './DesignTokenShowcase';
 export * from './ThemeToggle';
 export * from './ScannerLayout';
 export * from './StatusBar';
+export * from './PasteInputPanel';
+export * from './__fixtures__/paste-inputs';
