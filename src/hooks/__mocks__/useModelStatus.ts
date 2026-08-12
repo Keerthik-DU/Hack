@@ -34,6 +34,7 @@ export function createMockWebGPUUnavailableStatus(): ModelStatusMap {
     modelState: 'unavailable',
     llm: 'unavailable',
     degradedMessage: 'Running in standard mode — regex and entropy scanning fully active',
+    webgpuUnavailableReason: 'WebGPU API not available in this browser',
   });
 }
 

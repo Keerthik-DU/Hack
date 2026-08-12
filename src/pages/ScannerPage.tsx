@@ -4,6 +4,7 @@ import {
   PasteInputPanel,
   ResultsPanel,
   DesignTokenShowcase,
+  DegradationBanner,
 } from '@/components';
 import { ResultsPanelScanEngine } from '@/components/ResultsPanel';
 
@@ -23,6 +24,8 @@ export const ScannerPage: React.FC = () => {
 
   return (
     <div className="space-y-12">
+      {/* Degradation banner renders at the top of the scan interface when LLM is unavailable */}
+      <DegradationBanner />
       <ScannerLayout
         inputPanel={<PasteInputPanel value={inputText} onTextChange={setInputText} />}
         resultsPanel={<ResultsPanel scanEngine={idleEngine} originalText={inputText} />}
