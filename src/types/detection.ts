@@ -6,6 +6,8 @@ import { DetectionLayer, Finding } from './finding';
 export interface EngineInput {
   /** The text content to analyze (code, logs, config) */
   readonly text: string;
+  /** Optional pre-split line array for fast line-by-line scanning */
+  readonly lines?: readonly string[];
   /** Optional execution parameters for engine customization */
   readonly options?: Record<string, unknown>;
   /** Optional AbortSignal for early cancellation */

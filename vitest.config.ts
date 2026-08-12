@@ -37,6 +37,11 @@ export default defineConfig({
         'src/orchestration/text-preprocessor.ts',
         'src/engines/regex/pattern-registry.ts',
         'src/engines/regex/regex-engine.ts',
+        'src/engines/entropy/calculate-entropy.ts',
+        'src/engines/entropy/word-list.ts',
+        'src/engines/entropy/dictionary-filter.ts',
+        'src/engines/entropy/contextual-signals.ts',
+        'src/engines/entropy/entropy-analyzer.ts',
         'src/test/helpers/**/*.ts',
       ],
       exclude: [

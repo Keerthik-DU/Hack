@@ -250,7 +250,7 @@
   {
     "id": "openai-api-key",
     "secretType": "api_key",
-    "regex": "sk-[a-zA-Z0-9]{32,48}",
+    "regex": "sk-[a-zA-Z0-9_-]{32,64}",
     "keywords": ["sk-", "openai"],
     "category": "generic-credential",
     "severity": "critical"
@@ -397,6 +397,406 @@
     "regex": "pat[a-zA-Z0-9]{14}\\.[a-f0-9]{64}",
     "keywords": ["pat", "airtable"],
     "category": "generic-credential",
+    "severity": "high"
+  },
+  {
+    "id": "postgres-uri",
+    "secretType": "database_url",
+    "regex": "postgres(?:ql)?://[a-zA-Z0-9_.~%-]+:[a-zA-Z0-9_.~%-]+@[a-zA-Z0-9.-]+:[0-9]+/",
+    "keywords": ["postgres://", "postgresql://"],
+    "category": "database",
+    "severity": "critical"
+  },
+  {
+    "id": "mysql-uri",
+    "secretType": "database_url",
+    "regex": "mysql://[a-zA-Z0-9_.~%-]+:[a-zA-Z0-9_.~%-]+@[a-zA-Z0-9.-]+:[0-9]+/",
+    "keywords": ["mysql://"],
+    "category": "database",
+    "severity": "critical"
+  },
+  {
+    "id": "mongodb-uri",
+    "secretType": "database_url",
+    "regex": "mongodb(?:\\+srv)?://[a-zA-Z0-9_.~%-]+:[a-zA-Z0-9_.~%-]+@[a-zA-Z0-9.-]+",
+    "keywords": ["mongodb://", "mongodb+srv://"],
+    "category": "database",
+    "severity": "critical"
+  },
+  {
+    "id": "redis-uri",
+    "secretType": "database_url",
+    "regex": "rediss?://(?:[a-zA-Z0-9_.~%-]+:)?[a-zA-Z0-9_.~%-]+@[a-zA-Z0-9.-]+:[0-9]+",
+    "keywords": ["redis://", "rediss://"],
+    "category": "database",
+    "severity": "high"
+  },
+  {
+    "id": "alibaba-access-key",
+    "secretType": "api_key",
+    "regex": "LTAI[a-zA-Z0-9]{16,20}",
+    "keywords": ["LTAI", "alibaba"],
+    "category": "cloud-provider",
+    "severity": "critical"
+  },
+  {
+    "id": "ibm-cloud-api-key",
+    "secretType": "api_key",
+    "regex": "ibm[a-z0-9_]*\\s*[:=]\\s*[\"']?([a-zA-Z0-9_-]{44})[\"']?",
+    "keywords": ["ibm"],
+    "category": "cloud-provider",
+    "severity": "critical"
+  },
+  {
+    "id": "oracle-oci-credentials",
+    "secretType": "generic_secret",
+    "regex": "ocid1\\.(?:tenancy|user|policy|compartment)\\.oc1\\.[a-zA-Z0-9._-]+",
+    "keywords": ["ocid1.", "oracle"],
+    "category": "cloud-provider",
+    "severity": "high"
+  },
+  {
+    "id": "travis-ci-token",
+    "secretType": "token",
+    "regex": "travis[a-z0-9_]*\\s*[:=]\\s*[\"']?([a-zA-Z0-9]{22})[\"']?",
+    "keywords": ["travis"],
+    "category": "infrastructure",
+    "severity": "high"
+  },
+  {
+    "id": "jenkins-api-token",
+    "secretType": "token",
+    "regex": "11[a-f0-9]{32}",
+    "keywords": ["jenkins"],
+    "category": "infrastructure",
+    "severity": "high"
+  },
+  {
+    "id": "jfrog-artifactory-api-key",
+    "secretType": "api_key",
+    "regex": "AKCp8[a-zA-Z0-9]{40,}",
+    "keywords": ["AKCp8", "artifactory"],
+    "category": "infrastructure",
+    "severity": "critical"
+  },
+  {
+    "id": "jira-api-token",
+    "secretType": "token",
+    "regex": "ATATT3xFfGF0[a-zA-Z0-9_-]{40,}",
+    "keywords": ["ATATT3xFfGF0", "jira"],
+    "category": "generic-credential",
+    "severity": "high"
+  },
+  {
+    "id": "confluence-api-token",
+    "secretType": "token",
+    "regex": "ATATT3xFfGF1[a-zA-Z0-9_-]{40,}",
+    "keywords": ["ATATT3xFfGF1", "confluence"],
+    "category": "generic-credential",
+    "severity": "high"
+  },
+  {
+    "id": "coveralls-token",
+    "secretType": "token",
+    "regex": "coveralls[a-z0-9_]*\\s*[:=]\\s*[\"']?([a-zA-Z0-9]{32})[\"']?",
+    "keywords": ["coveralls"],
+    "category": "version-control",
+    "severity": "medium"
+  },
+  {
+    "id": "sonarqube-token",
+    "secretType": "token",
+    "regex": "sqp_[a-f0-9]{40}",
+    "keywords": ["sqp_", "sonarqube"],
+    "category": "infrastructure",
+    "severity": "high"
+  },
+  {
+    "id": "pagerduty-api-key",
+    "secretType": "api_key",
+    "regex": "y_pdp_[a-zA-Z0-9]{20,30}",
+    "keywords": ["y_pdp_", "pagerduty"],
+    "category": "infrastructure",
+    "severity": "high"
+  },
+  {
+    "id": "newrelic-api-key",
+    "secretType": "api_key",
+    "regex": "NRAK-[A-Z0-9]{27}",
+    "keywords": ["NRAK-", "newrelic"],
+    "category": "infrastructure",
+    "severity": "high"
+  },
+  {
+    "id": "splunk-hec-token",
+    "secretType": "token",
+    "regex": "splunk[a-z0-9_]*\\s*[:=]\\s*[\"']?([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})[\"']?",
+    "keywords": ["splunk"],
+    "category": "infrastructure",
+    "severity": "medium"
+  },
+  {
+    "id": "elasticsearch-api-key",
+    "secretType": "api_key",
+    "regex": "elastic[a-z0-9_]*\\s*[:=]\\s*[\"']?([a-zA-Z0-9_-]{30,60})[\"']?",
+    "keywords": ["elastic"],
+    "category": "database",
+    "severity": "high"
+  },
+  {
+    "id": "supabase-api-key",
+    "secretType": "api_key",
+    "regex": "sbp_[a-f0-9]{40}",
+    "keywords": ["sbp_", "supabase"],
+    "category": "database",
+    "severity": "critical"
+  },
+  {
+    "id": "planetscale-service-token",
+    "secretType": "token",
+    "regex": "pscale_tkn_[a-zA-Z0-9_-]{43}",
+    "keywords": ["pscale_tkn_", "planetscale"],
+    "category": "database",
+    "severity": "critical"
+  },
+  {
+    "id": "launchdarkly-sdk-key",
+    "secretType": "api_key",
+    "regex": "sdk-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}",
+    "keywords": ["sdk-", "launchdarkly"],
+    "category": "infrastructure",
+    "severity": "medium"
+  },
+  {
+    "id": "fastly-api-token",
+    "secretType": "token",
+    "regex": "fastly[a-z0-9_]*\\s*[:=]\\s*[\"']?([a-zA-Z0-9_-]{32})[\"']?",
+    "keywords": ["fastly"],
+    "category": "infrastructure",
+    "severity": "high"
+  },
+  {
+    "id": "snyk-api-token",
+    "secretType": "token",
+    "regex": "snyk[a-z0-9_]*\\s*[:=]\\s*[\"']?([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})[\"']?",
+    "keywords": ["snyk"],
+    "category": "infrastructure",
+    "severity": "medium"
+  },
+  {
+    "id": "mapbox-access-token",
+    "secretType": "token",
+    "regex": "pk\\.eyJ1Ijo[a-zA-Z0-9_-]+\\.[a-zA-Z0-9_-]+",
+    "keywords": ["pk.eyJ1Ijo", "mapbox"],
+    "category": "generic-credential",
+    "severity": "medium"
+  },
+  {
+    "id": "algolia-admin-api-key",
+    "secretType": "api_key",
+    "regex": "algolia[a-z0-9_]*\\s*[:=]\\s*[\"']?([a-f0-9]{32})[\"']?",
+    "keywords": ["algolia"],
+    "category": "generic-credential",
+    "severity": "high"
+  },
+  {
+    "id": "firebase-server-key",
+    "secretType": "api_key",
+    "regex": "AAAA[a-zA-Z0-9_-]{7}:[a-zA-Z0-9_-]{140}",
+    "keywords": ["AAAA", "firebase"],
+    "category": "cloud-provider",
+    "severity": "critical"
+  },
+  {
+    "id": "mailchimp-api-key",
+    "secretType": "api_key",
+    "regex": "[0-9a-f]{32}-us[0-9]{1,2}",
+    "keywords": ["-us", "mailchimp"],
+    "category": "messaging",
+    "severity": "medium"
+  },
+  {
+    "id": "okta-api-token",
+    "secretType": "token",
+    "regex": "00[a-zA-Z0-9_-]{40}",
+    "keywords": ["okta"],
+    "category": "generic-credential",
+    "severity": "critical"
+  },
+  {
+    "id": "auth0-management-api-token",
+    "secretType": "token",
+    "regex": "eyJhbGciOiJSUzI1NiI[a-zA-Z0-9_-]*\\.[a-zA-Z0-9_-]+\\.[a-zA-Z0-9_-]+",
+    "keywords": ["eyJhbGciOiJSUzI1NiI", "auth0"],
+    "category": "generic-credential",
+    "severity": "critical"
+  },
+  {
+    "id": "generic-oauth-client-secret",
+    "secretType": "generic_secret",
+    "regex": "client_secret\\s*[:=]\\s*[\"']?([a-zA-Z0-9_.~-]{32,64})[\"']?",
+    "keywords": ["client_secret"],
+    "category": "generic-credential",
+    "severity": "high"
+  },
+  {
+    "id": "generic-jwt-token",
+    "secretType": "jwt",
+    "regex": "eyJ[A-Za-z0-9_-]+\\.[eE]yJ[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+",
+    "keywords": ["eyJ", "jwt", "bearer"],
+    "category": "generic-credential",
+    "severity": "medium"
+  },
+  {
+    "id": "gcp-oauth-client-secret",
+    "secretType": "generic_secret",
+    "regex": "GOCSPX-[a-zA-Z0-9_-]{28}",
+    "keywords": ["GOCSPX-", "gcp"],
+    "category": "cloud-provider",
+    "severity": "high"
+  },
+  {
+    "id": "linear-api-key",
+    "secretType": "api_key",
+    "regex": "lin_api_[a-zA-Z0-9]{40}",
+    "keywords": ["lin_api_", "linear"],
+    "category": "generic-credential",
+    "severity": "high"
+  },
+  {
+    "id": "notion-integration-token",
+    "secretType": "token",
+    "regex": "secret_[a-zA-Z0-9]{43}",
+    "keywords": ["secret_", "notion"],
+    "category": "generic-credential",
+    "severity": "high"
+  },
+  {
+    "id": "render-api-key",
+    "secretType": "api_key",
+    "regex": "rnd_[a-zA-Z0-9]{24}",
+    "keywords": ["rnd_", "render"],
+    "category": "cloud-provider",
+    "severity": "high"
+  },
+  {
+    "id": "fly-io-auth-token",
+    "secretType": "token",
+    "regex": "FlyV1\\s+[a-zA-Z0-9_-]{40,}",
+    "keywords": ["FlyV1", "fly.io"],
+    "category": "cloud-provider",
+    "severity": "high"
+  },
+  {
+    "id": "vercel-api-token",
+    "secretType": "token",
+    "regex": "vercel[a-z0-9_]*\\s*[:=]\\s*[\"']?([a-zA-Z0-9_-]{24})[\"']?",
+    "keywords": ["vercel"],
+    "category": "cloud-provider",
+    "severity": "high"
+  },
+  {
+    "id": "netlify-access-token",
+    "secretType": "token",
+    "regex": "nfp_[a-zA-Z0-9]{40,60}",
+    "keywords": ["nfp_", "netlify"],
+    "category": "cloud-provider",
+    "severity": "high"
+  },
+  {
+    "id": "huggingface-user-token",
+    "secretType": "token",
+    "regex": "hf_[a-zA-Z0-9]{34}",
+    "keywords": ["hf_", "huggingface"],
+    "category": "generic-credential",
+    "severity": "high"
+  },
+  {
+    "id": "replicate-api-token",
+    "secretType": "token",
+    "regex": "r8_[a-zA-Z0-9]{36}",
+    "keywords": ["r8_", "replicate"],
+    "category": "generic-credential",
+    "severity": "high"
+  },
+  {
+    "id": "pinecone-api-key",
+    "secretType": "api_key",
+    "regex": "pinecone[a-z0-9_]*\\s*[:=]\\s*[\"']?([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})[\"']?",
+    "keywords": ["pinecone"],
+    "category": "database",
+    "severity": "medium"
+  },
+  {
+    "id": "weaviate-api-key",
+    "secretType": "api_key",
+    "regex": "weaviate[a-z0-9_]*\\s*[:=]\\s*[\"']?([a-zA-Z0-9_-]{32,64})[\"']?",
+    "keywords": ["weaviate"],
+    "category": "database",
+    "severity": "medium"
+  },
+  {
+    "id": "qdrant-api-key",
+    "secretType": "api_key",
+    "regex": "qdrant[a-z0-9_]*\\s*[:=]\\s*[\"']?([a-zA-Z0-9_-]{32,64})[\"']?",
+    "keywords": ["qdrant"],
+    "category": "database",
+    "severity": "medium"
+  },
+  {
+    "id": "supabase-jwt-secret",
+    "secretType": "generic_secret",
+    "regex": "supabase_jwt_secret\\s*[:=]\\s*[\"']?([a-zA-Z0-9_-]{32,64})[\"']?",
+    "keywords": ["supabase_jwt_secret"],
+    "category": "database",
+    "severity": "critical"
+  },
+  {
+    "id": "db-password-connection-string",
+    "secretType": "database_url",
+    "regex": "password\\s*[:=]\\s*[\"']?([a-zA-Z0-9!@#$%^&*()_+={}\\[\\]:;<>,.?/~`-]{12,64})[\"']?",
+    "keywords": ["password"],
+    "category": "database",
+    "severity": "medium"
+  },
+  {
+    "id": "generic-api-key-header",
+    "secretType": "api_key",
+    "regex": "X-API-Key\\s*:\\s*[\"']?([a-zA-Z0-9_-]{16,64})[\"']?",
+    "keywords": ["X-API-Key"],
+    "category": "generic-credential",
+    "severity": "medium"
+  },
+  {
+    "id": "generic-auth-header",
+    "secretType": "token",
+    "regex": "Authorization\\s*:\\s*Bearer\\s+([a-zA-Z0-9_.-]{20,})",
+    "keywords": ["Authorization", "Bearer"],
+    "category": "generic-credential",
+    "severity": "medium"
+  },
+  {
+    "id": "github-app-secret",
+    "secretType": "generic_secret",
+    "regex": "github_app_secret\\s*[:=]\\s*[\"']?([a-f0-9]{40})[\"']?",
+    "keywords": ["github_app_secret"],
+    "category": "version-control",
+    "severity": "high"
+  },
+  {
+    "id": "azure-client-certificate",
+    "secretType": "private_key",
+    "regex": "-----BEGIN CERTIFICATE-----",
+    "keywords": ["BEGIN CERTIFICATE"],
+    "category": "cloud-provider",
+    "severity": "medium"
+  },
+  {
+    "id": "aws-session-token",
+    "secretType": "aws_access_key",
+    "regex": "aws_session_token\\s*[:=]\\s*[\"']?([A-Za-z0-9/+=]{100,})[\"']?",
+    "keywords": ["aws_session_token"],
+    "category": "cloud-provider",
     "severity": "high"
   }
 ]
