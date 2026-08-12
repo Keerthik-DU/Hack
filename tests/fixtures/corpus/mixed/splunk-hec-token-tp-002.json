@@ -1,0 +1,25 @@
+{
+  "id": "splunk-hec-token-tp-002",
+  "input": "\u0063\u006f\u006e\u0073\u0074\u0020\u0063\u006f\u006e\u0066\u0069\u0067\u0020\u003d\u0020\u007b\u000a\u0020\u0020\u002f\u002f\u0020\u0073\u0070\u006c\u0075\u006e\u006b\u002d\u0068\u0065\u0063\u002d\u0074\u006f\u006b\u0065\u006e\u000a\u0020\u0020\u0076\u0061\u006c\u0075\u0065\u003a\u0020\u0022\u0073\u0070\u006c\u0075\u006e\u006b\u005f\u0068\u0065\u0063\u005f\u0074\u006f\u006b\u0065\u006e\u0020\u003d\u0020\u0022\u0036\u0064\u0038\u0037\u0061\u0031\u0063\u0062\u002d\u0066\u0032\u0039\u0034\u002d\u0038\u0037\u0061\u0031\u002d\u0031\u0063\u0062\u0065\u002d\u0061\u0031\u0063\u0062\u0065\u0035\u0030\u0066\u0032\u0039\u0034\u0033\u0022\u0022\u002c\u000a\u007d\u003b\u000a",
+  "expectedFindings": [
+    {
+      "type": "splunk-hec-token",
+      "lineNumber": 3,
+      "charRange": [
+        10,
+        67
+      ],
+      "confidence": "medium",
+      "detectionLayer": 1
+    }
+  ],
+  "groundTruth": "TP",
+  "category": "infrastructure",
+  "description": "True positive for splunk-hec-token (variant 2)",
+  "tags": [
+    "pattern-coverage",
+    "true-positive",
+    "splunk-hec-token",
+    "token"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "id": "contextual-tp-008",
+  "input": "\u0070\u0061\u0073\u0073\u0077\u0064\u003d\u0041\u006d\u0062\u0069\u0067\u0075\u006f\u0075\u0073\u0056\u0061\u006c\u0075\u0065\u005a\u0063\u0068\u0032\u0056\u0053\u0037\u006d\u007a\u0030\u0062\u0057\u000a",
+  "expectedFindings": [
+    {
+      "type": "contextual_secret",
+      "lineNumber": 1,
+      "charRange": [
+        7,
+        33
+      ],
+      "confidence": "medium",
+      "detectionLayer": 2
+    }
+  ],
+  "groundTruth": "TP",
+  "category": "contextual",
+  "description": "Contextual secret via variable name 'passwd'",
+  "tags": [
+    "contextual",
+    "true-positive",
+    "passwd"
+  ]
+}

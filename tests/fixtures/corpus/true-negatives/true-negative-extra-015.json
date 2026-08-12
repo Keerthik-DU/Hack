@@ -1,0 +1,12 @@
+{
+  "id": "true-negative-extra-015",
+  "input": "\u0056\u0045\u0052\u0053\u0049\u004f\u004e\u003d\u0031\u002e\u0032\u002e\u0033\u000a",
+  "expectedFindings": [],
+  "groundTruth": "TN",
+  "category": "true-negatives",
+  "description": "Extra true-negative sample #15",
+  "tags": [
+    "true-negative",
+    "extra"
+  ]
+}

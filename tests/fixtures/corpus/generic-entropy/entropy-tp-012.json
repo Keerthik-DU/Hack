@@ -1,0 +1,23 @@
+{
+  "id": "entropy-tp-012",
+  "input": "\u0061\u0070\u0069\u005f\u0074\u006f\u006b\u0065\u006e\u0020\u003d\u0020\u0022\u0050\u0069\u005a\u006b\u007a\u0032\u0064\u0059\u0058\u004b\u0068\u004d\u0037\u0065\u006c\u0041\u0066\u0079\u0070\u0030\u0044\u0047\u0074\u006f\u006e\u0061\u0078\u0063\u004c\u0075\u0031\u0051\u0076\u0043\u0035\u0045\u0054\u0057\u0039\u0034\u0033\u0071\u0042\u0073\u0062\u002b\u0046\u0067\u0022\u000a",
+  "expectedFindings": [
+    {
+      "type": "high_entropy_string",
+      "lineNumber": 1,
+      "charRange": [
+        13,
+        61
+      ],
+      "confidence": "medium",
+      "detectionLayer": 2
+    }
+  ],
+  "groundTruth": "TP",
+  "category": "generic-entropy",
+  "description": "High-entropy secret candidate #12",
+  "tags": [
+    "entropy",
+    "true-positive"
+  ]
+}

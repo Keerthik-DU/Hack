@@ -1,0 +1,25 @@
+{
+  "id": "generic-jwt-token-tp-003",
+  "input": "\u002d\u002d\u002d\u000a\u0023\u0020\u0067\u0065\u006e\u0065\u0072\u0069\u0063\u002d\u006a\u0077\u0074\u002d\u0074\u006f\u006b\u0065\u006e\u000a\u0063\u0072\u0065\u0064\u0065\u006e\u0074\u0069\u0061\u006c\u003a\u0020\u0065\u0079\u004a\u0068\u0062\u0047\u0063\u0069\u004f\u0069\u004a\u0049\u0055\u007a\u0049\u0031\u004e\u0069\u004a\u0039\u002e\u0065\u0079\u004a\u007a\u0064\u0057\u0049\u0069\u004f\u0069\u004a\u0031\u0063\u0032\u0056\u0079\u0044\u0030\u004c\u0036\u005a\u0055\u0044\u0030\u0049\u006e\u0030\u002e\u0036\u0072\u0038\u0052\u006f\u0076\u0057\u0070\u0049\u007a\u004b\u005a\u0032\u0044\u0079\u0078\u006b\u0048\u006d\u0037\u0045\u004c\u0061\u0046\u0059\u0050\u0030\u0064\u0067\u0054\u004f\u004e\u000a",
+  "expectedFindings": [
+    {
+      "type": "generic-jwt-token",
+      "lineNumber": 3,
+      "charRange": [
+        12,
+        93
+      ],
+      "confidence": "medium",
+      "detectionLayer": 1
+    }
+  ],
+  "groundTruth": "TP",
+  "category": "generic-credential",
+  "description": "True positive for generic-jwt-token (variant 3)",
+  "tags": [
+    "pattern-coverage",
+    "true-positive",
+    "generic-jwt-token",
+    "jwt"
+  ]
+}

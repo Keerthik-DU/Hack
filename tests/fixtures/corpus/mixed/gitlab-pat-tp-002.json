@@ -1,0 +1,25 @@
+{
+  "id": "gitlab-pat-tp-002",
+  "input": "\u0063\u006f\u006e\u0073\u0074\u0020\u0063\u006f\u006e\u0066\u0069\u0067\u0020\u003d\u0020\u007b\u000a\u0020\u0020\u002f\u002f\u0020\u0067\u0069\u0074\u006c\u0061\u0062\u002d\u0070\u0061\u0074\u000a\u0020\u0020\u0076\u0061\u006c\u0075\u0065\u003a\u0020\u0022\u0067\u006c\u0070\u0061\u0074\u002d\u0077\u0039\u0034\u0033\u0051\u0062\u0053\u0042\u005f\u0066\u0047\u002d\u0073\u006a\u0075\u004a\u004d\u006e\u0069\u0068\u0022\u002c\u000a\u007d\u003b\u000a",
+  "expectedFindings": [
+    {
+      "type": "gitlab-pat",
+      "lineNumber": 3,
+      "charRange": [
+        10,
+        36
+      ],
+      "confidence": "high",
+      "detectionLayer": 1
+    }
+  ],
+  "groundTruth": "TP",
+  "category": "version-control",
+  "description": "True positive for gitlab-pat (variant 2)",
+  "tags": [
+    "pattern-coverage",
+    "true-positive",
+    "gitlab-pat",
+    "token"
+  ]
+}

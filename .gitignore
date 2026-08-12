@@ -1,4 +1,4 @@
-# Dependencies
+﻿# Dependencies
 node_modules/
 
 # Production build outputs
@@ -20,8 +20,22 @@ src/test/fixtures/**/secrets-*.json
 src/components/__fixtures__/
 src/components/**/__fixtures__/
 src/engines/__tests__/patterns-v1.test.ts
-tests/fixtures/
+# Fixture dumps under tests/ (last matching pattern wins).
+# WO-057 labeled corpus + tooling must remain version-controlled.
 tests/**/fixtures/
+!tests/fixtures/
+!tests/fixtures/corpus-schema.ts
+!tests/fixtures/corpus-loader.ts
+!tests/fixtures/validate-corpus.ts
+!tests/fixtures/generate-corpus.ts
+!tests/fixtures/README.md
+!tests/fixtures/corpus/
+!tests/fixtures/corpus/**
+!tests/fixtures/expected-security-headers.json
+!tests/fixtures/prohibited-patterns/
+!tests/fixtures/prohibited-patterns/**
+!tests/e2e/fixtures/
+!tests/e2e/fixtures/**
 tests/**/results/
 tests/**/output/
 tests-results/

@@ -1,0 +1,25 @@
+{
+  "id": "github-pat-classic-tp-003",
+  "input": "\u002d\u002d\u002d\u000a\u0023\u0020\u0067\u0069\u0074\u0068\u0075\u0062\u002d\u0070\u0061\u0074\u002d\u0063\u006c\u0061\u0073\u0073\u0069\u0063\u000a\u0063\u0072\u0065\u0064\u0065\u006e\u0074\u0069\u0061\u006c\u003a\u0020\u0067\u0068\u0070\u005f\u0044\u0030\u004c\u0036\u005a\u0055\u0044\u0030\u006e\u0077\u0064\u0069\u0072\u0059\u006a\u006b\u0062\u0065\u0048\u0079\u0035\u0059\u0050\u0077\u0070\u0036\u007a\u0075\u0050\u0063\u007a\u0057\u0064\u004d\u0068\u0034\u000a",
+  "expectedFindings": [
+    {
+      "type": "github-pat-classic",
+      "lineNumber": 3,
+      "charRange": [
+        12,
+        52
+      ],
+      "confidence": "high",
+      "detectionLayer": 1
+    }
+  ],
+  "groundTruth": "TP",
+  "category": "version-control",
+  "description": "True positive for github-pat-classic (variant 3)",
+  "tags": [
+    "pattern-coverage",
+    "true-positive",
+    "github-pat-classic",
+    "token"
+  ]
+}

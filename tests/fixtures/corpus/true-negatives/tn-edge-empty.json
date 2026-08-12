@@ -1,0 +1,12 @@
+{
+  "id": "tn-edge-empty",
+  "input": "",
+  "expectedFindings": [],
+  "groundTruth": "TN",
+  "category": "true-negatives",
+  "description": "Empty input boundary sample",
+  "tags": [
+    "true-negative",
+    "edge-case"
+  ]
+}

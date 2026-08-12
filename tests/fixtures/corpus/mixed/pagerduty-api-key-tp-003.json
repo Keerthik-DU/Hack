@@ -1,0 +1,25 @@
+{
+  "id": "pagerduty-api-key-tp-003",
+  "input": "\u002d\u002d\u002d\u000a\u0023\u0020\u0070\u0061\u0067\u0065\u0072\u0064\u0075\u0074\u0079\u002d\u0061\u0070\u0069\u002d\u006b\u0065\u0079\u000a\u0063\u0072\u0065\u0064\u0065\u006e\u0074\u0069\u0061\u006c\u003a\u0020\u0079\u005f\u0070\u0064\u0070\u005f\u0044\u0030\u004c\u0036\u005a\u0055\u0044\u0030\u006e\u0077\u0064\u0069\u0072\u0059\u006a\u006b\u0062\u0065\u0048\u0079\u0035\u0059\u0050\u0077\u000a",
+  "expectedFindings": [
+    {
+      "type": "pagerduty-api-key",
+      "lineNumber": 3,
+      "charRange": [
+        12,
+        42
+      ],
+      "confidence": "high",
+      "detectionLayer": 1
+    }
+  ],
+  "groundTruth": "TP",
+  "category": "infrastructure",
+  "description": "True positive for pagerduty-api-key (variant 3)",
+  "tags": [
+    "pattern-coverage",
+    "true-positive",
+    "pagerduty-api-key",
+    "api_key"
+  ]
+}

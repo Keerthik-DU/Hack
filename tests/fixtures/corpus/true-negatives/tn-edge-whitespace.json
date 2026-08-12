@@ -1,0 +1,12 @@
+{
+  "id": "tn-edge-whitespace",
+  "input": "\u0020\u0020\u0020\u000a\u0009\u000a\u0020\u0020\u000a",
+  "expectedFindings": [],
+  "groundTruth": "TN",
+  "category": "true-negatives",
+  "description": "Whitespace-only input",
+  "tags": [
+    "true-negative",
+    "edge-case"
+  ]
+}
