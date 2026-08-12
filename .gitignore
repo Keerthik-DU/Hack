@@ -21,7 +21,7 @@ src/components/__fixtures__/
 src/components/**/__fixtures__/
 src/engines/__tests__/patterns-v1.test.ts
 tests/fixtures/
-tests/
+tests/**/fixtures/
 *.sample.json
 *.secrets.json
 *.mock.json
