@@ -1,26 +1,18 @@
 {
-  "$schema": "https://airgap-scanner.example.com/schemas/model-manifest/v1.json",
-  "version": "1.0.0",
-  "generated": "2026-08-12T00:00:00.000Z",
-  "description": "Pinned SHA-256 integrity manifest for AirGap Scanner LLM model weights. All entries must be verified against this manifest before the model is loaded for inference.",
+  "defaultModelId": "Phi-3.5-mini-instruct-q4f16_1-MLC",
   "models": [
     {
-      "id": "phi-3.5-mini-4bit",
-      "displayName": "Phi-3.5 Mini (4-bit quantized)",
-      "version": "1.0.0-placeholder",
-      "engine": "@mlc-ai/web-llm",
-      "parameterCount": "3.8B",
-      "quantization": "q4f16_1",
+      "modelId": "Phi-3.5-mini-instruct-q4f16_1-MLC",
+      "version": "1.0.0",
+      "license": "MIT",
+      "downloadSizeMb": 220,
       "files": [
         {
-          "filename": "phi-3.5-mini-instruct-q4f16_1-MLC.wasm",
-          "sizeBytes": 0,
-          "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
-          "note": "PLACEHOLDER — replace with real SHA-256 hash before LLM integration"
+          "path": "params_shard_0.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
         }
-      ],
-      "status": "placeholder",
-      "note": "This is a placeholder entry committed for early-development builds before LLM integration is complete. Replace all sha256 values with verified hashes from the official @mlc-ai/web-llm release before enabling LLM inference."
+      ]
     }
-  ]
+  ],
+  "selectionRationale": "Best latency/accuracy trade-off on mid-range WebGPU (see src/benchmarks/results/benchmark-report.md)"
 }

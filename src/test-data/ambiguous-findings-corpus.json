@@ -1,0 +1,577 @@
+[
+    {
+        "id":  "real-1",
+        "findingText":  "AKIAIOSFODNN7EXAM01",
+        "contextLines":  [
+                             "const key1 = \"AKIAIOSFODNN7EXAM01\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "real-2",
+        "findingText":  "AKIAIOSFODNN7EXAM02",
+        "contextLines":  [
+                             "const key2 = \"AKIAIOSFODNN7EXAM02\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "real-3",
+        "findingText":  "AKIAIOSFODNN7EXAM03",
+        "contextLines":  [
+                             "const key3 = \"AKIAIOSFODNN7EXAM03\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "real-4",
+        "findingText":  "AKIAIOSFODNN7EXAM04",
+        "contextLines":  [
+                             "const key4 = \"AKIAIOSFODNN7EXAM04\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "real-5",
+        "findingText":  "AKIAIOSFODNN7EXAM05",
+        "contextLines":  [
+                             "const key5 = \"AKIAIOSFODNN7EXAM05\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "real-6",
+        "findingText":  "AKIAIOSFODNN7EXAM06",
+        "contextLines":  [
+                             "const key6 = \"AKIAIOSFODNN7EXAM06\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "real-7",
+        "findingText":  "AKIAIOSFODNN7EXAM07",
+        "contextLines":  [
+                             "const key7 = \"AKIAIOSFODNN7EXAM07\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "real-8",
+        "findingText":  "AKIAIOSFODNN7EXAM08",
+        "contextLines":  [
+                             "const key8 = \"AKIAIOSFODNN7EXAM08\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "real-9",
+        "findingText":  "AKIAIOSFODNN7EXAM09",
+        "contextLines":  [
+                             "const key9 = \"AKIAIOSFODNN7EXAM09\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "real-10",
+        "findingText":  "AKIAIOSFODNN7EXAM10",
+        "contextLines":  [
+                             "const key10 = \"AKIAIOSFODNN7EXAM10\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "real-11",
+        "findingText":  "AKIAIOSFODNN7EXAM11",
+        "contextLines":  [
+                             "const key11 = \"AKIAIOSFODNN7EXAM11\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "real-12",
+        "findingText":  "AKIAIOSFODNN7EXAM12",
+        "contextLines":  [
+                             "const key12 = \"AKIAIOSFODNN7EXAM12\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "real-13",
+        "findingText":  "AKIAIOSFODNN7EXAM13",
+        "contextLines":  [
+                             "const key13 = \"AKIAIOSFODNN7EXAM13\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "real-14",
+        "findingText":  "AKIAIOSFODNN7EXAM14",
+        "contextLines":  [
+                             "const key14 = \"AKIAIOSFODNN7EXAM14\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "real-15",
+        "findingText":  "AKIAIOSFODNN7EXAM15",
+        "contextLines":  [
+                             "const key15 = \"AKIAIOSFODNN7EXAM15\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "real-16",
+        "findingText":  "AKIAIOSFODNN7EXAM16",
+        "contextLines":  [
+                             "const key16 = \"AKIAIOSFODNN7EXAM16\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "real-17",
+        "findingText":  "AKIAIOSFODNN7EXAM17",
+        "contextLines":  [
+                             "const key17 = \"AKIAIOSFODNN7EXAM17\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "real-18",
+        "findingText":  "AKIAIOSFODNN7EXAM18",
+        "contextLines":  [
+                             "const key18 = \"AKIAIOSFODNN7EXAM18\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "real-19",
+        "findingText":  "AKIAIOSFODNN7EXAM19",
+        "contextLines":  [
+                             "const key19 = \"AKIAIOSFODNN7EXAM19\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "real-20",
+        "findingText":  "AKIAIOSFODNN7EXAM20",
+        "contextLines":  [
+                             "const key20 = \"AKIAIOSFODNN7EXAM20\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "real-21",
+        "findingText":  "AKIAIOSFODNN7EXAM21",
+        "contextLines":  [
+                             "const key21 = \"AKIAIOSFODNN7EXAM21\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "real-22",
+        "findingText":  "AKIAIOSFODNN7EXAM22",
+        "contextLines":  [
+                             "const key22 = \"AKIAIOSFODNN7EXAM22\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "real-23",
+        "findingText":  "AKIAIOSFODNN7EXAM23",
+        "contextLines":  [
+                             "const key23 = \"AKIAIOSFODNN7EXAM23\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "real-24",
+        "findingText":  "AKIAIOSFODNN7EXAM24",
+        "contextLines":  [
+                             "const key24 = \"AKIAIOSFODNN7EXAM24\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "real-25",
+        "findingText":  "AKIAIOSFODNN7EXAM25",
+        "contextLines":  [
+                             "const key25 = \"AKIAIOSFODNN7EXAM25\";"
+                         ],
+        "isRealSecret":  true,
+        "secretType":  "aws_access_key",
+        "explanation":  "AWS-shaped access key in assignment",
+        "expectedVerdict":  "real_secret"
+    },
+    {
+        "id":  "fp-1",
+        "findingText":  "2252893c-ac60-4715-a358-10b88dace0db",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"2252893c-ac60-4715-a358-10b88dace0db\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    },
+    {
+        "id":  "fp-2",
+        "findingText":  "a4aa415c-6310-4881-8e99-0e20c6aaeedc",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"a4aa415c-6310-4881-8e99-0e20c6aaeedc\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    },
+    {
+        "id":  "fp-3",
+        "findingText":  "d4334b9b-c3f6-4b11-b36d-bea511d7c9a3",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"d4334b9b-c3f6-4b11-b36d-bea511d7c9a3\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    },
+    {
+        "id":  "fp-4",
+        "findingText":  "00af01c9-9c6c-4b87-83aa-53ffa173aa9d",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"00af01c9-9c6c-4b87-83aa-53ffa173aa9d\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    },
+    {
+        "id":  "fp-5",
+        "findingText":  "ea88d37e-4f3d-4534-ad92-db24d55b61dd",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"ea88d37e-4f3d-4534-ad92-db24d55b61dd\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    },
+    {
+        "id":  "fp-6",
+        "findingText":  "3d8032aa-251a-47d5-b917-6c2e606d1942",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"3d8032aa-251a-47d5-b917-6c2e606d1942\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    },
+    {
+        "id":  "fp-7",
+        "findingText":  "61a7a2d4-42a4-45c8-b5b4-3a1ca52224f8",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"61a7a2d4-42a4-45c8-b5b4-3a1ca52224f8\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    },
+    {
+        "id":  "fp-8",
+        "findingText":  "5e3fa264-e000-4c0a-802a-f9a497e04048",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"5e3fa264-e000-4c0a-802a-f9a497e04048\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    },
+    {
+        "id":  "fp-9",
+        "findingText":  "22ccf580-6fdf-4b8e-a496-556fa523c97a",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"22ccf580-6fdf-4b8e-a496-556fa523c97a\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    },
+    {
+        "id":  "fp-10",
+        "findingText":  "3d925cf6-62e8-45a9-91f3-d2aa12208c5f",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"3d925cf6-62e8-45a9-91f3-d2aa12208c5f\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    },
+    {
+        "id":  "fp-11",
+        "findingText":  "0c88e1ad-9259-4d67-a22f-65ffec14919a",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"0c88e1ad-9259-4d67-a22f-65ffec14919a\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    },
+    {
+        "id":  "fp-12",
+        "findingText":  "72b8a5d7-325d-4f77-885e-889b4b901cb2",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"72b8a5d7-325d-4f77-885e-889b4b901cb2\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    },
+    {
+        "id":  "fp-13",
+        "findingText":  "aa8bfcff-1494-437b-85e2-2c9d6189f577",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"aa8bfcff-1494-437b-85e2-2c9d6189f577\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    },
+    {
+        "id":  "fp-14",
+        "findingText":  "b3feee8f-052a-4f8e-bba5-293439272961",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"b3feee8f-052a-4f8e-bba5-293439272961\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    },
+    {
+        "id":  "fp-15",
+        "findingText":  "216da185-ea15-4a2d-83f5-80cc6415736d",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"216da185-ea15-4a2d-83f5-80cc6415736d\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    },
+    {
+        "id":  "fp-16",
+        "findingText":  "3d5f9c7c-0049-464c-9a11-be1ce4dd4c09",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"3d5f9c7c-0049-464c-9a11-be1ce4dd4c09\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    },
+    {
+        "id":  "fp-17",
+        "findingText":  "30d71c95-4809-43e2-8e39-9ad7ec1d3a51",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"30d71c95-4809-43e2-8e39-9ad7ec1d3a51\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    },
+    {
+        "id":  "fp-18",
+        "findingText":  "ef53a18b-f4e0-46c4-b1de-566dc6111aab",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"ef53a18b-f4e0-46c4-b1de-566dc6111aab\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    },
+    {
+        "id":  "fp-19",
+        "findingText":  "be66f8d1-0357-4da4-84c7-b9112f64df7e",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"be66f8d1-0357-4da4-84c7-b9112f64df7e\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    },
+    {
+        "id":  "fp-20",
+        "findingText":  "d5f35063-97b3-4f58-8d04-0d0b9c755a9f",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"d5f35063-97b3-4f58-8d04-0d0b9c755a9f\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    },
+    {
+        "id":  "fp-21",
+        "findingText":  "be05fd51-8ee2-40b5-bb8d-11c1cf2f23d9",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"be05fd51-8ee2-40b5-bb8d-11c1cf2f23d9\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    },
+    {
+        "id":  "fp-22",
+        "findingText":  "3d37fdec-1f5c-4df7-a87b-ac64e1893770",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"3d37fdec-1f5c-4df7-a87b-ac64e1893770\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    },
+    {
+        "id":  "fp-23",
+        "findingText":  "30c9ccc7-715d-48dd-9608-e7d91e3b3ced",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"30c9ccc7-715d-48dd-9608-e7d91e3b3ced\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    },
+    {
+        "id":  "fp-24",
+        "findingText":  "c8134551-52ed-4f3d-9d3e-1f1f6efedd8b",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"c8134551-52ed-4f3d-9d3e-1f1f6efedd8b\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    },
+    {
+        "id":  "fp-25",
+        "findingText":  "57016935-13b9-428e-a2c2-8666caac0227",
+        "contextLines":  [
+                             "// test fixture",
+                             "const id = \"57016935-13b9-428e-a2c2-8666caac0227\";"
+                         ],
+        "isRealSecret":  false,
+        "secretType":  null,
+        "explanation":  "UUID false positive",
+        "expectedVerdict":  "false_positive"
+    }
+]
