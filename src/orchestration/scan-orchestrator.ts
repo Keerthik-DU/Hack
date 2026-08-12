@@ -286,7 +286,17 @@ export class ScanOrchestrator implements IScanOrchestrator {
       (f) => f.confidence !== 'high'
     ) as AmbiguousFinding[];
 
-    if (layer2Engine && ambiguousFindings.length > 0) {
+    // Explicit capability check: skip LLM when getCapabilities() reports llmAvailable=false.
+    // This catches cases where the engine exists but capabilities have been overridden
+    // (e.g., memory pressure or WebGPU detection failure after engine construction).
+    const capabilities = this.getCapabilities();
+    if (!capabilities.llmAvailable) {
+      console.info(
+        '[ScanOrchestrator] LLM layer skipped — capabilities.llmAvailable is false'
+      );
+    }
+
+    if (layer2Engine && capabilities.llmAvailable && ambiguousFindings.length > 0) {
       layerStates['Layer 2 (LLM)'] = 'pending';
       yield {
         status: 'scanning',
@@ -368,9 +378,12 @@ export class ScanOrchestrator implements IScanOrchestrator {
       }
     } else {
       layerStates['Layer 2 (LLM)'] = 'skipped';
+      const skipReason = !capabilities.llmAvailable
+        ? 'LLM layer unavailable (WebGPU not supported or memory pressure)'
+        : 'no ambiguous findings or LLM engine not registered';
       yield {
         status: 'scanning',
-        stage: 'Layer 2 LLM analysis skipped (no ambiguous findings or LLM unavailable)',
+        stage: `Layer 2 LLM analysis skipped (${skipReason})`,
         percentage: 90,
         findings: [...accumulatedFindings],
       };

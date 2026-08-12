@@ -20,6 +20,37 @@ import type { WebGPUCapability } from '@/types/webgpu';
 /** Maximum milliseconds to wait for requestAdapter() before treating as unsupported */
 const ADAPTER_TIMEOUT_MS = 5000;
 
+/** Memory pressure threshold: 3 GB in bytes. Above this, LLM inference is unsafe. */
+const MEMORY_PRESSURE_THRESHOLD_BYTES = 3 * 1024 * 1024 * 1024;
+
+/**
+ * Checks whether the browser is under significant heap memory pressure.
+ * Returns true if usedJSHeapSize exceeds the threshold, false if under threshold,
+ * or undefined if performance.memory is unavailable (non-Chrome browsers).
+ *
+ * @returns boolean | undefined
+ */
+function checkMemoryPressure(): boolean | undefined {
+  // performance.memory is a Chrome-only non-standard extension (MemoryInfo).
+  // We guard with typeof to avoid ReferenceError on Firefox, Safari, and other browsers.
+  const memory = (
+    typeof performance !== 'undefined'
+      ? (performance as unknown as { memory?: { usedJSHeapSize?: number } }).memory
+      : undefined
+  );
+
+  if (memory === undefined || memory === null) {
+    return undefined;
+  }
+
+  const usedBytes = memory.usedJSHeapSize;
+  if (typeof usedBytes !== 'number') {
+    return undefined;
+  }
+
+  return usedBytes > MEMORY_PRESSURE_THRESHOLD_BYTES;
+}
+
 /** Module-level singleton cache — null means detection has not yet run */
 let cachedResult: WebGPUCapability | null = null;
 
@@ -109,10 +140,19 @@ export class WebGPUDetector {
       console.warn('[WebGPUDetector] Could not retrieve GPU adapter info');
     }
 
+    const memoryPressure = checkMemoryPressure();
+
+    if (memoryPressure === true) {
+      console.warn(
+        '[WebGPUDetector] Memory pressure exceeds threshold — LLM layer will be skipped'
+      );
+    }
+
     return {
       supported: true,
       adapterInfo,
       detectionTimeMs: performance.now() - startTime,
+      memoryPressure: memoryPressure ?? undefined,
     };
   }
 
