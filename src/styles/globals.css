@@ -67,6 +67,22 @@
   animation: panelSlideRight 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+@keyframes slideUpSpring {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* CopyToast slide-up with bouncy spring easing */
+.animate-slide-up-spring {
+  animation: slideUpSpring 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 :root {
   --bg-primary: #ffffff;
   --bg-card: #f9fafb;
