@@ -5,12 +5,14 @@ import { Plugin } from 'vite';
 import { getCspHeaderString } from './src/config/csp';
 import { SECURITY_HEADERS } from './src/config/security-headers';
 
-function cspHeaderPlugin(): Plugin {
+function cspHeaderPlugin(isDev: boolean): Plugin {
   return {
     name: 'vite-plugin-csp-header',
     configureServer(server) {
       server.middlewares.use((_req, res, next) => {
-        res.setHeader('Content-Security-Policy', getCspHeaderString());
+        if (!isDev) {
+          res.setHeader('Content-Security-Policy', getCspHeaderString());
+        }
         for (const [name, value] of Object.entries(SECURITY_HEADERS)) {
           res.setHeader(name, value);
         }
@@ -26,12 +28,22 @@ function cspHeaderPlugin(): Plugin {
         next();
       });
     },
+    transformIndexHtml(html) {
+      if (isDev) {
+        // Strip out the Content-Security-Policy meta tag in dev mode so that
+        // Vite HMR and inline development scripts are not blocked by the browser.
+        return html.replace(/<meta[^>]*http-equiv=["']Content-Security-Policy["'][^>]*>/i, '<!-- CSP meta tag removed in dev mode -->');
+      }
+      return html;
+    },
   };
 }
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react(), cspHeaderPlugin()],
+export default defineConfig(({ command }) => {
+  const isDev = command === 'serve';
+  return {
+    plugins: [react(), cspHeaderPlugin(isDev)],
 
   resolve: {
     alias: {
@@ -91,4 +103,5 @@ export default defineConfig({
       process.env.VITE_BUILD_TIMESTAMP ?? new Date().toISOString()
     ),
   },
+  };
 });

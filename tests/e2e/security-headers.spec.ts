@@ -16,7 +16,15 @@
  *   - Either `npm run preview` (Vite preview) or the deployed URL
  */
 import { test, expect, APIResponse } from '@playwright/test';
-import expectedHeaders from '../fixtures/expected-security-headers.json';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const expectedHeaders = JSON.parse(
+  fs.readFileSync(path.resolve(__dirname, '../fixtures/expected-security-headers.json'), 'utf8')
+);
 
 const BASE_URL = process.env.PLAYWRIGHT_BASE_URL ?? 'http://localhost:4173';
 
