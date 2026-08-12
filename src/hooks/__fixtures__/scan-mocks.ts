@@ -1,5 +1,4 @@
-import { ScanProgress, ScanCapabilities, ErrorCode } from '@/types';
-import { ScanError } from '../useScanEngine';
+import { ScanProgress, ScanCapabilities } from '@/types';
 
 export const mockScanCapabilities: ScanCapabilities = {
   regexAvailable: true,
@@ -14,16 +13,4 @@ export const mockScanProgress: ScanProgress = {
   percentage: 100,
   currentEngine: 'LLM Engine',
   findings: [],
-};
-
-export const mockScanError: ScanError = {
-  code: ErrorCode.UNKNOWN_ERROR,
-  message: 'Regex engine encountered an unexpected pattern error',
-  failedLayer: 'Regex Engine (Layer 1)',
-};
-
-export const mockLlmScanError: ScanError = {
-  code: ErrorCode.MODEL_LOAD_FAILED,
-  message: 'LLM engine model execution failed due to WebGPU context loss',
-  failedLayer: 'LLM Engine (Layer 3)',
 };

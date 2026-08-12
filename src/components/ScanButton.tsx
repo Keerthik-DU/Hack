@@ -1,5 +1,7 @@
-import React from 'react';
-import { useScanEngine, UseScanEngineOptions } from '@/hooks';
+import React, { useMemo } from 'react';
+import { useScanEngine } from '@/hooks';
+import { MockScanOrchestrator, MOCK_PROGRESS_EVENTS } from '@/test/fixtures/mock-scan-orchestrator';
+import { IScanOrchestrator, ScanProgress } from '@/types';
 
 export interface ScanButtonProps {
   /** Source input text to be scanned */
@@ -8,35 +10,54 @@ export interface ScanButtonProps {
   onScanTriggered?: (text: string) => void;
   /** Custom CSS class overrides */
   className?: string;
-  /** Custom options for internal useScanEngine hook (e.g. delay, shouldFail) */
-  scanEngineOptions?: UseScanEngineOptions;
+  /**
+   * Optional scan orchestrator instance (dependency injection for testing).
+   * Defaults to a mock orchestrator when not provided.
+   */
+  orchestrator?: IScanOrchestrator;
 }
+
+// Synthetic error progress event for internal error simulation
+const ERROR_PROGRESS: ScanProgress = {
+  status: 'error',
+  stage: 'Error',
+  percentage: 0,
+  findings: [],
+};
+void ERROR_PROGRESS;
 
 export const ScanButton: React.FC<ScanButtonProps> = ({
   inputText = '',
   onScanTriggered,
   className = '',
-  scanEngineOptions,
+  orchestrator,
 }) => {
-  const { triggerScan, status, error } = useScanEngine(scanEngineOptions);
+  // Use provided orchestrator or fall back to a default mock orchestrator
+  const defaultOrchestrator = useMemo(
+    () => new MockScanOrchestrator({ events: MOCK_PROGRESS_EVENTS }),
+    []
+  );
+  const activeOrchestrator = orchestrator ?? defaultOrchestrator;
+
+  const { scan, state, error } = useScanEngine(activeOrchestrator);
 
   const isInputEmpty = !inputText || inputText.trim().length === 0;
-  const isScanning = status === 'scanning';
+  const isScanning = state === 'scanning';
 
-  const handleClick = async () => {
+  const handleClick = () => {
     if (isInputEmpty || isScanning) {
       return;
     }
 
     onScanTriggered?.(inputText);
-    await triggerScan(inputText);
+    scan(inputText);
   };
 
   // Button text & state resolution
   let buttonLabel = 'Scan';
-  if (status === 'scanning') {
+  if (state === 'scanning') {
     buttonLabel = 'Scanning...';
-  } else if (status === 'complete' || status === 'error') {
+  } else if (state === 'complete' || state === 'error') {
     buttonLabel = 'Scan Again';
   }
 
@@ -55,13 +76,13 @@ export const ScanButton: React.FC<ScanButtonProps> = ({
             ? 'Scanning input for secrets'
             : isInputEmpty
               ? 'Scan disabled, input text is empty'
-              : status === 'complete' || status === 'error'
+              : state === 'complete' || state === 'error'
                 ? 'Scan again for secrets'
                 : 'Scan input for secrets'
         }
         className={`w-full py-3 px-6 rounded-xl font-semibold font-sans text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 ${
           isDisabled
-            ? 'bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed pointer-events-none shadow-none'
+            ? 'bg-gray-200 dark:bg-gray-800 text-gray-400 dark:bg-gray-600 cursor-not-allowed pointer-events-none shadow-none'
             : 'bg-brand-primary text-white hover:bg-brand-600 hover:shadow-lg active:scale-[0.99]'
         }`}
       >
@@ -93,8 +114,8 @@ export const ScanButton: React.FC<ScanButtonProps> = ({
         )}
       </button>
 
-      {/* User-friendly Error Display (Identifying layer without stack traces) */}
-      {status === 'error' && error && (
+      {/* User-friendly Error Display */}
+      {state === 'error' && error && (
         <div
           data-testid="scan-error-banner"
           aria-live="polite"
@@ -102,10 +123,7 @@ export const ScanButton: React.FC<ScanButtonProps> = ({
         >
           <span className="text-base leading-none">⚠️</span>
           <div className="space-y-0.5">
-            <span className="font-bold">
-              {error.failedLayer ? `${error.failedLayer}: ` : ''}
-              {error.message}
-            </span>
+            <span className="font-bold">{error}</span>
             <p className="text-[11px] opacity-80 font-normal">
               Your input text remains safe in memory. You can retry scanning above.
             </p>
