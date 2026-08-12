@@ -15,6 +15,7 @@ coverage/
 src/test/fixtures/secrets/
 src/test/fixtures/**/sample-*.json
 src/test/fixtures/**/mock-*.json
+!src/test/fixtures/mock-package-lock.json
 src/test/fixtures/**/secrets-*.json
 src/components/__fixtures__/
 src/components/**/__fixtures__/
@@ -24,6 +25,11 @@ tests/
 *.sample.json
 *.secrets.json
 *.mock.json
+
+# Forge metadata
+.forge-commit-ready
+.forge/project-id
+.forge/hook-version
 
 # IDE & Editor files
 .vscode/
