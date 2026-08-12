@@ -1,0 +1,3807 @@
+{
+  "version": 1,
+  "generatedAt": "2026-08-12T13:51:13.363Z",
+  "samples": [
+    {
+      "sampleId": "aws-access-key-id-tp-001",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "aws-access-key-id-tp-002",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "aws-access-key-id-tp-003",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "aws-secret-access-key-tp-001",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "aws-secret-access-key-tp-002",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "aws-secret-access-key-tp-003",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "aws-session-token-tp-001",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "aws-session-token-tp-002",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "aws-session-token-tp-003",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-001",
+      "category": "contextual",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-002",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-003",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-004",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-005",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-006",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-007",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-008",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-009",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-010",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-011",
+      "category": "contextual",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-012",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-013",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-014",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-015",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-016",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-017",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-018",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-019",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-020",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-021",
+      "category": "contextual",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-022",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-023",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-024",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-025",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-026",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-027",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-028",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-029",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-030",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-031",
+      "category": "contextual",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-032",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-033",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-034",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "contextual-tp-035",
+      "category": "contextual",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "db-password-connection-string-tp-001",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "db-password-connection-string-tp-002",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "db-password-connection-string-tp-003",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "elasticsearch-api-key-tp-001",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "elasticsearch-api-key-tp-002",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "elasticsearch-api-key-tp-003",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mongodb-uri-tp-001",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mongodb-uri-tp-002",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mongodb-uri-tp-003",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mysql-uri-tp-001",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mysql-uri-tp-002",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mysql-uri-tp-003",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "pinecone-api-key-tp-001",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "pinecone-api-key-tp-002",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "pinecone-api-key-tp-003",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "planetscale-service-token-tp-001",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "planetscale-service-token-tp-002",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "planetscale-service-token-tp-003",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "postgres-uri-tp-001",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "postgres-uri-tp-002",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "postgres-uri-tp-003",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "qdrant-api-key-tp-001",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "qdrant-api-key-tp-002",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "qdrant-api-key-tp-003",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "redis-uri-tp-001",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "redis-uri-tp-002",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "redis-uri-tp-003",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "supabase-api-key-tp-001",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "supabase-api-key-tp-002",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "supabase-api-key-tp-003",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "weaviate-api-key-tp-001",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "weaviate-api-key-tp-002",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "weaviate-api-key-tp-003",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-001",
+      "category": "generic-entropy",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-002",
+      "category": "generic-entropy",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-003",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-004",
+      "category": "generic-entropy",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-005",
+      "category": "generic-entropy",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-006",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-007",
+      "category": "generic-entropy",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-008",
+      "category": "generic-entropy",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-009",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-010",
+      "category": "generic-entropy",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-011",
+      "category": "generic-entropy",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-012",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-013",
+      "category": "generic-entropy",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-014",
+      "category": "generic-entropy",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-015",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-016",
+      "category": "generic-entropy",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-017",
+      "category": "generic-entropy",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-018",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-019",
+      "category": "generic-entropy",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-020",
+      "category": "generic-entropy",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-021",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-022",
+      "category": "generic-entropy",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-023",
+      "category": "generic-entropy",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-024",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-fp-025",
+      "category": "generic-entropy",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-001",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-002",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-003",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-004",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-005",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-006",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-007",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-008",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-009",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-010",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-011",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-012",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-013",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-014",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-015",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-016",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-017",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-018",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-019",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-020",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-021",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-022",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-023",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-024",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-025",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-026",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-027",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-028",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-029",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "entropy-tp-030",
+      "category": "generic-entropy",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "github-app-secret-tp-001",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "github-app-secret-tp-002",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "github-app-secret-tp-003",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "github-oauth-token-tp-001",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "github-oauth-token-tp-002",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "github-oauth-token-tp-003",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "github-pat-classic-tp-001",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "github-pat-classic-tp-002",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "github-pat-classic-tp-003",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "github-pat-fine-grained-tp-001",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "github-pat-fine-grained-tp-002",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "github-pat-fine-grained-tp-003",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "github-server-token-tp-001",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "github-server-token-tp-002",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "github-server-token-tp-003",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "github-user-token-tp-001",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "github-user-token-tp-002",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "github-user-token-tp-003",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "firebase-server-key-tp-001",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "firebase-server-key-tp-002",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "firebase-server-key-tp-003",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "gcp-api-key-tp-001",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "gcp-api-key-tp-002",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "gcp-api-key-tp-003",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "gcp-oauth-client-secret-tp-001",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "gcp-oauth-client-secret-tp-002",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "gcp-oauth-client-secret-tp-003",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "gcp-service-account-tp-001",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "gcp-service-account-tp-002",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "gcp-service-account-tp-003",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "auth0-management-api-token-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "auth0-management-api-token-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "auth0-management-api-token-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 4,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "generic-jwt-token-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "generic-jwt-token-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "generic-jwt-token-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 3,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "supabase-jwt-secret-tp-001",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "supabase-jwt-secret-tp-002",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "supabase-jwt-secret-tp-003",
+      "category": "database",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "airtable-api-key-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "airtable-api-key-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "airtable-api-key-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "algolia-admin-api-key-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "algolia-admin-api-key-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "algolia-admin-api-key-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "alibaba-access-key-tp-001",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "alibaba-access-key-tp-002",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "alibaba-access-key-tp-003",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "anthropic-api-key-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 3,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "anthropic-api-key-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 3,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "anthropic-api-key-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 3,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "asana-pat-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "asana-pat-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "asana-pat-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "azure-ad-client-secret-tp-001",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "azure-ad-client-secret-tp-002",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 3,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "azure-ad-client-secret-tp-003",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 3,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "azure-storage-key-tp-001",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "azure-storage-key-tp-002",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "azure-storage-key-tp-003",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "circleci-token-tp-001",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "circleci-token-tp-002",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "circleci-token-tp-003",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "codecov-token-tp-001",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "codecov-token-tp-002",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "codecov-token-tp-003",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "confluence-api-token-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "confluence-api-token-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "confluence-api-token-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "coveralls-token-tp-001",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "coveralls-token-tp-002",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "coveralls-token-tp-003",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "databricks-token-tp-001",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "databricks-token-tp-002",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "databricks-token-tp-003",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "datadog-api-key-tp-001",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "datadog-api-key-tp-002",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "datadog-api-key-tp-003",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "digitalocean-pat-tp-001",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "digitalocean-pat-tp-002",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "digitalocean-pat-tp-003",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "discord-bot-token-tp-001",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "discord-bot-token-tp-002",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "discord-bot-token-tp-003",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 3,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "docker-config-auth-tp-001",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "docker-config-auth-tp-002",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "docker-config-auth-tp-003",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "fastly-api-token-tp-001",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "fastly-api-token-tp-002",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "fastly-api-token-tp-003",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "fly-io-auth-token-tp-001",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "fly-io-auth-token-tp-002",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "fly-io-auth-token-tp-003",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "generic-api-key-header-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "generic-api-key-header-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "generic-api-key-header-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "generic-auth-header-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "generic-auth-header-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "generic-auth-header-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "generic-oauth-client-secret-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 3,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "generic-oauth-client-secret-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 3,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "generic-oauth-client-secret-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 3,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "gitlab-pat-tp-001",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "gitlab-pat-tp-002",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "gitlab-pat-tp-003",
+      "category": "version-control",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "heroku-api-key-tp-001",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "heroku-api-key-tp-002",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "heroku-api-key-tp-003",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "hubspot-api-key-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "hubspot-api-key-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "hubspot-api-key-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "huggingface-user-token-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "huggingface-user-token-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "huggingface-user-token-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "ibm-cloud-api-key-tp-001",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "ibm-cloud-api-key-tp-002",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "ibm-cloud-api-key-tp-003",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "jenkins-api-token-tp-001",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "jenkins-api-token-tp-002",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "jenkins-api-token-tp-003",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "jfrog-artifactory-api-key-tp-001",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "jfrog-artifactory-api-key-tp-002",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "jfrog-artifactory-api-key-tp-003",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "jira-api-token-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "jira-api-token-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "jira-api-token-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "launchdarkly-sdk-key-tp-001",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "launchdarkly-sdk-key-tp-002",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "launchdarkly-sdk-key-tp-003",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "linear-api-key-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "linear-api-key-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "linear-api-key-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mailchimp-api-key-tp-001",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mailchimp-api-key-tp-002",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mailchimp-api-key-tp-003",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mailgun-api-key-tp-001",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mailgun-api-key-tp-002",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mailgun-api-key-tp-003",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mapbox-access-token-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mapbox-access-token-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mapbox-access-token-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 3,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mixed-edge-json-001",
+      "category": "mixed",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mixed-edge-large-begin-001",
+      "category": "mixed",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mixed-edge-large-end-001",
+      "category": "mixed",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mixed-edge-large-mid-001",
+      "category": "mixed",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mixed-edge-trailing-ws-001",
+      "category": "mixed",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mixed-edge-yaml-001",
+      "category": "mixed",
+      "expectedDetected": true,
+      "findingCount": 3,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "netlify-access-token-tp-001",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "netlify-access-token-tp-002",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "netlify-access-token-tp-003",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "newrelic-api-key-tp-001",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "newrelic-api-key-tp-002",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "newrelic-api-key-tp-003",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "notion-integration-token-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "notion-integration-token-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "notion-integration-token-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "npm-access-token-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "npm-access-token-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "npm-access-token-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "okta-api-token-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "okta-api-token-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "okta-api-token-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "openai-api-key-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "openai-api-key-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "openai-api-key-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "oracle-oci-credentials-tp-001",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "oracle-oci-credentials-tp-002",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "oracle-oci-credentials-tp-003",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "pagerduty-api-key-tp-001",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "pagerduty-api-key-tp-002",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "pagerduty-api-key-tp-003",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "postman-api-key-tp-001",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "postman-api-key-tp-002",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "postman-api-key-tp-003",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "pypi-api-token-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "pypi-api-token-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "pypi-api-token-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "render-api-key-tp-001",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "render-api-key-tp-002",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "render-api-key-tp-003",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "replicate-api-token-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "replicate-api-token-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "replicate-api-token-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "segment-write-key-tp-001",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "segment-write-key-tp-002",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "segment-write-key-tp-003",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "sendgrid-api-key-tp-001",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "sendgrid-api-key-tp-002",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "sendgrid-api-key-tp-003",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 3,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "sentry-dsn-tp-001",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "sentry-dsn-tp-002",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "sentry-dsn-tp-003",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "shopify-access-token-tp-001",
+      "category": "payment",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "shopify-access-token-tp-002",
+      "category": "payment",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "shopify-access-token-tp-003",
+      "category": "payment",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "snyk-api-token-tp-001",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "snyk-api-token-tp-002",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "snyk-api-token-tp-003",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "sonarqube-token-tp-001",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "sonarqube-token-tp-002",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "sonarqube-token-tp-003",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "splunk-hec-token-tp-001",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "splunk-hec-token-tp-002",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "splunk-hec-token-tp-003",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "square-access-token-tp-001",
+      "category": "payment",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "square-access-token-tp-002",
+      "category": "payment",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "square-access-token-tp-003",
+      "category": "payment",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "telegram-bot-token-tp-001",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "telegram-bot-token-tp-002",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "telegram-bot-token-tp-003",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "terraform-cloud-token-tp-001",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "terraform-cloud-token-tp-002",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "terraform-cloud-token-tp-003",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "travis-ci-token-tp-001",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "travis-ci-token-tp-002",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "travis-ci-token-tp-003",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "twilio-account-sid-tp-001",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "twilio-account-sid-tp-002",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "twilio-account-sid-tp-003",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "twilio-api-key-tp-001",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "twilio-api-key-tp-002",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "twilio-api-key-tp-003",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "vault-token-tp-001",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "vault-token-tp-002",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "vault-token-tp-003",
+      "category": "infrastructure",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "vercel-api-token-tp-001",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "vercel-api-token-tp-002",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "vercel-api-token-tp-003",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "multi-secret-001",
+      "category": "multi-secret",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "multi-secret-002",
+      "category": "multi-secret",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "multi-secret-003",
+      "category": "multi-secret",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "multi-secret-004",
+      "category": "multi-secret",
+      "expectedDetected": true,
+      "findingCount": 4,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "multi-secret-005",
+      "category": "multi-secret",
+      "expectedDetected": true,
+      "findingCount": 3,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "multi-secret-006",
+      "category": "multi-secret",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "multi-secret-007",
+      "category": "multi-secret",
+      "expectedDetected": true,
+      "findingCount": 4,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "multi-secret-008",
+      "category": "multi-secret",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "multi-secret-009",
+      "category": "multi-secret",
+      "expectedDetected": true,
+      "findingCount": 3,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "multi-secret-010",
+      "category": "multi-secret",
+      "expectedDetected": true,
+      "findingCount": 3,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "multi-secret-011",
+      "category": "multi-secret",
+      "expectedDetected": true,
+      "findingCount": 4,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "multi-secret-012",
+      "category": "multi-secret",
+      "expectedDetected": true,
+      "findingCount": 3,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "multi-secret-013",
+      "category": "multi-secret",
+      "expectedDetected": true,
+      "findingCount": 4,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "multi-secret-014",
+      "category": "multi-secret",
+      "expectedDetected": true,
+      "findingCount": 4,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "multi-secret-015",
+      "category": "multi-secret",
+      "expectedDetected": true,
+      "findingCount": 5,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "multi-secret-016",
+      "category": "multi-secret",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "multi-secret-017",
+      "category": "multi-secret",
+      "expectedDetected": true,
+      "findingCount": 3,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "multi-secret-018",
+      "category": "multi-secret",
+      "expectedDetected": true,
+      "findingCount": 4,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "multi-secret-019",
+      "category": "multi-secret",
+      "expectedDetected": true,
+      "findingCount": 5,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "multi-secret-020",
+      "category": "multi-secret",
+      "expectedDetected": true,
+      "findingCount": 4,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "multi-secret-021",
+      "category": "multi-secret",
+      "expectedDetected": true,
+      "findingCount": 4,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "multi-secret-022",
+      "category": "multi-secret",
+      "expectedDetected": true,
+      "findingCount": 5,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "slack-bot-token-tp-001",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "slack-bot-token-tp-002",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "slack-bot-token-tp-003",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "slack-user-token-tp-001",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "slack-user-token-tp-002",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "slack-user-token-tp-003",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "slack-webhook-url-tp-001",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "slack-webhook-url-tp-002",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "slack-webhook-url-tp-003",
+      "category": "messaging",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "azure-client-certificate-tp-001",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "azure-client-certificate-tp-002",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "azure-client-certificate-tp-003",
+      "category": "cloud-provider",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "private-key-dsa-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "private-key-dsa-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "private-key-dsa-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "private-key-ec-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "private-key-ec-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "private-key-ec-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "private-key-openssh-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "private-key-openssh-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "private-key-openssh-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "private-key-pgp-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "private-key-pgp-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "private-key-pgp-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "private-key-rsa-tp-001",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "private-key-rsa-tp-002",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "private-key-rsa-tp-003",
+      "category": "generic-credential",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "stripe-live-key-tp-001",
+      "category": "payment",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "stripe-live-key-tp-002",
+      "category": "payment",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "stripe-live-key-tp-003",
+      "category": "payment",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "stripe-restricted-key-tp-001",
+      "category": "payment",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "stripe-restricted-key-tp-002",
+      "category": "payment",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "stripe-restricted-key-tp-003",
+      "category": "payment",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "stripe-test-key-tp-001",
+      "category": "payment",
+      "expectedDetected": true,
+      "findingCount": 1,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "stripe-test-key-tp-002",
+      "category": "payment",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "stripe-test-key-tp-003",
+      "category": "payment",
+      "expectedDetected": true,
+      "findingCount": 2,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "airtable-api-key-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "algolia-admin-api-key-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "alibaba-access-key-tn-001",
+      "category": "cloud-provider",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "anthropic-api-key-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "asana-pat-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "auth0-management-api-token-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "aws-access-key-id-tn-001",
+      "category": "cloud-provider",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "aws-secret-access-key-tn-001",
+      "category": "cloud-provider",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "aws-session-token-tn-001",
+      "category": "cloud-provider",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "azure-ad-client-secret-tn-001",
+      "category": "cloud-provider",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "azure-client-certificate-tn-001",
+      "category": "cloud-provider",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "azure-storage-key-tn-001",
+      "category": "cloud-provider",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "circleci-token-tn-001",
+      "category": "infrastructure",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "codecov-token-tn-001",
+      "category": "version-control",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "confluence-api-token-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "coveralls-token-tn-001",
+      "category": "version-control",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "databricks-token-tn-001",
+      "category": "cloud-provider",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "datadog-api-key-tn-001",
+      "category": "infrastructure",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "db-password-connection-string-tn-001",
+      "category": "database",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "digitalocean-pat-tn-001",
+      "category": "cloud-provider",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "discord-bot-token-tn-001",
+      "category": "messaging",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "docker-config-auth-tn-001",
+      "category": "infrastructure",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "elasticsearch-api-key-tn-001",
+      "category": "database",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "fastly-api-token-tn-001",
+      "category": "infrastructure",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "firebase-server-key-tn-001",
+      "category": "cloud-provider",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "fly-io-auth-token-tn-001",
+      "category": "cloud-provider",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "gcp-api-key-tn-001",
+      "category": "cloud-provider",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "gcp-oauth-client-secret-tn-001",
+      "category": "cloud-provider",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "gcp-service-account-tn-001",
+      "category": "cloud-provider",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "generic-api-key-header-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "generic-auth-header-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "generic-jwt-token-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "generic-oauth-client-secret-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "github-app-secret-tn-001",
+      "category": "version-control",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "github-oauth-token-tn-001",
+      "category": "version-control",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "github-pat-classic-tn-001",
+      "category": "version-control",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "github-pat-fine-grained-tn-001",
+      "category": "version-control",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "github-server-token-tn-001",
+      "category": "version-control",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "github-user-token-tn-001",
+      "category": "version-control",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "gitlab-pat-tn-001",
+      "category": "version-control",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "heroku-api-key-tn-001",
+      "category": "cloud-provider",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "hubspot-api-key-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "huggingface-user-token-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "ibm-cloud-api-key-tn-001",
+      "category": "cloud-provider",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "jenkins-api-token-tn-001",
+      "category": "infrastructure",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "jfrog-artifactory-api-key-tn-001",
+      "category": "infrastructure",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "jira-api-token-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "launchdarkly-sdk-key-tn-001",
+      "category": "infrastructure",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "linear-api-key-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mailchimp-api-key-tn-001",
+      "category": "messaging",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mailgun-api-key-tn-001",
+      "category": "messaging",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mapbox-access-token-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mongodb-uri-tn-001",
+      "category": "database",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "mysql-uri-tn-001",
+      "category": "database",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "netlify-access-token-tn-001",
+      "category": "cloud-provider",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "newrelic-api-key-tn-001",
+      "category": "infrastructure",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "notion-integration-token-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "npm-access-token-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "okta-api-token-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "openai-api-key-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "oracle-oci-credentials-tn-001",
+      "category": "cloud-provider",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "pagerduty-api-key-tn-001",
+      "category": "infrastructure",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "pinecone-api-key-tn-001",
+      "category": "database",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "planetscale-service-token-tn-001",
+      "category": "database",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "postgres-uri-tn-001",
+      "category": "database",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "postman-api-key-tn-001",
+      "category": "infrastructure",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "private-key-dsa-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "private-key-ec-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "private-key-openssh-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "private-key-pgp-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "private-key-rsa-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "pypi-api-token-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "qdrant-api-key-tn-001",
+      "category": "database",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "redis-uri-tn-001",
+      "category": "database",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "render-api-key-tn-001",
+      "category": "cloud-provider",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "replicate-api-token-tn-001",
+      "category": "generic-credential",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "segment-write-key-tn-001",
+      "category": "infrastructure",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "sendgrid-api-key-tn-001",
+      "category": "messaging",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "sentry-dsn-tn-001",
+      "category": "infrastructure",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "shopify-access-token-tn-001",
+      "category": "payment",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "slack-bot-token-tn-001",
+      "category": "messaging",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "slack-user-token-tn-001",
+      "category": "messaging",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "slack-webhook-url-tn-001",
+      "category": "messaging",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "snyk-api-token-tn-001",
+      "category": "infrastructure",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "sonarqube-token-tn-001",
+      "category": "infrastructure",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "splunk-hec-token-tn-001",
+      "category": "infrastructure",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "square-access-token-tn-001",
+      "category": "payment",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "stripe-live-key-tn-001",
+      "category": "payment",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "stripe-restricted-key-tn-001",
+      "category": "payment",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "stripe-test-key-tn-001",
+      "category": "payment",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "supabase-api-key-tn-001",
+      "category": "database",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "supabase-jwt-secret-tn-001",
+      "category": "database",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "telegram-bot-token-tn-001",
+      "category": "messaging",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "terraform-cloud-token-tn-001",
+      "category": "infrastructure",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "tn-edge-empty",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "tn-edge-heredoc-docs",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "tn-edge-single-char",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "tn-edge-unicode",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "tn-edge-whitespace",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "travis-ci-token-tn-001",
+      "category": "infrastructure",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "true-negative-extra-001",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "true-negative-extra-002",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "true-negative-extra-003",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "true-negative-extra-004",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "true-negative-extra-005",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "true-negative-extra-006",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "true-negative-extra-007",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "true-negative-extra-008",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "true-negative-extra-009",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "true-negative-extra-010",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "true-negative-extra-011",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "true-negative-extra-012",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "true-negative-extra-013",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "true-negative-extra-014",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "true-negative-extra-015",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "true-negative-extra-016",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "true-negative-extra-017",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "true-negative-extra-018",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "true-negative-extra-019",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "true-negative-extra-020",
+      "category": "true-negatives",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "twilio-account-sid-tn-001",
+      "category": "messaging",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "twilio-api-key-tn-001",
+      "category": "messaging",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "vault-token-tn-001",
+      "category": "infrastructure",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "vercel-api-token-tn-001",
+      "category": "cloud-provider",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    },
+    {
+      "sampleId": "weaviate-api-key-tn-001",
+      "category": "database",
+      "expectedDetected": false,
+      "findingCount": 0,
+      "lastVerifiedCommit": "local"
+    }
+  ]
+}

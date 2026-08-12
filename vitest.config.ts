@@ -12,6 +12,7 @@ export default defineConfig({
       'tests/unit/**/*.{test,spec}.{ts,tsx}',
       'tests/metrics/**/*.{test,spec}.{ts,tsx}',
       'tests/integration/**/*.{test,spec}.{ts,tsx}',
+      'tests/regression/**/*.{test,spec}.{ts,tsx}',
     ],
     coverage: {
       provider: 'v8',
