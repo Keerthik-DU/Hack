@@ -1,0 +1,12 @@
+{
+  "totalGzippedKbMax": 836,
+  "assets": {
+    "appJsKb": 150,
+    "detectionEnginesKb": 50,
+    "workerJsKb": 30,
+    "webLlmRuntimeKb": 500,
+    "regexPatternsKb": 80,
+    "cssKb": 25
+  },
+  "baselineTotalGzippedKb": 0
+}

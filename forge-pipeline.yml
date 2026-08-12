@@ -283,3 +283,85 @@ stages:
           the platform team and retry the pipeline after the registry is healthy.
         See PIPELINE.md for artifact retrieval, checksum verification, and
         escalation contacts.
+
+# ---------------------------------------------------------------------------
+# Gate Stage — manual approval + quality dashboard (WO-069)
+# ---------------------------------------------------------------------------
+  - name: gate
+    step: gate:manual-approval
+    needs:
+      - push
+    environment: quality-review
+    approval:
+      required: true
+      roles:
+        - release-manager
+        - security-champion
+    dashboard:
+      metrics:
+        - name: bundle-size
+          command: node scripts/check-bundle-size.mjs
+        - name: lighthouse-perf
+          command: bash scripts/run-lighthouse.sh
+        - name: precision-recall
+          command: npm test -- tests/metrics/precision-recall.test.ts
+      budgets_file: .bundle-budget.json
+      lighthouse_config: lighthouserc.js
+    timeout_minutes: 60
+    on_failure:
+      block_pipeline: true
+      message: >
+        Gate stage failed or was rejected. Bundle budget, Lighthouse, or metrics
+        dashboard checks did not meet thresholds, or an approver rejected promotion.
+        See PIPELINE.md quality dashboard section.
+
+# ---------------------------------------------------------------------------
+# Deploy Stage — multi-environment with post-deploy tests (WO-070)
+# ---------------------------------------------------------------------------
+  - name: deploy-staging
+    step: deploy:static
+    needs:
+      - gate
+    environment: staging
+    artifact_source: dist/
+    target: ${{ pipeline.staging_url }}
+    commands:
+      - npm ci --ignore-scripts
+      - npx vite build
+      - bash scripts/verify-manifest.sh
+      - bash scripts/deploy-static.sh staging
+    post_deploy:
+      - name: smoke
+        command: PLAYWRIGHT_BASE_URL=${{ pipeline.staging_url }} npx playwright test tests/e2e/cross-browser.spec.ts --project=chromium
+      - name: zero-network
+        command: PLAYWRIGHT_BASE_URL=${{ pipeline.staging_url }} npm run test:e2e:network
+    timeout_minutes: 15
+    on_failure:
+      block_pipeline: true
+      message: >
+        Staging deploy or post-deploy tests failed. Do not promote to production.
+
+  - name: deploy-production
+    step: deploy:static
+    needs:
+      - deploy-staging
+    environment: production
+    artifact_source: dist/
+    target: ${{ pipeline.production_url }}
+    approval:
+      required: true
+      roles:
+        - release-manager
+    commands:
+      - bash scripts/deploy-static.sh production
+    post_deploy:
+      - name: smoke
+        command: PLAYWRIGHT_BASE_URL=${{ pipeline.production_url }} npx playwright test tests/e2e/cross-browser.spec.ts --project=chromium
+      - name: rollback-hint
+        command: echo "On failure run shipping_trigger_rollback for this pipeline"
+    timeout_minutes: 15
+    on_failure:
+      block_pipeline: true
+      message: >
+        Production deploy failed. Initiate rollback via Forge shipping engine.
+        See PIPELINE.md deploy/rollback section.

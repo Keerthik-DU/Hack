@@ -368,6 +368,31 @@ commits use distinct SHA-derived tags and do not overwrite each other.
 
 ---
 
+## Stage 6: Manual Approval Gate + Quality Dashboard (WO-069)
+
+Runs after Push. Requires release-manager / security-champion approval and
+surfaces a quality dashboard:
+
+| Check | Command / config |
+|-------|------------------|
+| Bundle size | `node scripts/check-bundle-size.mjs` + `.bundle-budget.json` |
+| Lighthouse | `bash scripts/run-lighthouse.sh` + `lighthouserc.js` |
+| Precision/Recall | `npm test -- tests/metrics/precision-recall.test.ts` |
+
+Rejection or budget failure blocks promotion to Deploy.
+
+## Stage 7: Multi-Environment Deploy (WO-070)
+
+1. **deploy-staging** — `deploy:static` to staging URL, then Playwright smoke +
+   zero-network post-deploy tests.
+2. **deploy-production** — second approval, production static deploy, smoke
+   tests; on failure use Forge `shipping_trigger_rollback`.
+
+Helper: `scripts/deploy-static.sh <staging|production>` validates `dist/` before
+the Forge upload step.
+
+---
+
 ## Configuration Files Reference
 
 | File | Purpose |
@@ -378,6 +403,9 @@ commits use distinct SHA-derived tags and do not overwrite each other.
 | `.semgrep.yml` | Semgrep SAST rules for TypeScript/React security patterns |
 | `scripts/verify-manifest.sh` | Build/Push gate: require `dist/model-manifest.json` |
 | `scripts/generate-checksums.sh` | Push stage: SHA-256 manifest for all `dist/` files |
-| `playwright.config.ts` | Playwright E2E config (Chromium/WebKit, 60s timeout) |
+| `.bundle-budget.json` | WO-069 gzipped bundle budgets |
+| `lighthouserc.js` | WO-069 Lighthouse CI thresholds |
+| `scripts/deploy-static.sh` | WO-070 pre-upload deploy validation |
+| `playwright.config.ts` | Playwright E2E config (Chromium/Firefox/WebKit + a11y) |
 | `tests/e2e/zero-network.spec.ts` | WO-050 zero-network invariant suite |
 | `PIPELINE.md` | This document — pipeline documentation and runbook |
