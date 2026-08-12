@@ -6,6 +6,8 @@ export interface LayerStatusListProps {
   readonly layerStatuses: readonly LayerStatus[];
   readonly className?: string;
   readonly onRetryLayer?: (layer: DetectionLayerName) => void;
+  /** Compact layout for embedding inside ErrorCard (WO-046). */
+  readonly compact?: boolean;
 }
 
 interface LayerConfig {
@@ -68,9 +70,27 @@ const SpinnerIcon: React.FC = () => (
   </svg>
 );
 
+const UnavailableIcon: React.FC = () => (
+  <svg
+    data-testid="layer-status-icon-unavailable"
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-4 w-4 text-amber-600 dark:text-amber-400"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+    aria-hidden="true"
+  >
+    <path
+      fillRule="evenodd"
+      d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 10-2 0 1 1 0 002 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+      clipRule="evenodd"
+    />
+  </svg>
+);
+
 function StatusIcon({ status }: { status: LayerStatus['status'] }): React.ReactElement {
   if (status === 'complete') return <CheckIcon />;
   if (status === 'error') return <ErrorIcon />;
+  if (status === 'unavailable') return <UnavailableIcon />;
   return <SpinnerIcon />;
 }
 
@@ -94,6 +114,7 @@ export const LayerStatusList: React.FC<LayerStatusListProps> = ({
   layerStatuses,
   className = '',
   onRetryLayer,
+  compact = false,
 }) => {
   const announcement = useMemo(
     () =>
@@ -101,6 +122,7 @@ export const LayerStatusList: React.FC<LayerStatusListProps> = ({
         const entry = resolveStatus(layerStatuses, layer.key);
         if (entry.status === 'complete') return `${layer.label} complete`;
         if (entry.status === 'error') return `${layer.label} failed`;
+        if (entry.status === 'unavailable') return `${layer.label} unavailable`;
         return `${layer.label} pending`;
       }).join('. '),
     [layerStatuses]
@@ -109,30 +131,41 @@ export const LayerStatusList: React.FC<LayerStatusListProps> = ({
   return (
     <div
       data-testid="layer-status-list"
-      className={`flex flex-wrap items-center gap-3 ${className}`}
+      data-compact={compact ? 'true' : 'false'}
+      className={`flex flex-wrap items-center ${compact ? 'gap-1.5' : 'gap-3'} ${className}`}
     >
-      <ul className="flex flex-wrap items-center gap-2" aria-label="Detection layer status">
+      <ul
+        className={`flex flex-wrap items-center ${compact ? 'gap-1' : 'gap-2'}`}
+        aria-label="Detection layer status"
+      >
         {LAYER_CONFIG.map((layer) => {
           const entry = resolveStatus(layerStatuses, layer.key);
           const isError = entry.status === 'error';
+          const isUnavailable = entry.status === 'unavailable';
           return (
             <li
               key={layer.key}
               data-testid={layer.testId}
               data-status={entry.status}
               className={[
-                'inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-medium',
+                'inline-flex items-center gap-1.5 rounded-md font-medium',
+                compact ? 'px-2 py-0.5 text-[11px]' : 'px-2.5 py-1 text-xs',
                 'border',
                 isError
                   ? 'border-red-400/70 bg-red-50 text-red-800 dark:border-red-500/50 dark:bg-red-950/40 dark:text-red-200'
                   : entry.status === 'complete'
                     ? 'border-emerald-400/50 bg-emerald-50 text-emerald-800 dark:border-emerald-500/40 dark:bg-emerald-950/30 dark:text-emerald-200'
-                    : 'border-surface-light-border bg-surface-light-bg text-surface-light-textPrimary dark:border-surface-dark-border dark:bg-surface-dark-bg dark:text-surface-dark-textPrimary',
+                    : isUnavailable
+                      ? 'border-amber-400/60 bg-amber-50 text-amber-900 dark:border-amber-500/40 dark:bg-amber-950/30 dark:text-amber-200'
+                      : 'border-surface-light-border bg-surface-light-bg text-surface-light-textPrimary dark:border-surface-dark-border dark:bg-surface-dark-bg dark:text-surface-dark-textPrimary',
               ].join(' ')}
               title={entry.error ? sanitizeErrorMessage(entry.error) : undefined}
             >
               <StatusIcon status={entry.status} />
-              <span>{layer.label}</span>
+              <span>
+                {layer.label}
+                {isUnavailable ? ' unavailable' : ''}
+              </span>
               {isError && onRetryLayer ? (
                 <button
                   type="button"

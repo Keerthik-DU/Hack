@@ -65,7 +65,7 @@ export type LayerStatusMap = Readonly<Record<DetectionLayerName, LayerRunStatus>
  */
 export interface LayerStatus {
   readonly layer: DetectionLayerName;
-  readonly status: 'pending' | 'complete' | 'error';
+  readonly status: 'pending' | 'complete' | 'error' | 'unavailable';
   readonly error?: AirGapError;
   readonly findings: readonly Finding[];
 }
