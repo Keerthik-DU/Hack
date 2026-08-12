@@ -56,4 +56,9 @@ export interface AmbiguousFinding extends Finding {
   readonly entropyScore?: number;
   /** Candidate secret types when classification is ambiguous */
   readonly candidates?: readonly SecretType[];
+  /**
+   * Surrounding source lines (±5) for Layer 2 LLM contextual analysis.
+   * Optional on pipeline findings; required when sent to the LLM worker (see llm-types).
+   */
+  readonly contextLines?: readonly string[];
 }

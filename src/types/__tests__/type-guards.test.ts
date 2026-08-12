@@ -60,7 +60,8 @@ describe('WorkerMessage Type Guards', () => {
   it('correctly narrows ANALYZE messages', () => {
     const msg = createMockWorkerMessage('ANALYZE');
     if (isAnalyzeMessage(msg)) {
-      expect(msg.payload.text).toBeDefined();
+      expect(msg.findings.length).toBeGreaterThan(0);
+      expect(msg.findings[0]?.contextLines).toBeDefined();
     } else {
       throw new Error('Expected AnalyzeMessage');
     }
