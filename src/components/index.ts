@@ -4,7 +4,11 @@ export * from './PrivacyBadge';
 export * from './CapabilityCard';
 export * from './StatusIndicators';
 export * from './DegradationBanner';
+export * from './ModelProgressBar';
+export * from './CapabilityGrid';
+export * from './ModelLoadingCard';
 export * from './DesignTokenShowcase';
+
 export * from './ThemeToggle';
 export * from './ScannerLayout';
 export * from './StatusBar';

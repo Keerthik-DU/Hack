@@ -11,6 +11,7 @@ import {
 describe('WO-043: DegradationBanner component', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
+    localStorage.clear();
   });
 
   // ─── Visibility when LLM is available ────────────────────────────────────
@@ -53,7 +54,7 @@ describe('WO-043: DegradationBanner component', () => {
     render(<DegradationBanner />);
 
     expect(screen.getByTestId('degradation-banner-text').textContent).toBe(
-      'LLM-based contextual analysis is unavailable. Scanning with regex and entropy detection only.'
+      'LLM-based contextual analysis is unavailable. Scanning with regex and entropy detection.'
     );
   });
 

@@ -1,6 +1,24 @@
 import React, { useState } from 'react';
 import { useModelStatus } from '@/hooks';
 
+const DISMISS_KEY = 'airgap.degradationBanner.dismissed';
+
+function readDismissed(): boolean {
+  try {
+    return localStorage.getItem(DISMISS_KEY) === '1';
+  } catch {
+    return false;
+  }
+}
+
+function writeDismissed(): void {
+  try {
+    localStorage.setItem(DISMISS_KEY, '1');
+  } catch {
+    // private browsing — ignore
+  }
+}
+
 export interface DegradationBannerProps {
   /** Optional additional CSS class names */
   className?: string;
@@ -10,13 +28,12 @@ export interface DegradationBannerProps {
  * DegradationBanner renders a dismissable amber warning banner when the LLM layer
  * is unavailable (WebGPU unsupported, GPU adapter failure, or memory pressure).
  *
- * The banner is session-scoped: once dismissed it remains hidden for the lifetime
- * of the component's mount, consistent with US-009 graceful degradation UX.
+ * Dismiss state persists in localStorage (UI preference only — never user content).
  *
  * Layout: Icon + Content + DismissButton (per UI Design Spec — DegradedModePage).
  */
 export const DegradationBanner: React.FC<DegradationBannerProps> = ({ className = '' }) => {
-  const [dismissed, setDismissed] = useState(false);
+  const [dismissed, setDismissed] = useState(readDismissed);
   const { llm } = useModelStatus();
 
   // Only render when LLM is unavailable and user has not dismissed
@@ -52,14 +69,17 @@ export const DegradationBanner: React.FC<DegradationBannerProps> = ({ className 
         data-testid="degradation-banner-text"
         className="flex-1 text-sm font-medium"
       >
-        LLM-based contextual analysis is unavailable. Scanning with regex and entropy detection only.
+        LLM-based contextual analysis is unavailable. Scanning with regex and entropy detection.
       </p>
 
       {/* Dismiss Button */}
       <button
         data-testid="degradation-banner-dismiss"
         type="button"
-        onClick={() => setDismissed(true)}
+        onClick={() => {
+          writeDismissed();
+          setDismissed(true);
+        }}
         aria-label="Dismiss degradation notice"
         className="shrink-0 p-1 rounded hover:bg-amber-100 dark:hover:bg-amber-900 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-colors duration-150"
       >
