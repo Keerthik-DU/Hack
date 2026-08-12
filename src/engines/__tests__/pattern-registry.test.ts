@@ -136,7 +136,7 @@ describe('PatternRegistry Module', () => {
       const registry = new PatternRegistry();
 
       expect(registry.getPatternCount()).toBe(defaultPatternsJson.length);
-      expect(registry.getPatternCount()).toBe(50);
+      expect(registry.getPatternCount()).toBeGreaterThanOrEqual(100);
 
       const awsPatterns = registry.getPatternsByCategory('cloud-provider');
       expect(awsPatterns.length).toBeGreaterThan(0);

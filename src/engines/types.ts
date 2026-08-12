@@ -1,4 +1,5 @@
 import { SecretType, DetectionLayer, Finding, EngineInput } from '@/types';
+export type { SecretType, DetectionLayer, Finding, EngineInput };
 
 /**
  * Pattern category for grouping detection rules.

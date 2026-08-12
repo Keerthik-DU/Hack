@@ -8,7 +8,8 @@ export type SecretType =
   | 'jwt'
   | 'generic_secret'
   | 'database_url'
-  | 'token';
+  | 'token'
+  | 'high_entropy_string';
 
 /**
  * Confidence level of secret detection.
