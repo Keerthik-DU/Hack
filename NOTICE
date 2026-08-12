@@ -1,0 +1,14 @@
+AirGap Scanner
+Copyright 2026 AirGap Scanner contributors
+
+This product includes software developed by third parties:
+
+@mlc-ai/web-llm — Apache License 2.0
+Apache TVM / MLC-LLM runtime — Apache License 2.0
+Phi-3.5 Mini model weights (MLC-compiled) — MIT License (Microsoft)
+React / React DOM — MIT License
+Vite — MIT License
+Pattern rules inspired by Gitleaks — MIT License
+Secrets Patterns Database contributions — see upstream project licenses
+
+See docs/compliance/model-licensing.md for the full license audit.
