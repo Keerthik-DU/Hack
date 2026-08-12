@@ -162,7 +162,11 @@ describe('WO-023: ScanOrchestrator Suite', () => {
     orchestrator.abort();
 
     const step2 = await generator.next();
-    expect(step2.done).toBe(true);
+    expect(step2.done).toBe(false);
+    expect(step2.value?.status).toBe('aborted');
+
+    const step3 = await generator.next();
+    expect(step3.done).toBe(true);
   });
 
   it('SLA Performance: completes 10K character input scan in < 2 seconds with stub engines', async () => {

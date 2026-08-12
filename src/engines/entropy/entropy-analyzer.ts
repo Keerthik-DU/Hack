@@ -53,15 +53,27 @@ export class EntropyAnalyzer implements IDetectionEngine {
       return [];
     }
 
+    if (input.signal?.aborted) {
+      return [];
+    }
+
     const findings: Finding[] = [];
     const lines = input.lines && input.lines.length > 0 ? input.lines : input.text.split('\n');
 
     lines.forEach((lineContent: string, lineIdx: number) => {
+      if (input.signal?.aborted) {
+        return;
+      }
+
       const lineNumber = lineIdx + 1;
       // Extract quoted strings or unquoted tokens longer than minLength
       const candidates = this.extractCandidatesFromLine(lineContent);
 
       for (const candidate of candidates) {
+        if (input.signal?.aborted) {
+          return;
+        }
+
         const { value, startIndex, endIndex } = candidate;
 
         // 1. Shannon entropy calculation & threshold check

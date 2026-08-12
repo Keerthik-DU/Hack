@@ -20,11 +20,16 @@ export enum ErrorCode {
 export type ScanState = 'idle' | 'scanning' | 'complete' | 'error';
 
 /**
+ * Status emitted by ScanProgress events.
+ */
+export type ScanProgressStatus = ScanState | 'aborted';
+
+/**
  * Real-time progress update yielded during scanning pipeline execution.
  */
 export interface ScanProgress {
   /** Pipeline execution state status */
-  readonly status: ScanState;
+  readonly status: ScanProgressStatus;
   /** Current scan stage description */
   readonly stage: string;
   /** Overall scan completion percentage (0..100) */
@@ -38,6 +43,8 @@ export interface ScanProgress {
     readonly message: string;
     readonly failedLayer?: string;
   };
+  /** Optional note for aborted scans */
+  readonly note?: string;
 }
 
 /**

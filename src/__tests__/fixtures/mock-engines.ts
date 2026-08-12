@@ -19,6 +19,7 @@ export class MockDetectionEngine implements IDetectionEngine {
   public readonly shouldFail: boolean;
   public readonly errorMessage: string;
   public analyzeCallCount = 0;
+  public terminated = false;
 
   constructor(options: MockEngineOptions) {
     this.name = options.name;
@@ -36,10 +37,22 @@ export class MockDetectionEngine implements IDetectionEngine {
 
   public async analyze(input: EngineInput): Promise<Finding[]> {
     this.analyzeCallCount++;
-    void input;
+
+    if (input.signal?.aborted) {
+      this.terminated = true;
+      return [];
+    }
 
     if (this.delayMs > 0) {
-      await new Promise((resolve) => setTimeout(resolve, this.delayMs));
+      const aborted = await this.waitForDelay(this.delayMs, input.signal);
+      if (aborted) {
+        return [];
+      }
+    }
+
+    if (input.signal?.aborted) {
+      this.terminated = true;
+      return [];
     }
 
     if (this.shouldFail) {
@@ -47,5 +60,39 @@ export class MockDetectionEngine implements IDetectionEngine {
     }
 
     return [...this.findingsToReturn];
+  }
+
+  private async waitForDelay(delayMs: number, signal?: AbortSignal): Promise<boolean> {
+    return await new Promise<boolean>((resolve) => {
+      if (signal?.aborted) {
+        this.terminated = true;
+        resolve(true);
+        return;
+      }
+
+      const timeoutId = setTimeout(() => {
+        cleanup();
+        resolve(false);
+      }, delayMs);
+
+      const onAbort = () => {
+        this.terminated = true;
+        cleanup();
+        resolve(true);
+      };
+
+      const cleanup = () => {
+        clearTimeout(timeoutId);
+        signal?.removeEventListener('abort', onAbort);
+      };
+
+      signal?.addEventListener('abort', onAbort, { once: true });
+    });
+  }
+}
+
+export class SlowMockEngine extends MockDetectionEngine {
+  constructor(options: MockEngineOptions) {
+    super(options);
   }
 }
