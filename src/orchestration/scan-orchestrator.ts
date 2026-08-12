@@ -21,6 +21,7 @@ import { prepareForLLM } from './text-preprocessor';
 import { FindingsAggregator } from './findings-aggregator';
 import { ConfidenceScorer } from './confidence-scorer';
 import { WorkerDispatcher } from './WorkerDispatcher';
+import type { MemoryMonitor } from '@/infra/MemoryMonitor';
 
 export interface ScanOrchestratorOptions {
   /** Custom FindingsAggregator instance */
@@ -39,6 +40,8 @@ export interface ScanOrchestratorOptions {
   llmTimeoutMs?: number;
   /** Optional computation worker dispatcher for large inputs (WO-053). */
   workerDispatcher?: WorkerDispatcher;
+  /** Optional memory monitor for VRAM/heap ceiling guard (WO-054). */
+  memoryMonitor?: MemoryMonitor;
 }
 
 type MutableLayerStatus = {
@@ -101,6 +104,7 @@ export class ScanOrchestrator implements IScanOrchestrator {
   private readonly entropyTimeoutMs: number;
   private readonly llmTimeoutMs: number;
   private readonly workerDispatcher: WorkerDispatcher | null;
+  private readonly memoryMonitor: MemoryMonitor | null;
   private isAborted = false;
   private abortController: AbortController | null = null;
   private abortNotify: (() => void) | null = null;
@@ -116,6 +120,7 @@ export class ScanOrchestrator implements IScanOrchestrator {
     this.entropyTimeoutMs = options?.entropyTimeoutMs ?? 10_000;
     this.llmTimeoutMs = options?.llmTimeoutMs ?? 30_000;
     this.workerDispatcher = options?.workerDispatcher ?? null;
+    this.memoryMonitor = options?.memoryMonitor ?? null;
     if (this.workerDispatcher && options?.workerThreshold != null) {
       this.workerDispatcher.threshold = this.workerThreshold;
     }
@@ -540,7 +545,32 @@ export class ScanOrchestrator implements IScanOrchestrator {
       });
     }
 
-    if (layer2Engine && capabilities.llmAvailable && ambiguousFindings.length > 0) {
+    if (this.memoryMonitor) {
+      this.memoryMonitor.setInputBytes(text.length);
+      await this.memoryMonitor.refresh();
+    }
+    const memoryBlocked = this.memoryMonitor?.isApproachingLimit() === true;
+    if (memoryBlocked) {
+      layerStates['Layer 2 (LLM)'] = 'skipped';
+      updateLayerStatus(layerStatuses, 'llm', { status: 'complete', findings: [] });
+      yield {
+        status: 'scanning',
+        stage: 'MEMORY_WARNING: high memory — skipping LLM analysis',
+        percentage: 70,
+        findings: [...accumulatedFindings],
+        layerStatuses: snapshotLayerStatuses(layerStatuses),
+        degradationWarning:
+          'High memory usage — LLM analysis skipped. Regex and Entropy results are still available.',
+        note: 'MEMORY_WARNING',
+      };
+    }
+
+    if (
+      !memoryBlocked &&
+      layer2Engine &&
+      capabilities.llmAvailable &&
+      ambiguousFindings.length > 0
+    ) {
       layerStates['Layer 2 (LLM)'] = 'pending';
       yield {
         status: 'scanning',

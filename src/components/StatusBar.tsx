@@ -91,7 +91,15 @@ function renderModelStateContent(state: ModelLifecycleState, progress: number) {
   }
 }
 
-export const StatusBar: React.FC = () => {
+export interface StatusBarProps {
+  readonly memoryApproachingLimit?: boolean;
+  readonly memoryAtCeiling?: boolean;
+}
+
+export const StatusBar: React.FC<StatusBarProps> = ({
+  memoryApproachingLimit = false,
+  memoryAtCeiling = false,
+}) => {
   const status = useModelStatus();
 
   return (
@@ -102,6 +110,28 @@ export const StatusBar: React.FC = () => {
       <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4">
         {/* Left Section: WebGPU Status & Degraded Mode Message */}
         <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2.5">
+          {(memoryApproachingLimit || memoryAtCeiling) && (
+            <span
+              data-testid="memory-warning-indicator"
+              className={
+                memoryAtCeiling
+                  ? 'flex items-center gap-1.5 text-rose-500 font-medium'
+                  : 'flex items-center gap-1.5 text-amber-500 font-medium'
+              }
+              title={
+                memoryAtCeiling
+                  ? 'Memory ceiling reached — heavy computation paused'
+                  : 'High memory usage — LLM analysis may be skipped'
+              }
+              aria-label={
+                memoryAtCeiling
+                  ? 'Memory ceiling reached — heavy computation paused'
+                  : 'High memory usage — LLM analysis may be skipped'
+              }
+            >
+              Memory {memoryAtCeiling ? 'Critical' : 'High'}
+            </span>
+          )}
           <div data-testid="webgpu-status-indicator" className="flex items-center gap-1.5">
             {status.webgpuAvailable ? (
               <span className="flex items-center gap-1.5 text-emerald-500 font-medium">
