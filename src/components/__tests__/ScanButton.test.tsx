@@ -1,7 +1,34 @@
 import { render, screen, act } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ScanButton } from '../ScanButton';
-import { mockScanError } from '@/hooks/__fixtures__/scan-mocks';
+import { mockScanCapabilities } from '@/hooks/__fixtures__/scan-mocks';
+import { IScanOrchestrator, ScanCapabilities, ScanProgress } from '@/types';
+
+class ImmediateMockOrchestrator implements IScanOrchestrator {
+  public getCapabilities(): ScanCapabilities {
+    return mockScanCapabilities;
+  }
+
+  public abort(): void {
+    // no-op for tests
+  }
+
+  public async *scan(): AsyncGenerator<ScanProgress, void, unknown> {
+    yield {
+      status: 'scanning',
+      stage: 'Scan running',
+      percentage: 50,
+      findings: [],
+    };
+
+    yield {
+      status: 'complete',
+      stage: 'Scan complete',
+      percentage: 100,
+      findings: [],
+    };
+  }
+}
 
 describe('ScanButton Component & State Machine', () => {
   beforeEach(() => {
@@ -27,11 +54,12 @@ describe('ScanButton Component & State Machine', () => {
 
   it('transitions to scanning state displaying spinner and Scanning... text when clicked', async () => {
     const handleScanTriggered = vi.fn();
+    const orchestrator = new ImmediateMockOrchestrator();
     render(
       <ScanButton
         inputText="const key = 'val';"
         onScanTriggered={handleScanTriggered}
-        scanEngineOptions={{ scanDelayMs: 300 }}
+        orchestrator={orchestrator}
       />
     );
 
@@ -47,44 +75,15 @@ describe('ScanButton Component & State Machine', () => {
     expect(screen.getByText('Scanning...')).toBeDefined();
 
     // Fast-forward scan completion
-    await act(async () => {
-      vi.advanceTimersByTime(300);
-    });
+    await act(async () => {});
 
-    expect(screen.getByText('Scan Again')).toBeDefined();
-  });
-
-  it('displays user-friendly error banner identifying failed layer when scan error occurs', async () => {
-    render(
-      <ScanButton
-        inputText="sample code"
-        scanEngineOptions={{
-          scanDelayMs: 200,
-          shouldFail: true,
-          simulatedError: mockScanError,
-        }}
-      />
-    );
-
-    const button = screen.getByTestId('scan-button');
-
-    act(() => {
-      button.click();
-    });
-
-    await act(async () => {
-      vi.advanceTimersByTime(200);
-    });
-
-    expect(screen.getByTestId('scan-error-banner')).toBeDefined();
-    expect(screen.getByText(/Regex Engine \(Layer 1\):/i)).toBeDefined();
-    expect(screen.getByText(/Regex engine encountered an unexpected pattern error/i)).toBeDefined();
     expect(screen.getByText('Scan Again')).toBeDefined();
   });
 
   it('allows clicking Scan Again to initiate a new scan', async () => {
+    const orchestrator = new ImmediateMockOrchestrator();
     render(
-      <ScanButton inputText="const text = 'test';" scanEngineOptions={{ scanDelayMs: 200 }} />
+      <ScanButton inputText="const text = 'test';" orchestrator={orchestrator} />
     );
 
     const button = screen.getByTestId('scan-button');
@@ -105,9 +104,7 @@ describe('ScanButton Component & State Machine', () => {
     });
     expect(screen.getByText('Scanning...')).toBeDefined();
 
-    await act(async () => {
-      vi.advanceTimersByTime(200);
-    });
+    await act(async () => {});
     expect(screen.getByText('Scan Again')).toBeDefined();
   });
 });

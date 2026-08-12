@@ -14,3 +14,5 @@ export const mockScanProgress: ScanProgress = {
   currentEngine: 'LLM Engine',
   findings: [],
 };
+
+export const mockScanError = 'Regex engine encountered an unexpected pattern error.';

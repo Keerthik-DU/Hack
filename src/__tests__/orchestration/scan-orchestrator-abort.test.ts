@@ -1,21 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { ScanOrchestrator } from '../../orchestration/scan-orchestrator';
-import { MockDetectionEngine, SlowMockEngine } from '../fixtures/mock-engines';
-import { Finding, ScanProgress } from '../../types';
-
-function makeFinding(id: string, confidence: Finding['confidence'] = 'high'): Finding {
-  return {
-    id,
-    secretType: 'api_key',
-    lineNumber: 1,
-    columnStart: 0,
-    columnEnd: 8,
-    confidence,
-    detectionLayer: confidence === 'high' ? 1 : 3,
-    maskedValue: '****',
-    context: `const token = "${id}";`,
-  };
-}
+import { SlowMockEngine } from '../fixtures/mock-engines';
 
 describe('WO-027: ScanOrchestrator Abort Suite', () => {
   beforeEach(() => {
