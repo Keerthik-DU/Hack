@@ -9,4 +9,6 @@ export * from './StatusBar';
 export * from './PasteInputPanel';
 export * from './ScanButton';
 export * from './FindingCard';
+export * from './VerdictBanner';
+export * from './RedactedPreview';
 export * from './__fixtures__/paste-inputs';

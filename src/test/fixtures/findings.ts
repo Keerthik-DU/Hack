@@ -1,5 +1,35 @@
 import { Finding } from '@/types';
 
+// ─── Verdict scenario fixtures ────────────────────────────────────────────────
+// Used by VerdictBanner tests to cover every boundary case.
+
+export const verdictZeroFindings = {
+  count: 0,
+  scanStatus: 'complete' as const,
+};
+
+export const verdictOneFinding = {
+  count: 1,
+  scanStatus: 'complete' as const,
+};
+
+export const verdictFiveFindings = {
+  count: 5,
+  scanStatus: 'complete' as const,
+};
+
+export const verdictSixFindings = {
+  count: 6,
+  scanStatus: 'complete' as const,
+};
+
+export const verdictTwentyFindings = {
+  count: 20,
+  scanStatus: 'complete' as const,
+};
+
+// ─── Sample Finding objects ───────────────────────────────────────────────────
+
 export const sampleFindings: Finding[] = [
   {
     id: 'finding-aws-high',
