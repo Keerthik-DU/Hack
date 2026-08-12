@@ -25,6 +25,21 @@ export type ScanState = 'idle' | 'scanning' | 'complete' | 'error';
 export type ScanProgressStatus = ScanState | 'aborted';
 
 /**
+ * Per-layer runtime status for progressive ResultsPanel indicators (WO-029).
+ */
+export type LayerRunStatus = 'pending' | 'running' | 'complete' | 'unavailable';
+
+/**
+ * Named detection layers surfaced in LayerProgress UI.
+ */
+export type DetectionLayerName = 'regex' | 'entropy' | 'llm';
+
+/**
+ * Map of detection layer → run status for progressive UI updates.
+ */
+export type LayerStatusMap = Readonly<Record<DetectionLayerName, LayerRunStatus>>;
+
+/**
  * Real-time progress update yielded during scanning pipeline execution.
  */
 export interface ScanProgress {
@@ -38,6 +53,10 @@ export interface ScanProgress {
   readonly currentEngine?: string;
   /** Accumulated findings detected so far */
   readonly findings: readonly Finding[];
+  /** Optional per-layer status map for ResultsPanel progressive UI */
+  readonly layerStatuses?: LayerStatusMap;
+  /** Optional elapsed scan duration in milliseconds */
+  readonly scanDurationMs?: number;
   /** Optional error details if stage or pipeline failed */
   readonly error?: {
     readonly message: string;

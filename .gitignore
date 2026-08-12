@@ -22,6 +22,9 @@ src/components/**/__fixtures__/
 src/engines/__tests__/patterns-v1.test.ts
 tests/fixtures/
 tests/**/fixtures/
+tests/**/results/
+tests/**/output/
+tests-results/
 *.sample.json
 *.secrets.json
 *.mock.json
@@ -30,6 +33,9 @@ tests/**/fixtures/
 .forge-commit-ready
 .forge/project-id
 .forge/hook-version
+.cursor/hooks.json
+.cursor/hooks/
+.cursor/rules/forge-workflow.mdc
 
 # IDE & Editor files
 .vscode/
