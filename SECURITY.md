@@ -52,6 +52,39 @@ The `Strict-Transport-Security` header includes the `preload` directive, which s
 
 The `preload` directive in the header value alone does not add the domain to any list — a separate manual submission step is required. This deferral is intentional and documented to prevent premature submission.
 
-## 4. Reporting a Vulnerability
+## 4. Prohibited Security Patterns (Architecture Security Zone 2)
+
+AirGap Scanner's Architecture Security Zone 2 (Application Boundary) prohibits code patterns that bypass Content Security Policy (CSP), defeat React's XSS protections, or accept untrusted executable input. Violations fail local lint (`npm run lint`) and CI Semgrep (`npm run semgrep` / `scan:semgrep`).
+
+These controls map to **OWASP A05:2021 – Security Misconfiguration** (and related injection classes under A03 where dynamic code execution is involved).
+
+| Pattern | Why prohibited | Safe alternative |
+|---------|----------------|------------------|
+| `dangerouslySetInnerHTML` | Bypasses React XSS escaping; raw HTML injection | Render with normal JSX children/elements |
+| `eval()` | Arbitrary code execution; blocked by strict CSP | `JSON.parse` for data; static imports for code |
+| `new Function()` | Equivalent to `eval()` via the Function constructor | Static functions or typed dispatch tables |
+| `setTimeout` / `setInterval` with a string | Implied `eval`; blocked by CSP | Pass a function callback: `setTimeout(() => { ... }, ms)` |
+| `javascript:` URLs (`no-script-url`) | Executes script via navigation/URL handlers | Use https URLs or application routers |
+| Template literals / concat into `innerHTML` / `outerHTML` | DOM XSS sink for untrusted data | `textContent`, `createElement`, or React JSX |
+| `postMessage(..., '*')` or message handlers without `event.origin` checks | Cross-origin message injection / data leakage | Explicit target origin + validate `event.origin` |
+
+### Enforcement
+
+- **ESLint** (`eslint.config.js`): `no-eval`, `no-implied-eval`, `no-new-func`, `no-script-url`, `react/no-danger`, `@typescript-eslint/no-implied-eval` — all at **error** severity.
+- **Semgrep** (`.semgrep.yml`): custom rules for the patterns above, including DOM sinks and postMessage origin validation.
+- **Fixture verification**: `npm run lint:security-verify` runs ESLint against intentional violations under `tests/fixtures/prohibited-patterns/` (those fixtures are ignored by the main `lint` run).
+
+### Requesting an exception
+
+Legitimate exceptions are rare. If one is required:
+
+1. Document the threat model, why no safe alternative works, and residual risk.
+2. Prefer the smallest possible surface (no user-controlled strings in the sink).
+3. Add an inline `# nosemgrep: <rule-id>` (Semgrep) or targeted ESLint disable with justification — never a file-wide disable.
+4. Get security-team review before merging.
+
+Dynamic `import()` is **not** prohibited — it is a legitimate ES module feature and must not be confused with `eval()`.
+
+## 5. Reporting a Vulnerability
 
 If you discover a security vulnerability or supply chain weakness in AirGap Scanner, please report it via security disclosure protocols. Do not open public issues for zero-day credential leakage or supply chain risks.

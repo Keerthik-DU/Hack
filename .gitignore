@@ -20,8 +20,10 @@ src/test/fixtures/**/secrets-*.json
 src/components/__fixtures__/
 src/components/**/__fixtures__/
 src/engines/__tests__/patterns-v1.test.ts
-tests/fixtures/
-tests/**/fixtures/
+# Ignore test fixtures by default, but keep WO-051 prohibited-pattern ESLint fixtures tracked
+tests/fixtures/**
+!tests/fixtures/prohibited-patterns/
+!tests/fixtures/prohibited-patterns/**
 tests/**/results/
 tests/**/output/
 tests-results/
