@@ -1,10 +1,11 @@
 /**
- * Scan progress helpers for ResultsPanel progressive loading (WO-029).
+ * Scan progress helpers for ResultsPanel progressive loading (WO-029 / WO-044).
  */
 import { Finding } from './finding';
 import {
   DetectionLayerName,
   LayerRunStatus,
+  LayerStatus,
   LayerStatusMap,
   ScanCapabilities,
   ScanProgress,
@@ -28,6 +29,12 @@ export const DEFAULT_LAYER_STATUSES: LayerStatusMap = {
   entropy: 'pending',
   llm: 'pending',
 };
+
+export const DEFAULT_LAYER_STATUS_LIST: readonly LayerStatus[] = [
+  { layer: 'regex', status: 'pending', findings: [] },
+  { layer: 'entropy', status: 'pending', findings: [] },
+  { layer: 'llm', status: 'pending', findings: [] },
+];
 
 export const CONFIDENCE_SORT_PRIORITY: Record<'high' | 'medium' | 'low', number> = {
   high: 0,
@@ -58,15 +65,95 @@ export function sortFindingsByConfidenceThenLine(
     .map(({ finding }) => finding);
 }
 
+function isLayerStatusArray(
+  value: ScanProgress['layerStatuses']
+): value is readonly LayerStatus[] {
+  return Array.isArray(value);
+}
+
+function isLayerStatusMap(
+  value: ScanProgress['layerStatuses']
+): value is LayerStatusMap {
+  return (
+    !!value &&
+    !Array.isArray(value) &&
+    typeof value === 'object' &&
+    'regex' in value &&
+    'entropy' in value &&
+    'llm' in value
+  );
+}
+
+/**
+ * Convert WO-044 LayerStatus[] into the LayerStatusMap used by LayerProgress.
+ */
+export function layerStatusListToMap(
+  list: readonly LayerStatus[]
+): LayerStatusMap {
+  const map: Record<DetectionLayerName, LayerRunStatus> = {
+    regex: 'pending',
+    entropy: 'pending',
+    llm: 'pending',
+  };
+
+  for (const entry of list) {
+    if (entry.status === 'error') {
+      map[entry.layer] = 'error';
+    } else if (entry.status === 'complete') {
+      map[entry.layer] = 'complete';
+    } else {
+      map[entry.layer] = 'pending';
+    }
+  }
+
+  return map;
+}
+
+/**
+ * Extract LayerStatus[] from ScanProgress (array form or derive from map / stage).
+ */
+export function getLayerStatusList(
+  progress: ScanProgress | null | undefined,
+  capabilities?: ScanCapabilities | null
+): LayerStatus[] {
+  if (progress?.layerStatuses && isLayerStatusArray(progress.layerStatuses)) {
+    return [...progress.layerStatuses];
+  }
+
+  const map = deriveLayerStatuses(progress, capabilities);
+  return (['regex', 'entropy', 'llm'] as const).map((layer) => {
+    const run = map[layer];
+    const status: LayerStatus['status'] =
+      run === 'error'
+        ? 'error'
+        : run === 'complete' || run === 'unavailable'
+          ? 'complete'
+          : 'pending';
+    return {
+      layer,
+      status,
+      findings: (progress?.findings ?? []).filter((f) => {
+        if (layer === 'regex') return f.detectionLayer === 1;
+        if (layer === 'llm') return f.detectionLayer === 2;
+        return f.detectionLayer === 3;
+      }),
+    };
+  });
+}
+
 /**
  * Infer layer statuses from orchestrator stage text / current engine when
- * an explicit layerStatuses map is not present on the ScanProgress event.
+ * an explicit layerStatuses map/array is not present on the ScanProgress event.
  */
 export function deriveLayerStatuses(
   progress: ScanProgress | null | undefined,
   capabilities?: ScanCapabilities | null
 ): LayerStatusMap {
-  if (progress?.layerStatuses) {
+  if (progress?.layerStatuses && isLayerStatusArray(progress.layerStatuses)) {
+    return layerStatusListToMap(progress.layerStatuses);
+  }
+
+  if (progress?.layerStatuses && isLayerStatusMap(progress.layerStatuses)) {
     return progress.layerStatuses;
   }
 
@@ -134,16 +221,17 @@ export function deriveLayerStatuses(
       statuses.llm = 'unavailable';
     } else if (stage.includes('complete') || percentage >= 90) {
       statuses.llm = 'complete';
+    } else if (stage.includes('fail') || stage.includes('error')) {
+      statuses.llm = 'error';
     } else {
       statuses.llm = 'running';
     }
   }
 
-  if (failedLayer.includes('regex')) statuses.regex = 'unavailable';
-  if (failedLayer.includes('entropy')) statuses.entropy = 'unavailable';
-  if (failedLayer.includes('llm')) statuses.llm = 'unavailable';
+  if (failedLayer.includes('regex')) statuses.regex = 'error';
+  if (failedLayer.includes('entropy')) statuses.entropy = 'error';
+  if (failedLayer.includes('llm')) statuses.llm = 'error';
 
-  // Concurrent regex+entropy completion yields often report percentage 66
   if (percentage >= 66 && statuses.regex === 'pending') statuses.regex = 'complete';
   if (percentage >= 66 && statuses.entropy === 'pending') statuses.entropy = 'complete';
 

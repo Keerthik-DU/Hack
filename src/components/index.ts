@@ -15,6 +15,7 @@ export * from './VerdictBanner';
 export * from './RedactedPreview';
 export * from './AllClearState';
 export * from './ResultsPanel';
+export * from './errors';
 export * from './CopyButton';
 export * from './CopyToast';
 export * from './__fixtures__/paste-inputs';

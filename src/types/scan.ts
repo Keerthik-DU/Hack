@@ -17,6 +17,8 @@ export enum ErrorCode {
   /** LLM inference exceeded the per-call timeout */
   INFERENCE_TIMEOUT = 'INFERENCE_TIMEOUT',
   INPUT_TOO_LARGE = 'INPUT_TOO_LARGE',
+  DETECTION_LAYER_FAILED = 'DETECTION_LAYER_FAILED',
+  SCAN_ENGINE_FAILED = 'SCAN_ENGINE_FAILED',
   UNKNOWN_ERROR = 'UNKNOWN_ERROR',
 }
 
@@ -33,17 +35,40 @@ export type ScanProgressStatus = ScanState | 'aborted';
 /**
  * Per-layer runtime status for progressive ResultsPanel indicators (WO-029).
  */
-export type LayerRunStatus = 'pending' | 'running' | 'complete' | 'unavailable';
+export type LayerRunStatus = 'pending' | 'running' | 'complete' | 'unavailable' | 'error';
 
 /**
- * Named detection layers surfaced in LayerProgress UI.
+ * Named detection layers surfaced in LayerProgress / LayerStatusList UI.
  */
 export type DetectionLayerName = 'regex' | 'entropy' | 'llm';
+
+/**
+ * Structured error shape shared across orchestration, workers, and UI boundaries.
+ */
+export interface AirGapError {
+  readonly name: string;
+  readonly code: ErrorCode;
+  readonly message: string;
+  readonly layer?: DetectionLayerName;
+  readonly cause?: unknown;
+  readonly timestamp: number;
+  readonly isAirGapError: true;
+}
 
 /**
  * Map of detection layer → run status for progressive UI updates.
  */
 export type LayerStatusMap = Readonly<Record<DetectionLayerName, LayerRunStatus>>;
+
+/**
+ * Per-layer status entry emitted by ScanOrchestrator (WO-044).
+ */
+export interface LayerStatus {
+  readonly layer: DetectionLayerName;
+  readonly status: 'pending' | 'complete' | 'error';
+  readonly error?: AirGapError;
+  readonly findings: readonly Finding[];
+}
 
 /**
  * Real-time progress update yielded during scanning pipeline execution.
@@ -59,8 +84,11 @@ export interface ScanProgress {
   readonly currentEngine?: string;
   /** Accumulated findings detected so far */
   readonly findings: readonly Finding[];
-  /** Optional per-layer status map for ResultsPanel progressive UI */
-  readonly layerStatuses?: LayerStatusMap;
+  /**
+   * Per-layer status array (WO-044). Prefer this over deriving from stage text.
+   * Legacy LayerStatusMap values are still accepted by scan-progress helpers.
+   */
+  readonly layerStatuses?: readonly LayerStatus[] | LayerStatusMap;
   /** Optional elapsed scan duration in milliseconds */
   readonly scanDurationMs?: number;
   /** Optional error details if stage or pipeline failed */
