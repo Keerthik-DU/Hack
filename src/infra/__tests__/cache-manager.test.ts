@@ -73,10 +73,10 @@ describe('CacheManager.getModel()', () => {
 
     const result = await cache.getModel(TEST_MODEL_ID, TEST_MODEL_VERSION);
     expect(result).not.toBeNull();
-    expect(result!.modelId).toBe(TEST_MODEL_ID);
-    expect(result!.version).toBe(TEST_MODEL_VERSION);
-    expect(result!.sha256Hash).toBe(TEST_SHA256_HASH);
-    expect(result!.sizeBytes).toBe(weights.byteLength);
+    expect(result?.modelId).toBe(TEST_MODEL_ID);
+    expect(result?.version).toBe(TEST_MODEL_VERSION);
+    expect(result?.sha256Hash).toBe(TEST_SHA256_HASH);
+    expect(result?.sizeBytes).toBe(weights.byteLength);
   });
 
   it('returns an ArrayBuffer with the correct byte content', async () => {
@@ -86,8 +86,8 @@ describe('CacheManager.getModel()', () => {
 
     const result = await cache.getModel(TEST_MODEL_ID, TEST_MODEL_VERSION);
     expect(result).not.toBeNull();
-    expect(result!.weights.byteLength).toBe(512);
-    const retrieved = new Uint8Array(result!.weights);
+    expect(result?.weights.byteLength).toBe(512);
+    const retrieved = new Uint8Array(result?.weights ?? new ArrayBuffer(0));
     const original = new Uint8Array(weights);
     expect(Array.from(retrieved)).toEqual(Array.from(original));
   });
@@ -118,10 +118,10 @@ describe('CacheManager.storeModel()', () => {
     const entry = await cache.getModel(TEST_MODEL_ID, TEST_MODEL_VERSION);
 
     expect(entry).not.toBeNull();
-    expect(entry!.modelId).toBe(TEST_MODEL_ID);
-    expect(entry!.version).toBe(TEST_MODEL_VERSION);
-    expect(entry!.sha256Hash).toBe(TEST_SHA256_HASH);
-    expect(entry!.sizeBytes).toBe(2048);
+    expect(entry?.modelId).toBe(TEST_MODEL_ID);
+    expect(entry?.version).toBe(TEST_MODEL_VERSION);
+    expect(entry?.sha256Hash).toBe(TEST_SHA256_HASH);
+    expect(entry?.sizeBytes).toBe(2048);
   });
 
   it('sets storedAt to a recent Unix millisecond timestamp', async () => {
@@ -136,8 +136,8 @@ describe('CacheManager.storeModel()', () => {
     const after = Date.now();
 
     const entry = await cache.getModel(TEST_MODEL_ID, TEST_MODEL_VERSION);
-    expect(entry!.storedAt).toBeGreaterThanOrEqual(before);
-    expect(entry!.storedAt).toBeLessThanOrEqual(after);
+    expect(entry?.storedAt).toBeGreaterThanOrEqual(before);
+    expect(entry?.storedAt).toBeLessThanOrEqual(after);
   });
 
   it('overwrites an existing entry (PUT/upsert semantics)', async () => {
@@ -149,8 +149,8 @@ describe('CacheManager.storeModel()', () => {
     await cache.storeModel(TEST_MODEL_ID, TEST_MODEL_VERSION, v2Weights, 'hash-v2');
 
     const entry = await cache.getModel(TEST_MODEL_ID, TEST_MODEL_VERSION);
-    expect(entry!.sha256Hash).toBe('hash-v2');
-    expect(entry!.sizeBytes).toBe(512);
+    expect(entry?.sha256Hash).toBe('hash-v2');
+    expect(entry?.sizeBytes).toBe(512);
   });
 
   it('returns a CacheStorageError with code VALIDATION_ERROR for a 0-byte ArrayBuffer', async () => {
@@ -390,7 +390,7 @@ describe('CacheManager — full lifecycle integration', () => {
     // 2. Retrieve stale version — should be found
     const staleEntry = await cache.getModel(TEST_MODEL_ID, TEST_MODEL_STALE_VERSION);
     expect(staleEntry).not.toBeNull();
-    expect(staleEntry!.version).toBe(TEST_MODEL_STALE_VERSION);
+    expect(staleEntry?.version).toBe(TEST_MODEL_STALE_VERSION);
 
     // 3. Purge stale — should remove 1 entry
     const purgedCount = await cache.purgeStaleVersions(TEST_MODEL_ID, TEST_MODEL_VERSION);
@@ -408,8 +408,8 @@ describe('CacheManager — full lifecycle integration', () => {
     // 5. Retrieve current version — should be found
     const currentEntry = await cache.getModel(TEST_MODEL_ID, TEST_MODEL_VERSION);
     expect(currentEntry).not.toBeNull();
-    expect(currentEntry!.version).toBe(TEST_MODEL_VERSION);
-    expect(currentEntry!.sizeBytes).toBe(1024);
+    expect(currentEntry?.version).toBe(TEST_MODEL_VERSION);
+    expect(currentEntry?.sizeBytes).toBe(1024);
 
     // 6. Stale version should still be absent
     const missingStale = await cache.getModel(TEST_MODEL_ID, TEST_MODEL_STALE_VERSION);
