@@ -1,0 +1,17 @@
+{
+  "_comment": "This manifest is populated at build time by the CI/CD pipeline. Each sha256 field must contain the lowercase hex-encoded SHA-256 hash of the corresponding file. To add a new model, append a new entry to the 'models' array with the correct modelId, version, and file hashes. Never manually edit sha256 or sizeBytes values — always derive them from the actual files using 'sha256sum' or equivalent.",
+  "manifestVersion": "1.0.0",
+  "models": [
+    {
+      "modelId": "phi-3.5-mini-4bit",
+      "version": "v1.2.0",
+      "files": [
+        {
+          "filename": "weights.bin",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "sizeBytes": 0
+        }
+      ]
+    }
+  ]
+}

@@ -4,3 +4,4 @@ export * from './scan';
 export * from './worker';
 export * from './cache';
 export * from './webgpu';
+export * from './manifest';
