@@ -1,7 +1,16 @@
 import React, { useMemo } from 'react';
 import { useScanEngine } from '@/hooks';
 import { MockScanOrchestrator, MOCK_PROGRESS_EVENTS } from '@/test/fixtures/mock-scan-orchestrator';
-import { IScanOrchestrator, ScanProgress } from '@/types';
+import { IScanOrchestrator, ScanProgress, ScanState } from '@/types';
+
+export interface ScanButtonEngineControls {
+  /** Trigger a scan for the given text */
+  scan: (text: string) => void;
+  /** Current scan state machine status */
+  state: ScanState;
+  /** User-facing error message when state === 'error' */
+  error: string | null;
+}
 
 export interface ScanButtonProps {
   /** Source input text to be scanned */
@@ -13,8 +22,14 @@ export interface ScanButtonProps {
   /**
    * Optional scan orchestrator instance (dependency injection for testing).
    * Defaults to a mock orchestrator when not provided.
+   * Ignored when `engine` is provided.
    */
   orchestrator?: IScanOrchestrator;
+  /**
+   * Shared page-level engine controls. When provided, the button does not
+   * create its own useScanEngine instance (keeps ResultsPanel in sync).
+   */
+  engine?: ScanButtonEngineControls;
 }
 
 // Synthetic error progress event for internal error simulation
@@ -26,21 +41,23 @@ const ERROR_PROGRESS: ScanProgress = {
 };
 void ERROR_PROGRESS;
 
-export const ScanButton: React.FC<ScanButtonProps> = ({
-  inputText = '',
+interface ScanButtonViewProps {
+  inputText: string;
+  state: ScanState;
+  error: string | null;
+  onScanTriggered?: (text: string) => void;
+  onScan: (text: string) => void;
+  className: string;
+}
+
+const ScanButtonView: React.FC<ScanButtonViewProps> = ({
+  inputText,
+  state,
+  error,
   onScanTriggered,
-  className = '',
-  orchestrator,
+  onScan,
+  className,
 }) => {
-  // Use provided orchestrator or fall back to a default mock orchestrator
-  const defaultOrchestrator = useMemo(
-    () => new MockScanOrchestrator({ events: MOCK_PROGRESS_EVENTS }),
-    []
-  );
-  const activeOrchestrator = orchestrator ?? defaultOrchestrator;
-
-  const { scan, state, error } = useScanEngine(activeOrchestrator);
-
   const isInputEmpty = !inputText || inputText.trim().length === 0;
   const isScanning = state === 'scanning';
 
@@ -50,10 +67,9 @@ export const ScanButton: React.FC<ScanButtonProps> = ({
     }
 
     onScanTriggered?.(inputText);
-    scan(inputText);
+    onScan(inputText);
   };
 
-  // Button text & state resolution
   let buttonLabel = 'Scan';
   if (state === 'scanning') {
     buttonLabel = 'Scanning...';
@@ -114,7 +130,6 @@ export const ScanButton: React.FC<ScanButtonProps> = ({
         )}
       </button>
 
-      {/* User-friendly Error Display */}
       {state === 'error' && error && (
         <div
           data-testid="scan-error-banner"
@@ -132,4 +147,49 @@ export const ScanButton: React.FC<ScanButtonProps> = ({
       )}
     </div>
   );
+};
+
+/**
+ * Standalone ScanButton that owns its useScanEngine instance (unit tests / demos).
+ */
+const ScanButtonStandalone: React.FC<Omit<ScanButtonProps, 'engine'>> = ({
+  inputText = '',
+  onScanTriggered,
+  className = '',
+  orchestrator,
+}) => {
+  const defaultOrchestrator = useMemo(
+    () => new MockScanOrchestrator({ events: MOCK_PROGRESS_EVENTS }),
+    []
+  );
+  const activeOrchestrator = orchestrator ?? defaultOrchestrator;
+  const { scan, state, error } = useScanEngine(activeOrchestrator);
+
+  return (
+    <ScanButtonView
+      inputText={inputText}
+      state={state}
+      error={error}
+      onScanTriggered={onScanTriggered}
+      onScan={scan}
+      className={className}
+    />
+  );
+};
+
+export const ScanButton: React.FC<ScanButtonProps> = ({ engine, ...rest }) => {
+  if (engine) {
+    return (
+      <ScanButtonView
+        inputText={rest.inputText ?? ''}
+        state={engine.state}
+        error={engine.error}
+        onScanTriggered={rest.onScanTriggered}
+        onScan={engine.scan}
+        className={rest.className ?? ''}
+      />
+    );
+  }
+
+  return <ScanButtonStandalone {...rest} />;
 };

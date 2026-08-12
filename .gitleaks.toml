@@ -116,3 +116,14 @@ paths = [
   '''src/patterns/v1/patterns\.json$''',
   '''src/engines/regex/patterns\.json$''',
 ]
+
+[[allowlists]]
+description = """
+tests/e2e/fixtures — Playwright E2E fixtures for WO-050 zero-network verification.
+Contains obviously fake AWS example keys (AKIAIOSFODNN7EXAMPLE) and placeholder
+GitHub tokens (ghp_xxx...) used only to assert client-side detection with zero
+outbound network during scan. These are not real credentials.
+"""
+paths = [
+  '''tests/e2e/fixtures/.*''',
+]

@@ -1,0 +1,51 @@
+/**
+ * Sample React component — intentionally contains no secrets.
+ * Used by WO-050 zero-network Playwright suite (clean-text scenario).
+ */
+import React, { useState, useEffect } from 'react';
+
+export interface GreetingCardProps {
+  name: string;
+  subtitle?: string;
+  onDismiss?: () => void;
+}
+
+export function GreetingCard({ name, subtitle, onDismiss }: GreetingCardProps) {
+  const [visible, setVisible] = useState(true);
+  const [tick, setTick] = useState(0);
+
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setTick((value) => value + 1);
+    }, 1000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  if (!visible) {
+    return null;
+  }
+
+  return (
+    <section className="greeting-card" data-testid="greeting-card">
+      <header>
+        <h1>Welcome, {name}</h1>
+        {subtitle ? <p className="subtitle">{subtitle}</p> : null}
+      </header>
+      <p>
+        This component demonstrates ordinary application UI without credentials,
+        tokens, or environment secrets. Elapsed ticks: {tick}.
+      </p>
+      <button
+        type="button"
+        onClick={() => {
+          setVisible(false);
+          onDismiss?.();
+        }}
+      >
+        Dismiss
+      </button>
+    </section>
+  );
+}
+
+export default GreetingCard;

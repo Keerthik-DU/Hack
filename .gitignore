@@ -34,11 +34,14 @@ tests/**/fixtures/
 !tests/fixtures/expected-security-headers.json
 !tests/fixtures/prohibited-patterns/
 !tests/fixtures/prohibited-patterns/**
+# WO-050: committed Playwright input fixtures (zero-network suite)
 !tests/e2e/fixtures/
 !tests/e2e/fixtures/**
 tests/**/results/
 tests/**/output/
 tests-results/
+test-results/
+playwright-report/
 *.sample.json
 *.secrets.json
 *.mock.json

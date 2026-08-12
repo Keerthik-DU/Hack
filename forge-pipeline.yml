@@ -184,15 +184,52 @@ stages:
         escalation contacts.
 
 # ---------------------------------------------------------------------------
+# Zero-Network E2E Stage — test:generic (WO-050)
+# Asserts exactly zero outbound network requests during scan operations.
+# Failure blocks promotion to subsequent environments / Push stage.
+# ---------------------------------------------------------------------------
+  - name: zero-network-e2e
+    step: test:generic
+    needs:
+      - build
+      - security-scan
+    node_version: "20"
+    environment:
+      CI: "true"
+    commands:
+      # Playwright webServer (playwright.config.ts) starts `vite preview` when
+      # PLAYWRIGHT_BASE_URL is unset. Failure blocks promotion (block_pipeline).
+      - npm ci --ignore-scripts
+      - npx playwright install --with-deps chromium webkit
+      # Use vite build for the preview bundle (typecheck already ran in build stage).
+      - npx vite build
+      - npm run test:e2e:network
+    artifacts:
+      paths:
+        - test-results/
+        - playwright-report/
+        - test-results/network-reports/
+    timeout_minutes: 10
+    on_failure:
+      block_pipeline: true
+      message: >
+        Zero-network E2E stage failed (WO-050). One or more Playwright scenarios
+        detected outbound network activity during the scan-execution window, or
+        the scan UI did not complete as expected. Review the Playwright report
+        and network-reports JSON artifacts for request URL/method/initiator
+        details. This gate must pass before promotion.
+
+# ---------------------------------------------------------------------------
 # Push Stage — push:generic with SHA-256 integrity checksums (OWASP A08)
 # WO-068: Upload dist/ to the artifact registry with commit-SHA version tags.
-# Runs only after all four Security Scan quality gates pass (stage ordering).
+# Runs only after Security Scan and Zero-Network E2E pass (stage ordering).
 # ---------------------------------------------------------------------------
   - name: push
     step: push:generic
-    # Explicit dependency: Push must not run unless Security Scan succeeded.
+    # Explicit dependency: Push must not run unless prior gates succeeded.
     needs:
       - security-scan
+      - zero-network-e2e
     artifact_source: dist/
     version_tag: ${{ source.variables.ARTIFACT_VERSION_TAG }}
     # Immutable tags: refuse overwrite if the same version tag already exists.

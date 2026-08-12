@@ -275,9 +275,39 @@ platform team to restore the affected scanner service before re-running.
 
 ---
 
-## Stage 4: Artifact Push Stage (WO-068)
+## Stage 4: Zero-Network E2E (WO-050)
 
-Runs **only after** all four Security Scan quality gates pass. Uploads the
+Blocking `test:generic` stage that runs the Playwright zero-network suite
+(`npm run test:e2e:network`) after Build and Security Scan succeed.
+
+| Property | Value |
+|----------|-------|
+| Step | `test:generic` |
+| Stage name | `zero-network-e2e` |
+| Command | `npm run test:e2e:network` |
+| Browsers | Chromium + WebKit |
+| Gate | Any scan-phase network request fails the stage and blocks promotion |
+
+### Local / CI usage
+
+```bash
+# Install browsers once
+npx playwright install chromium webkit
+
+# Build + run only the zero-network suite (starts Vite preview via playwright.config.ts)
+npm run test:e2e:network:ci
+```
+
+Forge Shipping integration: keep the `zero-network-e2e` stage in
+`forge-pipeline.yml` with `step: test:generic` and `on_failure.block_pipeline: true`.
+JSON summaries are written under `test-results/network-reports/` (load vs scan
+request counts) for auditability.
+
+---
+
+## Stage 5: Artifact Push Stage (WO-068)
+
+Runs **only after** Security Scan and Zero-Network E2E pass. Uploads the
 verified `dist/` bundle to the Forge artifact registry with SHA-256 integrity
 checksums and commit-SHA version tags (OWASP A08 supply-chain integrity).
 
@@ -348,4 +378,6 @@ commits use distinct SHA-derived tags and do not overwrite each other.
 | `.semgrep.yml` | Semgrep SAST rules for TypeScript/React security patterns |
 | `scripts/verify-manifest.sh` | Build/Push gate: require `dist/model-manifest.json` |
 | `scripts/generate-checksums.sh` | Push stage: SHA-256 manifest for all `dist/` files |
+| `playwright.config.ts` | Playwright E2E config (Chromium/WebKit, 60s timeout) |
+| `tests/e2e/zero-network.spec.ts` | WO-050 zero-network invariant suite |
 | `PIPELINE.md` | This document — pipeline documentation and runbook |
