@@ -98,6 +98,8 @@ export interface ScanProgress {
   };
   /** Optional note for aborted scans */
   readonly note?: string;
+  /** Worker/main-thread degradation notice (WO-053). */
+  readonly degradationWarning?: string;
 }
 
 /**
