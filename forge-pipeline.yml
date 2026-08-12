@@ -1,0 +1,73 @@
+---
+# Forge Shipping Engine Pipeline Configuration
+# AirGap Scanner - Source Trigger and Build Stage
+# WO-066: Configure Forge Source Trigger and Build Stage
+
+pipeline:
+  name: airgap-scanner
+  description: >
+    Automated build pipeline for AirGap Scanner. Triggers on main branch
+    commits and pull request events. Performs secure dependency installation,
+    TypeScript strict-mode compilation, Vite production build with Web Worker
+    support, and model manifest verification.
+
+# ---------------------------------------------------------------------------
+# Source Stage — VCS trigger configuration
+# ---------------------------------------------------------------------------
+source:
+  provider: git
+  triggers:
+    - event: push
+      branches:
+        - main
+    - event: pull_request
+      actions:
+        - opened
+        - synchronize
+  variables:
+    COMMIT_SHA: ${{ vcs.commit_sha }}
+    BUILD_TIMESTAMP: ${{ pipeline.timestamp_iso8601 }}
+
+# ---------------------------------------------------------------------------
+# Build Stage — build:node step from the Forge step catalog
+# ---------------------------------------------------------------------------
+stages:
+  - name: build
+    step: build:node
+    node_version: "20"
+    environment:
+      VITE_COMMIT_SHA: ${{ source.variables.COMMIT_SHA }}
+      VITE_BUILD_TIMESTAMP: ${{ source.variables.BUILD_TIMESTAMP }}
+    commands:
+      # Step 1: Secure dependency installation (OWASP A03 compliance)
+      # npm ci --ignore-scripts prevents post-install script attacks
+      - npm ci --ignore-scripts
+
+      # Step 2: TypeScript type checking in strict mode (noEmit — Vite handles transpilation)
+      - npx tsc --noEmit
+
+      # Step 3: Vite production build (tree-shaking, code splitting, minification,
+      #         Web Worker bundle, Tailwind CSS purge)
+      - npx vite build
+
+      # Step 4: Verify model-manifest.json exists in dist/ output
+      - bash scripts/verify-manifest.sh
+
+    artifacts:
+      paths:
+        - dist/
+      metadata:
+        commit_sha: ${{ source.variables.COMMIT_SHA }}
+        build_timestamp: ${{ source.variables.BUILD_TIMESTAMP }}
+
+    timeout_minutes: 2
+
+    on_failure:
+      message: >
+        Build stage failed. Common causes:
+        - TypeScript type errors: check tsc output for file, line, and error code.
+        - npm ci failure: verify package-lock.json is in sync with package.json.
+        - Missing model-manifest.json: ensure model-manifest.json exists at repo root
+          and is copied to dist/ by the Vite build, or set SKIP_MANIFEST_CHECK=true
+          to bypass the manifest check during early development.
+        - Web Worker bundle failure: ensure src/workers/llm-worker.ts exists.
