@@ -1,0 +1,6 @@
+{
+  "regex10kMs": 500,
+  "entropy50kMs": 2000,
+  "pipeline100kMs": 10000,
+  "notes": "Hard gate via BENCH_HARD=true in CI performance job"
+}
