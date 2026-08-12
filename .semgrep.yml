@@ -1,4 +1,5 @@
 # Semgrep SAST Configuration — AirGap Scanner
+# WO-051: ESLint and Semgrep Prohibited Security Patterns Enforcement
 # WO-067: Configure Parallel Security Scan Stage in Pipeline
 #
 # Quality gate: zero critical (ERROR severity) and zero high (WARNING severity) findings.
@@ -8,187 +9,228 @@
 # Generic or noisy rules are intentionally excluded to avoid false positives.
 # False-positive exceptions require an inline `# nosemgrep: <rule-id>` comment
 # with an explanatory note describing why the usage is safe.
+#
+# Note: Semgrep's `typescript` language mode covers both .ts and .tsx files.
+# Dynamic import() is intentionally not flagged — it is a legitimate ES module feature.
 
 rules:
   # ---------------------------------------------------------------------------
-  # XSS — dangerouslySetInnerHTML (React)
-  # OWASP A05 Injection
+  # (1) XSS — dangerouslySetInnerHTML (React)
+  # Architecture Security Zone 2 / OWASP A05
   # ---------------------------------------------------------------------------
   - id: react-dangerously-set-inner-html
     message: >
-      dangerouslySetInnerHTML bypasses React's built-in XSS protection.
-      Any unsanitized string passed to __html will be injected as raw HTML,
-      enabling XSS attacks. Use React's safe JSX rendering instead.
-      If sanitization is truly required, use DOMPurify and document the rationale.
+      PROHIBITED (Security Zone 2): dangerouslySetInnerHTML bypasses React's
+      built-in XSS escaping. Unsanitized __html enables XSS and can defeat CSP
+      intent. Safe alternative: render with normal JSX text/elements so React
+      escapes content. If HTML sanitization is truly required, use DOMPurify and
+      document an explicit exception in SECURITY.md.
     languages: [typescript]
     severity: ERROR
     metadata:
       category: security
       owasp: "A05:2021 - Security Misconfiguration / Injection"
       cwe: "CWE-79: Improper Neutralization of Input During Web Page Generation (XSS)"
+      fix: "Use React JSX children instead of dangerouslySetInnerHTML"
     patterns:
-      - pattern: dangerouslySetInnerHTML={...}
+      - pattern-either:
+          - pattern: dangerouslySetInnerHTML={...}
+          - pattern: dangerouslySetInnerHTML={{ __html: ... }}
 
   # ---------------------------------------------------------------------------
-  # Code injection — eval()
-  # OWASP A03 Injection
+  # (2) Code injection — eval / Function / setTimeout-string
+  # Architecture Security Zone 2 / OWASP A03
   # ---------------------------------------------------------------------------
   - id: no-eval
     message: >
-      eval() executes arbitrary JavaScript code from a string, enabling code
-      injection attacks if any user-controlled data reaches this call.
-      Replace with safe alternatives (JSON.parse for data, static imports for code).
+      PROHIBITED (Security Zone 2): eval() executes arbitrary JavaScript from a
+      string and is blocked by a strict CSP. Safe alternatives: JSON.parse for
+      data, static imports or a well-defined interpreter for structured logic.
     languages: [typescript]
     severity: ERROR
     metadata:
       category: security
       owasp: "A03:2021 - Injection"
       cwe: "CWE-95: Improper Neutralization of Directives in Dynamically Evaluated Code"
+      fix: "Replace eval() with JSON.parse or static code paths"
     patterns:
       - pattern: eval(...)
 
-  # ---------------------------------------------------------------------------
-  # Code injection — new Function()
-  # OWASP A03 Injection
-  # ---------------------------------------------------------------------------
   - id: no-new-function
     message: >
-      new Function() constructs and executes code from a string at runtime,
-      equivalent to eval(). This enables code injection if any user-controlled
-      data is passed as an argument. Replace with static function definitions.
+      PROHIBITED (Security Zone 2): new Function() constructs executable code
+      from a string (equivalent to eval) and is blocked by a strict CSP.
+      Safe alternative: define static functions or use a typed dispatch table.
     languages: [typescript]
     severity: ERROR
     metadata:
       category: security
       owasp: "A03:2021 - Injection"
       cwe: "CWE-95: Improper Neutralization of Directives in Dynamically Evaluated Code"
+      fix: "Replace new Function() with a static function definition"
     patterns:
       - pattern: new Function(...)
 
-  # ---------------------------------------------------------------------------
-  # Code injection — setTimeout / setInterval with string argument
-  # OWASP A03 Injection
-  # ---------------------------------------------------------------------------
   - id: no-settimeout-string
     message: >
-      setTimeout() with a string argument evaluates the string as JavaScript
-      code (equivalent to eval()), enabling code injection. Pass a function
-      reference instead: setTimeout(() => { ... }, delay).
+      PROHIBITED (Security Zone 2): setTimeout() with a string argument is an
+      implied eval and is blocked by CSP. Safe alternative:
+      setTimeout(() => { ... }, delay) with a function callback.
     languages: [typescript]
     severity: ERROR
     metadata:
       category: security
       owasp: "A03:2021 - Injection"
       cwe: "CWE-95: Improper Neutralization of Directives in Dynamically Evaluated Code"
+      fix: "Pass a function to setTimeout, never a string"
     patterns:
-      - pattern: setTimeout("...", ...)
+      - pattern-either:
+          - pattern: setTimeout("...", ...)
+          - pattern: setTimeout('...', ...)
 
   - id: no-setinterval-string
     message: >
-      setInterval() with a string argument evaluates the string as JavaScript
-      code (equivalent to eval()), enabling code injection. Pass a function
-      reference instead: setInterval(() => { ... }, delay).
+      PROHIBITED (Security Zone 2): setInterval() with a string argument is an
+      implied eval and is blocked by CSP. Safe alternative:
+      setInterval(() => { ... }, delay) with a function callback.
     languages: [typescript]
     severity: ERROR
     metadata:
       category: security
       owasp: "A03:2021 - Injection"
       cwe: "CWE-95: Improper Neutralization of Directives in Dynamically Evaluated Code"
+      fix: "Pass a function to setInterval, never a string"
     patterns:
-      - pattern: setInterval("...", ...)
+      - pattern-either:
+          - pattern: setInterval("...", ...)
+          - pattern: setInterval('...', ...)
 
   # ---------------------------------------------------------------------------
-  # XSS — unescaped user input in template literals passed to innerHTML
-  # OWASP A05 Injection
-  # ---------------------------------------------------------------------------
-  - id: no-innerhtml-template-literal
-    message: >
-      Setting innerHTML using a template literal that includes a variable
-      creates an XSS risk if the variable contains user-controlled content.
-      Use textContent for plain text, or sanitize with DOMPurify before
-      assigning to innerHTML.
-    languages: [typescript]
-    severity: ERROR
-    metadata:
-      category: security
-      owasp: "A05:2021 - Security Misconfiguration / Injection"
-      cwe: "CWE-79: Improper Neutralization of Input During Web Page Generation (XSS)"
-    patterns:
-      - pattern: $EL.innerHTML = `...${ $VAR }...`
-      - pattern: $EL.innerHTML = `${ $VAR }...`
-      - pattern: $EL.innerHTML = `...${ $VAR }`
-
-  - id: no-innerhtml-concat
-    message: >
-      Setting innerHTML by concatenating a variable creates an XSS risk if
-      the variable contains user-controlled content. Use textContent for plain
-      text, or sanitize with DOMPurify before assigning to innerHTML.
-    languages: [typescript]
-    severity: ERROR
-    metadata:
-      category: security
-      owasp: "A05:2021 - Security Misconfiguration / Injection"
-      cwe: "CWE-79: Improper Neutralization of Input During Web Page Generation (XSS)"
-    patterns:
-      - pattern: $EL.innerHTML = $VAR + ...
-      - pattern: $EL.innerHTML = "..." + $VAR
-
-  # ---------------------------------------------------------------------------
-  # Insecure postMessage — missing or wildcard origin check
-  # Relevant to the Web Worker communication layer.
-  # OWASP A05 Security Misconfiguration
+  # (3) Insecure postMessage — missing or wildcard origin validation
+  # Architecture Security Zone 2 / OWASP A05
+  # Web Worker postMessage (single-arg) is not flagged by the wildcard rule.
   # ---------------------------------------------------------------------------
   - id: postmessage-wildcard-origin
     message: >
-      postMessage() called with a wildcard origin ('*') sends the message to any
-      origin, potentially leaking sensitive data to malicious frames or workers.
-      Specify the exact target origin (e.g., window.location.origin) instead of '*'.
-      For Web Worker postMessage, which has no cross-origin risk by design, suppress
-      with: // nosemgrep: postmessage-wildcard-origin — Web Worker same-origin only.
+      PROHIBITED (Security Zone 2): postMessage() with wildcard origin ('*')
+      can leak data to any frame. Safe alternative: pass an explicit target
+      origin such as window.location.origin. Web Worker postMessage has no
+      targetOrigin argument — suppress only with a documented nosemgrep note.
     languages: [typescript]
-    severity: WARNING
+    severity: ERROR
     metadata:
       category: security
       owasp: "A05:2021 - Security Misconfiguration"
       cwe: "CWE-346: Origin Validation Error"
+      fix: "Replace '*' with an explicit trusted origin"
     patterns:
       - pattern: $TARGET.postMessage($DATA, "*")
 
   - id: missing-message-origin-check
     message: >
-      MessageEvent handler does not validate event.origin before processing the
-      message data. An attacker-controlled frame or worker could send malicious
-      messages that are processed without verification. Add an origin check:
-      if (event.origin !== expectedOrigin) return;
-      For Web Worker message handlers where same-origin is guaranteed by the
-      browser, suppress with: // nosemgrep: missing-message-origin-check — Web Worker.
+      PROHIBITED (Security Zone 2): message event handler does not validate
+      event.origin before using event.data. An attacker-controlled frame could
+      inject messages. Safe alternative: if (event.origin !== expectedOrigin) return;
+      before reading event.data. Web Worker handlers that are same-origin by
+      design may suppress with a documented nosemgrep note.
     languages: [typescript]
-    severity: WARNING
+    severity: ERROR
     metadata:
       category: security
       owasp: "A05:2021 - Security Misconfiguration"
       cwe: "CWE-346: Origin Validation Error"
-    pattern-either:
-      - pattern: |
+      fix: "Validate event.origin against an allowlist before processing"
+    patterns:
+      - pattern-either:
+          - pattern: |
+              self.addEventListener('message', function($EVENT) {
+                ...
+              })
+          - pattern: |
+              window.addEventListener('message', function($EVENT) {
+                ...
+              })
+          - pattern: |
+              $TARGET.addEventListener('message', ($EVENT) => {
+                ...
+              })
+      - pattern-not: |
           self.addEventListener('message', function($EVENT) {
             ...
-          })
-      - pattern: |
-          window.addEventListener('message', function($EVENT) {
+            $EVENT.origin
             ...
           })
-    pattern-not: |
-      self.addEventListener('message', function($EVENT) {
-        ...
-        $EVENT.origin
-        ...
-      })
-    pattern-not: |
-      window.addEventListener('message', function($EVENT) {
-        ...
-        $EVENT.origin
-        ...
-      })
+      - pattern-not: |
+          window.addEventListener('message', function($EVENT) {
+            ...
+            $EVENT.origin
+            ...
+          })
+      - pattern-not: |
+          $TARGET.addEventListener('message', ($EVENT) => {
+            ...
+            $EVENT.origin
+            ...
+          })
+
+  # ---------------------------------------------------------------------------
+  # (4) XSS — template literal assignment to innerHTML / outerHTML
+  # Architecture Security Zone 2 / OWASP A05
+  # Intentionally targets DOM sinks only — not CSS-in-JS template macros.
+  # ---------------------------------------------------------------------------
+  - id: no-innerhtml-template-literal
+    message: >
+      PROHIBITED (Security Zone 2): assigning a template literal with
+      interpolation to innerHTML creates an XSS sink. Safe alternatives:
+      element.textContent for plain text, or React JSX which escapes by default.
+      Do not use for CSS-in-JS macros — this rule only targets DOM sinks.
+    languages: [typescript]
+    severity: ERROR
+    metadata:
+      category: security
+      owasp: "A05:2021 - Security Misconfiguration / Injection"
+      cwe: "CWE-79: Improper Neutralization of Input During Web Page Generation (XSS)"
+      fix: "Use textContent or React JSX instead of innerHTML with interpolation"
+    patterns:
+      - pattern-either:
+          - pattern: $EL.innerHTML = `...${ $VAR }...`
+          - pattern: $EL.innerHTML = `${ $VAR }...`
+          - pattern: $EL.innerHTML = `...${ $VAR }`
+
+  - id: no-outerhtml-template-literal
+    message: >
+      PROHIBITED (Security Zone 2): assigning a template literal with
+      interpolation to outerHTML creates an XSS sink. Safe alternatives:
+      update the DOM via textContent, createElement, or React JSX.
+    languages: [typescript]
+    severity: ERROR
+    metadata:
+      category: security
+      owasp: "A05:2021 - Security Misconfiguration / Injection"
+      cwe: "CWE-79: Improper Neutralization of Input During Web Page Generation (XSS)"
+      fix: "Use textContent, createElement, or React JSX instead of outerHTML"
+    patterns:
+      - pattern-either:
+          - pattern: $EL.outerHTML = `...${ $VAR }...`
+          - pattern: $EL.outerHTML = `${ $VAR }...`
+          - pattern: $EL.outerHTML = `...${ $VAR }`
+
+  - id: no-innerhtml-concat
+    message: >
+      PROHIBITED (Security Zone 2): concatenating variables into innerHTML
+      creates an XSS sink. Safe alternatives: textContent for plain text, or
+      React JSX escaping.
+    languages: [typescript]
+    severity: ERROR
+    metadata:
+      category: security
+      owasp: "A05:2021 - Security Misconfiguration / Injection"
+      cwe: "CWE-79: Improper Neutralization of Input During Web Page Generation (XSS)"
+      fix: "Use textContent or React JSX instead of string concat into innerHTML"
+    patterns:
+      - pattern-either:
+          - pattern: $EL.innerHTML = $VAR + ...
+          - pattern: $EL.innerHTML = "..." + $VAR
 
   # ---------------------------------------------------------------------------
   # Prototype pollution
@@ -206,6 +248,8 @@ rules:
       category: security
       owasp: "A03:2021 - Injection"
       cwe: "CWE-1321: Improperly Controlled Modification of Object Prototype Attributes"
+      fix: "Use Object.create(null) instead of mutating __proto__"
     patterns:
-      - pattern: $OBJ.__proto__ = ...
-      - pattern: $OBJ["__proto__"] = ...
+      - pattern-either:
+          - pattern: $OBJ.__proto__ = ...
+          - pattern: $OBJ["__proto__"] = ...

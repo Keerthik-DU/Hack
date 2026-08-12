@@ -1,3 +1,8 @@
+/**
+ * Intentional XSS test corpus for Security Zone 2 / sanitizer coverage.
+ * Vectors may include javascript: URLs; ESLint no-script-url is disabled for this
+ * fixture file in eslint.config.js because these strings are never executed.
+ */
 export interface XSSVectorFixture {
   id: string;
   name: string;

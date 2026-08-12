@@ -22,6 +22,7 @@ src/components/**/__fixtures__/
 src/engines/__tests__/patterns-v1.test.ts
 # Fixture dumps under tests/ (last matching pattern wins).
 # WO-057 labeled corpus + tooling must remain version-controlled.
+# WO-051 prohibited-pattern ESLint fixtures stay tracked.
 tests/**/fixtures/
 !tests/fixtures/
 !tests/fixtures/corpus-schema.ts
