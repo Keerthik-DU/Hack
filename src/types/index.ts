@@ -5,4 +5,5 @@ export * from './scan-progress';
 export * from './worker';
 export * from './cache';
 export * from './webgpu';
+export * from './model-lifecycle';
 export * from './manifest';
