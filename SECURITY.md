@@ -26,6 +26,32 @@ When adding or updating npm packages:
 4. Run `npm run test` and `npm run build` to ensure clean execution under `ignore-scripts=true`.
 5. Commit both `package.json` and `package-lock.json`.
 
-## 3. Reporting a Vulnerability
+## 3. HTTP Security Response Headers (OWASP A02 & A04)
+
+AirGap Scanner sets the following five HTTP security response headers on every response — HTML, JavaScript, and CSS assets alike. They are defined as a single source of truth in `src/config/security-headers.ts` and applied consistently in:
+
+- **Development**: Vite dev server plugin (`vite.config.ts`)
+- **Vercel production**: `vercel.json` headers configuration
+- **Netlify / Cloudflare Pages**: `public/_headers`
+
+| Header | Value | Purpose |
+|--------|-------|---------|
+| `Strict-Transport-Security` | `max-age=31536000; includeSubDomains; preload` | Enforces HTTPS for 1 year including subdomains; `preload` makes the site eligible for browser preload lists |
+| `X-Content-Type-Options` | `nosniff` | Prevents browsers from MIME-sniffing responses away from the declared `Content-Type` |
+| `X-Frame-Options` | `DENY` | Legacy clickjacking defense for browsers that do not support CSP `frame-ancestors` |
+| `Referrer-Policy` | `no-referrer` | Suppresses the `Referer` header entirely — no URL information leaks to third parties |
+| `Permissions-Policy` | `camera=(), microphone=(), geolocation=(), payment=()` | Disables browser APIs that AirGap Scanner never uses, reducing attack surface |
+
+### HSTS Preload Deferral
+
+The `Strict-Transport-Security` header includes the `preload` directive, which signals eligibility for browser-embedded HSTS preload lists. However, **actual submission to [hstspreload.org](https://hstspreload.org) has been intentionally deferred** and must NOT be performed until:
+
+1. The production domain is confirmed to be served exclusively over HTTPS (no HTTP fallback).
+2. All subdomains are also confirmed on HTTPS.
+3. The decision is reviewed by the security team, because inclusion in preload lists is very difficult to reverse and may break non-HTTPS deployments indefinitely.
+
+The `preload` directive in the header value alone does not add the domain to any list — a separate manual submission step is required. This deferral is intentional and documented to prevent premature submission.
+
+## 4. Reporting a Vulnerability
 
 If you discover a security vulnerability or supply chain weakness in AirGap Scanner, please report it via security disclosure protocols. Do not open public issues for zero-day credential leakage or supply chain risks.
