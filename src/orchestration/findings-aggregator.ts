@@ -119,4 +119,42 @@ export class FindingsAggregator {
     result.push(current);
     return result;
   }
+
+  /**
+   * Merges LLM analysis results into existing findings by matching character ranges
+   * (same line + overlapping columns). Updates confidence/secretType from the LLM
+   * finding when a match is found; unmatched LLM findings are appended.
+   */
+  public mergeLLMResults(
+    existing: readonly Finding[],
+    llmResults: readonly Finding[]
+  ): Finding[] {
+    if (!llmResults || llmResults.length === 0) {
+      return this.aggregate(existing);
+    }
+    if (!existing || existing.length === 0) {
+      return this.aggregate(llmResults);
+    }
+
+    const remainingLlm = [...llmResults];
+    const updated = existing.map((finding) => {
+      const matchIdx = remainingLlm.findIndex(
+        (llm) =>
+          llm.lineNumber === finding.lineNumber &&
+          computeOverlapRatio(finding, llm) > 0.5
+      );
+      if (matchIdx === -1) return finding;
+      const [llmFinding] = remainingLlm.splice(matchIdx, 1);
+      return {
+        ...finding,
+        confidence: llmFinding.confidence,
+        secretType: llmFinding.secretType,
+        detectionLayer: 2 as const,
+        maskedValue: llmFinding.maskedValue || finding.maskedValue,
+        context: llmFinding.context || finding.context,
+      };
+    });
+
+    return this.aggregate([...updated, ...remainingLlm]);
+  }
 }

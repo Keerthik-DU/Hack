@@ -132,6 +132,28 @@ export class ScanOrchestrator implements IScanOrchestrator {
     this.abortNotify?.();
   }
 
+  /** Findings with confidence below high are candidates for Layer 2 LLM analysis. */
+  private filterAmbiguousFindings(findings: readonly Finding[]): Finding[] {
+    return findings.filter((f) => f.confidence !== 'high');
+  }
+
+  /**
+   * Extract ±contextLines around a finding's line number from the source input.
+   * Handles start/end boundary conditions and single-line inputs.
+   */
+  private extractContext(
+    input: string,
+    finding: Finding,
+    contextLines = 5
+  ): string[] {
+    const lines = input.split('\n');
+    if (lines.length === 0) return [];
+    const target = Math.max(0, Math.min(lines.length - 1, finding.lineNumber - 1));
+    const start = Math.max(0, target - contextLines);
+    const end = Math.min(lines.length - 1, target + contextLines);
+    return lines.slice(start, end + 1);
+  }
+
   private timeoutForLayer(layer: DetectionLayerName): number {
     if (layer === 'llm') return this.llmTimeoutMs;
     if (layer === 'entropy') return this.entropyTimeoutMs;
@@ -413,9 +435,11 @@ export class ScanOrchestrator implements IScanOrchestrator {
       return;
     }
 
-    const ambiguousFindings = accumulatedFindings.filter(
-      (f) => f.confidence !== 'high'
-    ) as AmbiguousFinding[];
+    const ambiguousBase = this.filterAmbiguousFindings(accumulatedFindings);
+    const ambiguousFindings = ambiguousBase.map((finding) => ({
+      ...finding,
+      contextLines: this.extractContext(text, finding, 5),
+    })) as AmbiguousFinding[];
 
     const capabilities = this.getCapabilities();
     if (!capabilities.llmAvailable) {
@@ -452,7 +476,9 @@ export class ScanOrchestrator implements IScanOrchestrator {
             return;
           }
 
-          accumulatedFindings.push(...llmFindings);
+          const merged = this.aggregator.mergeLLMResults(accumulatedFindings, llmFindings);
+          accumulatedFindings.length = 0;
+          accumulatedFindings.push(...merged);
           layerStates['Layer 2 (LLM)'] = 'completed';
           updateLayerStatus(layerStatuses, 'llm', {
             status: 'complete',

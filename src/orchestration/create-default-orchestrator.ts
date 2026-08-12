@@ -1,14 +1,27 @@
 import { RegexEngine } from '@/engines/regex/regex-engine';
 import { EntropyAnalyzer } from '@/engines/entropy/entropy-analyzer';
+import type { IDetectionEngine } from '@/engines/types';
 import { ScanOrchestrator, ScanOrchestratorOptions } from './scan-orchestrator';
 
+export interface CreateDefaultOrchestratorOptions extends ScanOrchestratorOptions {
+  /**
+   * Optional Layer 2 LLM analyzer. When omitted or unavailable, the pipeline
+   * degrades to regex + entropy only (progressive disclosure unchanged).
+   */
+  readonly llmAnalyzer?: IDetectionEngine;
+}
+
 /**
- * Builds the production ScanOrchestrator with regex + entropy engines.
- * LLM engine is omitted until the WebLLM worker path is wired; capability
- * probing via useModelStatus still drives the degradation banner UX.
+ * Builds the production ScanOrchestrator with regex + entropy engines,
+ * optionally including an LLMAnalyzer as Layer 2.
  */
 export function createDefaultScanOrchestrator(
-  options?: ScanOrchestratorOptions
+  options?: CreateDefaultOrchestratorOptions
 ): ScanOrchestrator {
-  return new ScanOrchestrator([new RegexEngine(), new EntropyAnalyzer()], options);
+  const { llmAnalyzer, ...orchestratorOptions } = options ?? {};
+  const engines: IDetectionEngine[] = [new RegexEngine(), new EntropyAnalyzer()];
+  if (llmAnalyzer) {
+    engines.push(llmAnalyzer);
+  }
+  return new ScanOrchestrator(engines, orchestratorOptions);
 }
