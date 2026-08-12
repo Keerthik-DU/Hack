@@ -3,11 +3,12 @@ import { defineConfig, devices } from '@playwright/test';
 const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? 'http://localhost:4173';
 
 /**
- * Playwright configuration for AirGap Scanner E2E suites (WO-050).
- * Chromium + WebKit, 60s per test, local preview server by default.
+ * Playwright configuration for AirGap Scanner E2E suites.
+ * Chromium + Firefox + WebKit matrix (WO-064); a11y suite via testMatch (WO-065).
  */
 export default defineConfig({
-  testDir: 'tests/e2e',
+  testDir: 'tests',
+  testMatch: /.*\.(spec|e2e)\.ts$/,
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
@@ -31,10 +32,22 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+      testMatch: /e2e\/.*\.spec\.ts$/,
+    },
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+      testMatch: /e2e\/.*\.spec\.ts$/,
     },
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
+      testMatch: /e2e\/.*\.spec\.ts$/,
+    },
+    {
+      name: 'a11y-chromium',
+      use: { ...devices['Desktop Chrome'] },
+      testMatch: /a11y\/.*\.spec\.ts$/,
     },
   ],
   webServer: process.env.PLAYWRIGHT_BASE_URL
