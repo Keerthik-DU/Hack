@@ -9,7 +9,7 @@ Documentation is organized as standalone Markdown artifacts under `docs/`. Each 
 | Document | Description |
 | --- | --- |
 | [Data Classification Policy](./data-classification.md) | Authoritative inventory of data entities, classification tiers, retention, access controls, and enforcement mechanisms (GDPR/CCPA posture). |
-| User Guide *(planned)* | End-user paste-and-scan workflow, results interpretation, privacy guarantees, and troubleshooting. |
+| [User Guide](./user-guide.md) | End-user paste-and-scan workflow, results interpretation, privacy guarantees, and troubleshooting for developers, DevOps, and security practitioners. |
 | Architecture Decision Records *(planned)* | Significant technical decisions and trade-offs. |
 | Demo / Operations Notes *(planned)* | Demo scripts and operational runbooks that reference data-handling guarantees. |
 
