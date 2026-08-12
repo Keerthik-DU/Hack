@@ -37,12 +37,12 @@ describe('AppHeader Component & Subcomponents', () => {
     expect(screen.getByText('Local Only')).toBeDefined();
   });
 
-  it('renders StatusIndicators displaying Regex, Entropy, and LLM readiness dots', () => {
+  it('renders StatusIndicators displaying Regex, Entropy, and LLM capability cards', () => {
     render(<StatusIndicators />);
     expect(screen.getByTestId('status-indicators')).toBeDefined();
-    expect(screen.getByTestId('status-dot-regex')).toBeDefined();
-    expect(screen.getByTestId('status-dot-entropy')).toBeDefined();
-    expect(screen.getByTestId('status-dot-llm')).toBeDefined();
+    expect(screen.getByTestId('capability-card-regex')).toBeDefined();
+    expect(screen.getByTestId('capability-card-entropy')).toBeDefined();
+    expect(screen.getByTestId('capability-card-llm')).toBeDefined();
   });
 
   it('renders Navigation Links for Scanner and About with correct href attributes', () => {
