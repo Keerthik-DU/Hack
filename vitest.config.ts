@@ -42,6 +42,7 @@ export default defineConfig({
         'src/engines/entropy/dictionary-filter.ts',
         'src/engines/entropy/contextual-signals.ts',
         'src/engines/entropy/entropy-analyzer.ts',
+        'src/config/csp.ts',
         'src/test/helpers/**/*.ts',
       ],
       exclude: [
