@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import { Plugin } from 'vite';
 import { getCspHeaderString } from './src/config/csp';
+import { SECURITY_HEADERS } from './src/config/security-headers';
 
 function cspHeaderPlugin(): Plugin {
   return {
@@ -10,12 +11,18 @@ function cspHeaderPlugin(): Plugin {
     configureServer(server) {
       server.middlewares.use((_req, res, next) => {
         res.setHeader('Content-Security-Policy', getCspHeaderString());
+        for (const [name, value] of Object.entries(SECURITY_HEADERS)) {
+          res.setHeader(name, value);
+        }
         next();
       });
     },
     configurePreviewServer(server) {
       server.middlewares.use((_req, res, next) => {
         res.setHeader('Content-Security-Policy', getCspHeaderString());
+        for (const [name, value] of Object.entries(SECURITY_HEADERS)) {
+          res.setHeader(name, value);
+        }
         next();
       });
     },
