@@ -22,7 +22,12 @@
     "generate:corpus": "tsx tests/fixtures/generate-corpus.ts",
     "test:e2e": "playwright test",
     "test:e2e:network": "playwright test tests/e2e/zero-network.spec.ts",
-    "test:e2e:network:ci": "npx vite build && playwright test tests/e2e/zero-network.spec.ts"
+    "test:e2e:network:ci": "npx vite build && playwright test tests/e2e/zero-network.spec.ts",
+    "test:e2e:cross-browser": "playwright test tests/e2e/cross-browser.spec.ts",
+    "test:a11y": "playwright test --project=a11y-chromium",
+    "test:metrics": "vitest run tests/metrics",
+    "test:bench": "vitest run src/__benchmarks__",
+    "check:bundle": "node scripts/check-bundle-size.mjs"
   },
   "dependencies": {
     "@fontsource/poppins": "^5.0.14",
@@ -33,6 +38,7 @@
     "react-router-dom": "^6.24.1"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@eslint/js": "8.57.1",
     "@playwright/test": "^1.62.1",
     "@testing-library/react": "^16.0.0",
