@@ -275,6 +275,69 @@ platform team to restore the affected scanner service before re-running.
 
 ---
 
+## Stage 4: Artifact Push Stage (WO-068)
+
+Runs **only after** all four Security Scan quality gates pass. Uploads the
+verified `dist/` bundle to the Forge artifact registry with SHA-256 integrity
+checksums and commit-SHA version tags (OWASP A08 supply-chain integrity).
+
+| Property | Value |
+|----------|-------|
+| Step | `push:generic` |
+| Artifact source | `dist/` |
+| Version tag | Short commit SHA (`COMMIT_SHA_SHORT`, 7–8 chars) |
+| Immutability | `immutable: true`, `fail_on_duplicate_tag: true` |
+| Timeout | 1 minute |
+| Checksum algorithm | SHA-256 only (no MD5 / SHA-1) |
+
+### Push commands (in order)
+
+1. `bash scripts/verify-manifest.sh` — defense-in-depth re-check that
+   `dist/model-manifest.json` exists. `SKIP_MANIFEST_CHECK` is forced to
+   `false` in this stage; a missing manifest fails the push.
+2. `bash scripts/generate-checksums.sh` — hashes every file under `dist/` and
+   writes `checksums.sha256` at the repository root (not inside `dist/`) in
+   the format `hash  filepath` (one line per file). Empty `dist/` fails with
+   a clear validation error.
+
+### Pipeline metadata recorded on push
+
+| Field | Source |
+|-------|--------|
+| `commit_sha` | Full VCS commit SHA |
+| `commit_sha_short` / `artifact_version_tag` | Short commit SHA (version tag) |
+| `build_timestamp` | ISO 8601 pipeline timestamp |
+| `artifact_registry_url` | Registry URL from Forge pipeline context |
+| `checksums_manifest` / `checksums_manifest_file` | Contents / path of `checksums.sha256` |
+
+### Retrieving artifacts for rollback
+
+Artifacts are addressable by version tag (the short commit SHA). To roll back:
+
+1. Locate the prior known-good commit SHA.
+2. Retrieve the artifact bundle from the registry using that short SHA tag.
+3. Independently recompute SHA-256 hashes of the retrieved files and compare
+   them to the `checksums_manifest` recorded in pipeline metadata — they must
+   match exactly before promoting the rollback bundle.
+
+### Immutability / duplicate tags
+
+Pushing the same version tag twice is rejected (`fail_on_duplicate_tag: true`).
+Artifacts are immutable once published. Concurrent pipeline runs for different
+commits use distinct SHA-derived tags and do not overwrite each other.
+
+### Failure modes
+
+| Failure | Type | Action |
+|---------|------|--------|
+| Missing `model-manifest.json` | Validation | Fix Build/public asset copy; do not skip the gate |
+| Empty `dist/` | Validation | Re-run Build; inspect Vite output |
+| Checksum hash failure | Validation | Fix the reported file path / permissions |
+| Duplicate version tag | Validation | Use a new commit, or retrieve the existing tag |
+| Registry unavailable / timeout | Infrastructure | Contact platform team; retry after recovery |
+
+---
+
 ## Configuration Files Reference
 
 | File | Purpose |
@@ -283,4 +346,6 @@ platform team to restore the affected scanner service before re-running.
 | `sonar-project.properties` | SonarQube project key, source paths, exclusions, quality gate |
 | `.gitleaks.toml` | Gitleaks ruleset extension and test-fixture allowlists |
 | `.semgrep.yml` | Semgrep SAST rules for TypeScript/React security patterns |
+| `scripts/verify-manifest.sh` | Build/Push gate: require `dist/model-manifest.json` |
+| `scripts/generate-checksums.sh` | Push stage: SHA-256 manifest for all `dist/` files |
 | `PIPELINE.md` | This document — pipeline documentation and runbook |

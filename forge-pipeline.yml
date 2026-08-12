@@ -1,8 +1,9 @@
 ---
 # Forge Shipping Engine Pipeline Configuration
-# AirGap Scanner - Source Trigger, Build Stage, and Security Scan Stage
+# AirGap Scanner - Source Trigger, Build, Security Scan, and Artifact Push
 # WO-066: Configure Forge Source Trigger and Build Stage
 # WO-067: Configure Parallel Security Scan Stage in Pipeline
+# WO-068: Configure Artifact Push Stage with Integrity Checksums
 
 pipeline:
   name: airgap-scanner
@@ -10,7 +11,8 @@ pipeline:
     Automated build pipeline for AirGap Scanner. Triggers on main branch
     commits and pull request events. Performs secure dependency installation,
     TypeScript strict-mode compilation, Vite production build with Web Worker
-    support, and model manifest verification.
+    support, model manifest verification, parallel security scanning, and
+    artifact registry push with SHA-256 integrity checksums.
 
 # ---------------------------------------------------------------------------
 # Source Stage — VCS trigger configuration
@@ -27,7 +29,10 @@ source:
         - synchronize
   variables:
     COMMIT_SHA: ${{ vcs.commit_sha }}
+    COMMIT_SHA_SHORT: ${{ vcs.commit_sha_short }}
     BUILD_TIMESTAMP: ${{ pipeline.timestamp_iso8601 }}
+    ARTIFACT_VERSION_TAG: ${{ vcs.commit_sha_short }}
+    ARTIFACT_REGISTRY_URL: ${{ pipeline.artifact_registry_url }}
 
 # ---------------------------------------------------------------------------
 # Build Stage — build:node step from the Forge step catalog
@@ -176,4 +181,68 @@ stages:
         Review the individual scanner outputs above for specific findings.
         The pipeline will not proceed to the Push stage until all four gates pass.
         See PIPELINE.md for quality gate thresholds, allowlist rationale, and
+        escalation contacts.
+
+# ---------------------------------------------------------------------------
+# Push Stage — push:generic with SHA-256 integrity checksums (OWASP A08)
+# WO-068: Upload dist/ to the artifact registry with commit-SHA version tags.
+# Runs only after all four Security Scan quality gates pass (stage ordering).
+# ---------------------------------------------------------------------------
+  - name: push
+    step: push:generic
+    # Explicit dependency: Push must not run unless Security Scan succeeded.
+    needs:
+      - security-scan
+    artifact_source: dist/
+    version_tag: ${{ source.variables.ARTIFACT_VERSION_TAG }}
+    # Immutable tags: refuse overwrite if the same version tag already exists.
+    immutable: true
+    fail_on_duplicate_tag: true
+    environment:
+      COMMIT_SHA: ${{ source.variables.COMMIT_SHA }}
+      COMMIT_SHA_SHORT: ${{ source.variables.COMMIT_SHA_SHORT }}
+      BUILD_TIMESTAMP: ${{ source.variables.BUILD_TIMESTAMP }}
+      ARTIFACT_VERSION_TAG: ${{ source.variables.ARTIFACT_VERSION_TAG }}
+      ARTIFACT_REGISTRY_URL: ${{ source.variables.ARTIFACT_REGISTRY_URL }}
+      # Defense-in-depth: never skip the model-manifest gate at push time.
+      SKIP_MANIFEST_CHECK: "false"
+    commands:
+      # Gate 1: Re-verify model-manifest.json exists in the artifact bundle.
+      - bash scripts/verify-manifest.sh
+
+      # Gate 2: Generate SHA-256 checksums for every file under dist/.
+      # Writes checksums.sha256 at repo root (not inside dist/) for metadata.
+      - bash scripts/generate-checksums.sh
+
+    metadata:
+      commit_sha: ${{ source.variables.COMMIT_SHA }}
+      commit_sha_short: ${{ source.variables.COMMIT_SHA_SHORT }}
+      build_timestamp: ${{ source.variables.BUILD_TIMESTAMP }}
+      artifact_version_tag: ${{ source.variables.ARTIFACT_VERSION_TAG }}
+      artifact_registry_url: ${{ source.variables.ARTIFACT_REGISTRY_URL }}
+      # Include the full checksums manifest content in pipeline metadata for
+      # independent post-push integrity verification and audit trail.
+      checksums_manifest_file: checksums.sha256
+      checksums_manifest: ${{ file:checksums.sha256 }}
+
+    # Push (verify + checksum + upload) must complete within 1 minute.
+    timeout_minutes: 1
+
+    on_failure:
+      block_pipeline: true
+      message: >
+        Push stage failed. Distinguish the failure mode from the step output:
+        - Validation error (missing model-manifest.json): ensure the Build stage
+          copied model-manifest.json into dist/; do NOT set SKIP_MANIFEST_CHECK
+          for the Push stage.
+        - Validation error (empty dist/): the Build stage produced no artifacts;
+          re-run from Build and inspect the Vite build output.
+        - Validation error (checksum generation): review which file could not be
+          hashed and fix permissions or path issues.
+        - Duplicate version tag: artifacts are immutable — the same commit SHA
+          tag already exists in the registry. Rebuild from a new commit or
+          retrieve the existing artifact by version tag for rollback.
+        - Infrastructure error (registry unavailable / network timeout): contact
+          the platform team and retry the pipeline after the registry is healthy.
+        See PIPELINE.md for artifact retrieval, checksum verification, and
         escalation contacts.
