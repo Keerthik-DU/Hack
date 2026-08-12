@@ -1,0 +1,211 @@
+# Semgrep SAST Configuration — AirGap Scanner
+# WO-067: Configure Parallel Security Scan Stage in Pipeline
+#
+# Quality gate: zero critical (ERROR severity) and zero high (WARNING severity) findings.
+# Pipeline fails if any rule below fires on production source files.
+#
+# Rules target TypeScript and React security patterns specific to this codebase.
+# Generic or noisy rules are intentionally excluded to avoid false positives.
+# False-positive exceptions require an inline `# nosemgrep: <rule-id>` comment
+# with an explanatory note describing why the usage is safe.
+
+rules:
+  # ---------------------------------------------------------------------------
+  # XSS — dangerouslySetInnerHTML (React)
+  # OWASP A05 Injection
+  # ---------------------------------------------------------------------------
+  - id: react-dangerously-set-inner-html
+    message: >
+      dangerouslySetInnerHTML bypasses React's built-in XSS protection.
+      Any unsanitized string passed to __html will be injected as raw HTML,
+      enabling XSS attacks. Use React's safe JSX rendering instead.
+      If sanitization is truly required, use DOMPurify and document the rationale.
+    languages: [typescript]
+    severity: ERROR
+    metadata:
+      category: security
+      owasp: "A05:2021 - Security Misconfiguration / Injection"
+      cwe: "CWE-79: Improper Neutralization of Input During Web Page Generation (XSS)"
+    patterns:
+      - pattern: dangerouslySetInnerHTML={...}
+
+  # ---------------------------------------------------------------------------
+  # Code injection — eval()
+  # OWASP A03 Injection
+  # ---------------------------------------------------------------------------
+  - id: no-eval
+    message: >
+      eval() executes arbitrary JavaScript code from a string, enabling code
+      injection attacks if any user-controlled data reaches this call.
+      Replace with safe alternatives (JSON.parse for data, static imports for code).
+    languages: [typescript]
+    severity: ERROR
+    metadata:
+      category: security
+      owasp: "A03:2021 - Injection"
+      cwe: "CWE-95: Improper Neutralization of Directives in Dynamically Evaluated Code"
+    patterns:
+      - pattern: eval(...)
+
+  # ---------------------------------------------------------------------------
+  # Code injection — new Function()
+  # OWASP A03 Injection
+  # ---------------------------------------------------------------------------
+  - id: no-new-function
+    message: >
+      new Function() constructs and executes code from a string at runtime,
+      equivalent to eval(). This enables code injection if any user-controlled
+      data is passed as an argument. Replace with static function definitions.
+    languages: [typescript]
+    severity: ERROR
+    metadata:
+      category: security
+      owasp: "A03:2021 - Injection"
+      cwe: "CWE-95: Improper Neutralization of Directives in Dynamically Evaluated Code"
+    patterns:
+      - pattern: new Function(...)
+
+  # ---------------------------------------------------------------------------
+  # Code injection — setTimeout / setInterval with string argument
+  # OWASP A03 Injection
+  # ---------------------------------------------------------------------------
+  - id: no-settimeout-string
+    message: >
+      setTimeout() with a string argument evaluates the string as JavaScript
+      code (equivalent to eval()), enabling code injection. Pass a function
+      reference instead: setTimeout(() => { ... }, delay).
+    languages: [typescript]
+    severity: ERROR
+    metadata:
+      category: security
+      owasp: "A03:2021 - Injection"
+      cwe: "CWE-95: Improper Neutralization of Directives in Dynamically Evaluated Code"
+    patterns:
+      - pattern: setTimeout("...", ...)
+
+  - id: no-setinterval-string
+    message: >
+      setInterval() with a string argument evaluates the string as JavaScript
+      code (equivalent to eval()), enabling code injection. Pass a function
+      reference instead: setInterval(() => { ... }, delay).
+    languages: [typescript]
+    severity: ERROR
+    metadata:
+      category: security
+      owasp: "A03:2021 - Injection"
+      cwe: "CWE-95: Improper Neutralization of Directives in Dynamically Evaluated Code"
+    patterns:
+      - pattern: setInterval("...", ...)
+
+  # ---------------------------------------------------------------------------
+  # XSS — unescaped user input in template literals passed to innerHTML
+  # OWASP A05 Injection
+  # ---------------------------------------------------------------------------
+  - id: no-innerhtml-template-literal
+    message: >
+      Setting innerHTML using a template literal that includes a variable
+      creates an XSS risk if the variable contains user-controlled content.
+      Use textContent for plain text, or sanitize with DOMPurify before
+      assigning to innerHTML.
+    languages: [typescript]
+    severity: ERROR
+    metadata:
+      category: security
+      owasp: "A05:2021 - Security Misconfiguration / Injection"
+      cwe: "CWE-79: Improper Neutralization of Input During Web Page Generation (XSS)"
+    patterns:
+      - pattern: $EL.innerHTML = `...${ $VAR }...`
+      - pattern: $EL.innerHTML = `${ $VAR }...`
+      - pattern: $EL.innerHTML = `...${ $VAR }`
+
+  - id: no-innerhtml-concat
+    message: >
+      Setting innerHTML by concatenating a variable creates an XSS risk if
+      the variable contains user-controlled content. Use textContent for plain
+      text, or sanitize with DOMPurify before assigning to innerHTML.
+    languages: [typescript]
+    severity: ERROR
+    metadata:
+      category: security
+      owasp: "A05:2021 - Security Misconfiguration / Injection"
+      cwe: "CWE-79: Improper Neutralization of Input During Web Page Generation (XSS)"
+    patterns:
+      - pattern: $EL.innerHTML = $VAR + ...
+      - pattern: $EL.innerHTML = "..." + $VAR
+
+  # ---------------------------------------------------------------------------
+  # Insecure postMessage — missing or wildcard origin check
+  # Relevant to the Web Worker communication layer.
+  # OWASP A05 Security Misconfiguration
+  # ---------------------------------------------------------------------------
+  - id: postmessage-wildcard-origin
+    message: >
+      postMessage() called with a wildcard origin ('*') sends the message to any
+      origin, potentially leaking sensitive data to malicious frames or workers.
+      Specify the exact target origin (e.g., window.location.origin) instead of '*'.
+      For Web Worker postMessage, which has no cross-origin risk by design, suppress
+      with: // nosemgrep: postmessage-wildcard-origin — Web Worker same-origin only.
+    languages: [typescript]
+    severity: WARNING
+    metadata:
+      category: security
+      owasp: "A05:2021 - Security Misconfiguration"
+      cwe: "CWE-346: Origin Validation Error"
+    patterns:
+      - pattern: $TARGET.postMessage($DATA, "*")
+
+  - id: missing-message-origin-check
+    message: >
+      MessageEvent handler does not validate event.origin before processing the
+      message data. An attacker-controlled frame or worker could send malicious
+      messages that are processed without verification. Add an origin check:
+      if (event.origin !== expectedOrigin) return;
+      For Web Worker message handlers where same-origin is guaranteed by the
+      browser, suppress with: // nosemgrep: missing-message-origin-check — Web Worker.
+    languages: [typescript]
+    severity: WARNING
+    metadata:
+      category: security
+      owasp: "A05:2021 - Security Misconfiguration"
+      cwe: "CWE-346: Origin Validation Error"
+    pattern-either:
+      - pattern: |
+          self.addEventListener('message', function($EVENT) {
+            ...
+          })
+      - pattern: |
+          window.addEventListener('message', function($EVENT) {
+            ...
+          })
+    pattern-not: |
+      self.addEventListener('message', function($EVENT) {
+        ...
+        $EVENT.origin
+        ...
+      })
+    pattern-not: |
+      window.addEventListener('message', function($EVENT) {
+        ...
+        $EVENT.origin
+        ...
+      })
+
+  # ---------------------------------------------------------------------------
+  # Prototype pollution
+  # OWASP A03 Injection
+  # ---------------------------------------------------------------------------
+  - id: no-prototype-pollution
+    message: >
+      Direct assignment to __proto__ enables prototype pollution attacks, which
+      can override built-in Object methods and corrupt application state.
+      Use Object.create(null) for plain data maps or Object.assign with a null
+      prototype target.
+    languages: [typescript]
+    severity: ERROR
+    metadata:
+      category: security
+      owasp: "A03:2021 - Injection"
+      cwe: "CWE-1321: Improperly Controlled Modification of Object Prototype Attributes"
+    patterns:
+      - pattern: $OBJ.__proto__ = ...
+      - pattern: $OBJ["__proto__"] = ...
