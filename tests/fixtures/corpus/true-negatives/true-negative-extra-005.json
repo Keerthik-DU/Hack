@@ -1,0 +1,12 @@
+{
+  "id": "true-negative-extra-005",
+  "input": "\u0041\u0057\u0053\u005f\u0053\u0045\u0043\u0052\u0045\u0054\u005f\u0041\u0043\u0043\u0045\u0053\u0053\u005f\u004b\u0045\u0059\u003d\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u0078\u000a",
+  "expectedFindings": [],
+  "groundTruth": "TN",
+  "category": "true-negatives",
+  "description": "Extra true-negative sample #5",
+  "tags": [
+    "true-negative",
+    "extra"
+  ]
+}

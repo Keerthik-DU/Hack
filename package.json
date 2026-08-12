@@ -15,7 +15,9 @@
     "format:check": "prettier --check \"src/**/*.{ts,tsx,css,html,json}\"",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "validate:corpus": "tsx tests/fixtures/validate-corpus.ts",
+    "generate:corpus": "tsx tests/fixtures/generate-corpus.ts"
   },
   "dependencies": {
     "@fontsource/poppins": "^5.0.14",

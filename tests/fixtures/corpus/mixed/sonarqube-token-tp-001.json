@@ -1,0 +1,25 @@
+{
+  "id": "sonarqube-token-tp-001",
+  "input": "\u0023\u0020\u0073\u006f\u006e\u0061\u0072\u0071\u0075\u0062\u0065\u002d\u0074\u006f\u006b\u0065\u006e\u0020\u0063\u006f\u006e\u0066\u0069\u0067\u000a\u0065\u0078\u0070\u006f\u0072\u0074\u0020\u0053\u0045\u0043\u0052\u0045\u0054\u003d\u0022\u0073\u0071\u0070\u005f\u0064\u0038\u0037\u0061\u0031\u0063\u0062\u0065\u0035\u0030\u0066\u0032\u0039\u0034\u0033\u0036\u0064\u0038\u0037\u0061\u0031\u0063\u0062\u0065\u0035\u0030\u0066\u0032\u0039\u0034\u0033\u0036\u0064\u0038\u0037\u0061\u0031\u0063\u0062\u0065\u0022\u000a",
+  "expectedFindings": [
+    {
+      "type": "sonarqube-token",
+      "lineNumber": 2,
+      "charRange": [
+        15,
+        59
+      ],
+      "confidence": "high",
+      "detectionLayer": 1
+    }
+  ],
+  "groundTruth": "TP",
+  "category": "infrastructure",
+  "description": "True positive for sonarqube-token (variant 1)",
+  "tags": [
+    "pattern-coverage",
+    "true-positive",
+    "sonarqube-token",
+    "token"
+  ]
+}

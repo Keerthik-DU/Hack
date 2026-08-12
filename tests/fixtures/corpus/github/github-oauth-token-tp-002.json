@@ -1,0 +1,25 @@
+{
+  "id": "github-oauth-token-tp-002",
+  "input": "\u0063\u006f\u006e\u0073\u0074\u0020\u0063\u006f\u006e\u0066\u0069\u0067\u0020\u003d\u0020\u007b\u000a\u0020\u0020\u002f\u002f\u0020\u0067\u0069\u0074\u0068\u0075\u0062\u002d\u006f\u0061\u0075\u0074\u0068\u002d\u0074\u006f\u006b\u0065\u006e\u000a\u0020\u0020\u0076\u0061\u006c\u0075\u0065\u003a\u0020\u0022\u0067\u0068\u006f\u005f\u0071\u0070\u0057\u006a\u0067\u0033\u004f\u0044\u0073\u0056\u0071\u004a\u0063\u0066\u0079\u0042\u006f\u007a\u0032\u0070\u0073\u0076\u0069\u0037\u004b\u006c\u0043\u006e\u004d\u006c\u006f\u006a\u0059\u0054\u0034\u0050\u0022\u002c\u000a\u007d\u003b\u000a",
+  "expectedFindings": [
+    {
+      "type": "github-oauth-token",
+      "lineNumber": 3,
+      "charRange": [
+        10,
+        50
+      ],
+      "confidence": "high",
+      "detectionLayer": 1
+    }
+  ],
+  "groundTruth": "TP",
+  "category": "version-control",
+  "description": "True positive for github-oauth-token (variant 2)",
+  "tags": [
+    "pattern-coverage",
+    "true-positive",
+    "github-oauth-token",
+    "token"
+  ]
+}

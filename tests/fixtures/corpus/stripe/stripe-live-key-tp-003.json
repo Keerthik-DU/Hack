@@ -1,0 +1,25 @@
+{
+  "id": "stripe-live-key-tp-003",
+  "input": "\u002d\u002d\u002d\u000a\u0023\u0020\u0073\u0074\u0072\u0069\u0070\u0065\u002d\u006c\u0069\u0076\u0065\u002d\u006b\u0065\u0079\u000a\u0063\u0072\u0065\u0064\u0065\u006e\u0074\u0069\u0061\u006c\u003a\u0020\u0073\u006b\u005f\u006c\u0069\u0076\u0065\u005f\u0044\u0030\u004c\u0036\u005a\u0055\u0044\u0030\u006e\u0077\u0064\u0069\u0072\u0059\u006a\u006b\u0062\u0065\u0048\u0079\u0035\u0059\u0050\u0077\u000a",
+  "expectedFindings": [
+    {
+      "type": "stripe-live-key",
+      "lineNumber": 3,
+      "charRange": [
+        12,
+        44
+      ],
+      "confidence": "high",
+      "detectionLayer": 1
+    }
+  ],
+  "groundTruth": "TP",
+  "category": "payment",
+  "description": "True positive for stripe-live-key (variant 3)",
+  "tags": [
+    "pattern-coverage",
+    "true-positive",
+    "stripe-live-key",
+    "api_key"
+  ]
+}

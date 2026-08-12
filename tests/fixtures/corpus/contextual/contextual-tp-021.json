@@ -1,0 +1,24 @@
+{
+  "id": "contextual-tp-021",
+  "input": "\u0070\u0061\u0073\u0073\u0077\u006f\u0072\u0064\u003d\u0041\u006d\u0062\u0069\u0067\u0075\u006f\u0075\u0073\u0056\u0061\u006c\u0075\u0065\u0049\u006e\u0032\u0066\u0079\u0066\u0079\u0037\u006f\u0064\u0073\u0031\u000a",
+  "expectedFindings": [
+    {
+      "type": "contextual_secret",
+      "lineNumber": 1,
+      "charRange": [
+        9,
+        35
+      ],
+      "confidence": "medium",
+      "detectionLayer": 2
+    }
+  ],
+  "groundTruth": "TP",
+  "category": "contextual",
+  "description": "Contextual secret via variable name 'password'",
+  "tags": [
+    "contextual",
+    "true-positive",
+    "password"
+  ]
+}

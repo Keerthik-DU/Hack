@@ -1,0 +1,24 @@
+{
+  "id": "contextual-tp-007",
+  "input": "\u0061\u0075\u0074\u0068\u003d\u0041\u006d\u0062\u0069\u0067\u0075\u006f\u0075\u0073\u0056\u0061\u006c\u0075\u0065\u004d\u0042\u0073\u0066\u0063\u0031\u0069\u005a\u0045\u006c\u006f\u006e\u000a",
+  "expectedFindings": [
+    {
+      "type": "contextual_secret",
+      "lineNumber": 1,
+      "charRange": [
+        5,
+        31
+      ],
+      "confidence": "medium",
+      "detectionLayer": 2
+    }
+  ],
+  "groundTruth": "TP",
+  "category": "contextual",
+  "description": "Contextual secret via variable name 'auth'",
+  "tags": [
+    "contextual",
+    "true-positive",
+    "auth"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "tn-edge-single-char",
+  "input": "\u0078",
+  "expectedFindings": [],
+  "groundTruth": "TN",
+  "category": "true-negatives",
+  "description": "Single-character input boundary sample",
+  "tags": [
+    "true-negative",
+    "edge-case"
+  ]
+}

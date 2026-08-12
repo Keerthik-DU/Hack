@@ -1,0 +1,13 @@
+{
+  "id": "entropy-fp-024",
+  "input": "\u0069\u0064\u0020\u003d\u0020\u0022\u0062\u006d\u0039\u0030\u004c\u0057\u0045\u0074\u0063\u0032\u0056\u006a\u0063\u006d\u0056\u0030\u004c\u0058\u0042\u0068\u0065\u0057\u0078\u0076\u0059\u0057\u0051\u0074\u004d\u006a\u004d\u003d\u0022\u000a",
+  "expectedFindings": [],
+  "groundTruth": "FP",
+  "category": "generic-entropy",
+  "description": "Known false-positive high-entropy-looking value #24 (UUID/hash/base64)",
+  "tags": [
+    "entropy",
+    "false-positive",
+    "base64"
+  ]
+}

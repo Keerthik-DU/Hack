@@ -1,0 +1,25 @@
+{
+  "id": "slack-bot-token-tp-001",
+  "input": "\u0023\u0020\u0073\u006c\u0061\u0063\u006b\u002d\u0062\u006f\u0074\u002d\u0074\u006f\u006b\u0065\u006e\u0020\u0063\u006f\u006e\u0066\u0069\u0067\u000a\u0065\u0078\u0070\u006f\u0072\u0074\u0020\u0053\u0045\u0043\u0052\u0045\u0054\u003d\u0022\u0078\u006f\u0078\u0062\u002d\u0031\u0032\u0033\u0034\u0035\u0036\u0037\u0038\u0039\u0030\u0031\u0032\u002d\u0031\u0030\u0030\u0030\u0030\u0030\u0030\u0030\u0030\u0030\u0030\u0031\u002d\u0064\u0053\u0037\u0077\u0078\u0063\u0033\u0067\u0078\u0067\u0044\u0061\u0058\u0077\u004a\u004f\u0042\u0059\u006a\u0067\u0050\u0036\u0050\u0049\u0022\u000a",
+  "expectedFindings": [
+    {
+      "type": "slack-bot-token",
+      "lineNumber": 2,
+      "charRange": [
+        15,
+        70
+      ],
+      "confidence": "high",
+      "detectionLayer": 1
+    }
+  ],
+  "groundTruth": "TP",
+  "category": "messaging",
+  "description": "True positive for slack-bot-token (variant 1)",
+  "tags": [
+    "pattern-coverage",
+    "true-positive",
+    "slack-bot-token",
+    "token"
+  ]
+}
