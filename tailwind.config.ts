@@ -44,6 +44,10 @@ export default {
           '0%': { transform: 'translateY(10px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
         },
+        findingEnter: {
+          '0%': { transform: 'translateY(8px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
       },
       animation: {
         'check-bounce': 'checkBounce 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both',
@@ -51,6 +55,7 @@ export default {
         'desc-fade-up': 'descFadeUp 0.5s ease-out both',
         'stat-pop-in': 'statPopIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both',
         'badge-slide-up': 'badgeSlideUp 0.4s ease-out both',
+        'finding-enter': 'findingEnter 0.28s ease-out both',
       },
     },
   },

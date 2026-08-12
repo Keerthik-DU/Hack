@@ -1,7 +1,8 @@
 ---
 # Forge Shipping Engine Pipeline Configuration
-# AirGap Scanner - Source Trigger and Build Stage
+# AirGap Scanner - Source Trigger, Build Stage, and Security Scan Stage
 # WO-066: Configure Forge Source Trigger and Build Stage
+# WO-067: Configure Parallel Security Scan Stage in Pipeline
 
 pipeline:
   name: airgap-scanner
@@ -71,3 +72,108 @@ stages:
           and is copied to dist/ by the Vite build, or set SKIP_MANIFEST_CHECK=true
           to bypass the manifest check during early development.
         - Web Worker bundle failure: ensure src/workers/llm-worker.ts exists.
+
+# ---------------------------------------------------------------------------
+# Security Scan Stage — four parallel scanners (OWASP A03, A05)
+# WO-067: SonarQube, Snyk, Gitleaks, Semgrep running in parallel
+# Quality gates: zero critical/blocker (Sonar), zero critical/high CVE (Snyk),
+#                zero secrets (Gitleaks), zero critical/high (Semgrep)
+# ALL gates must pass (AND logic) before pipeline proceeds to Push stage.
+# ---------------------------------------------------------------------------
+  - name: security-scan
+    parallel:
+      # --- SonarQube: static analysis, code quality, security hotspots ---
+      - name: sonarqube
+        step: scan:sonarqube
+        config_file: sonar-project.properties
+        quality_gate:
+          block_on: critical
+          block_on: blocker
+          zero_tolerance: true
+        on_failure:
+          message: >
+            SonarQube quality gate failed.
+            - Critical or blocker issues detected in source code.
+            - Review the SonarQube dashboard for specific issues, file paths, and
+              remediation guidance: ${{ pipeline.sonarqube_dashboard_url }}
+            - Infrastructure failure (SonarQube server unavailable): contact the
+              platform team — do NOT re-run to bypass.
+
+      # --- Snyk: dependency vulnerability scanning (SCA) for npm packages ---
+      - name: snyk
+        step: scan:snyk
+        config:
+          package_manager: npm
+          manifest_files:
+            - package.json
+            - package-lock.json
+          severity_threshold: high
+          include_transitive: true
+          all_projects: true
+        quality_gate:
+          fail_on: critical
+          fail_on: high
+          zero_tolerance: true
+        on_failure:
+          message: >
+            Snyk SCA gate failed.
+            - Critical or high-severity CVEs found in npm dependencies
+              (including transitive dependencies).
+            - Each failing package is listed with CVE ID and recommended fix version.
+            - Upgrade or replace the affected packages, then re-run the pipeline.
+            - Infrastructure failure (Snyk API timeout): contact the platform team —
+              do NOT re-run to bypass.
+
+      # --- Gitleaks: secret scanning of source repository ---
+      - name: gitleaks
+        step: scan:gitleaks
+        config_file: .gitleaks.toml
+        quality_gate:
+          zero_findings: true
+        on_failure:
+          message: >
+            Gitleaks secret scan failed.
+            - One or more secrets or credentials were detected in the repository.
+            - The scan output lists the file path, line number, and secret type for
+              each finding.
+            - Remove the secret from the codebase, rotate the compromised credential,
+              and rewrite git history if the secret was committed. Contact Security.
+            - If the finding is a test fixture false-positive not already in the
+              allowlist, add the path to .gitleaks.toml [[allowlists]] with a
+              comment explaining the rationale, then re-run.
+            - Infrastructure failure (Gitleaks binary unavailable): contact the
+              platform team — do NOT re-run to bypass.
+
+      # --- Semgrep: SAST for TypeScript/React security patterns ---
+      - name: semgrep
+        step: scan:semgrep
+        config_file: .semgrep.yml
+        quality_gate:
+          fail_on: error
+          fail_on: warning
+          zero_tolerance: true
+        on_failure:
+          message: >
+            Semgrep SAST gate failed.
+            - Critical or high-severity TypeScript/React security rule violations found.
+            - Each finding includes the rule ID, file path, line number, and a
+              description of the security concern.
+            - Review and remediate each finding before re-running the pipeline.
+            - If a finding is a documented false-positive (e.g., a safe postMessage
+              in the Web Worker communication layer), add an inline nosemgrep comment
+              with an explanatory note and the rule ID.
+            - Infrastructure failure (Semgrep service unavailable): contact the
+              platform team — do NOT re-run to bypass.
+
+    # All four scan steps share a single 5-minute timeout budget.
+    # Parallel execution ensures total wall-clock time equals the slowest scanner.
+    timeout_minutes: 5
+
+    on_failure:
+      block_pipeline: true
+      message: >
+        Security Scan stage failed. One or more quality gates did not pass.
+        Review the individual scanner outputs above for specific findings.
+        The pipeline will not proceed to the Push stage until all four gates pass.
+        See PIPELINE.md for quality gate thresholds, allowlist rationale, and
+        escalation contacts.
