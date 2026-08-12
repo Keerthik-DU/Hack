@@ -20,8 +20,9 @@ src/test/fixtures/**/secrets-*.json
 src/components/__fixtures__/
 src/components/**/__fixtures__/
 src/engines/__tests__/patterns-v1.test.ts
-tests/fixtures/
-tests/
+tests/**/results/
+tests/**/output/
+tests-results/
 *.sample.json
 *.secrets.json
 *.mock.json
