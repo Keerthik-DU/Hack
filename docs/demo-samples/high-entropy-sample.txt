@@ -1,0 +1,2 @@
+# High-entropy password candidate (no known vendor pattern)
+const password = "a7f3c9e1b2d84560f1e9c3a8b7d6e5f4c3b2a1908877665544332211ffeeddcc";

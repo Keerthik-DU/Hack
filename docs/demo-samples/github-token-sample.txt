@@ -1,0 +1,2 @@
+# Synthetic GitHub PAT — NOT a real token
+const token = "ghp_EXAMPLE000000000000000000000000000";

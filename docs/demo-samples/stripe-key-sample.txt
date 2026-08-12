@@ -1,0 +1,3 @@
+# Synthetic Stripe key — NOT a real secret (assembled at paste time in demos)
+# Use: sk_ + test_ + EXAMPLEKEYNOTREAL00000000
+const stripe = { secretKey: "sk_test_EXAMPLEKEYNOTREAL00000000" };

@@ -19,3 +19,8 @@ Documentation is organized as standalone Markdown artifacts under `docs/`. Each 
 - Use the product name **AirGap Scanner** consistently.
 - Do not include real secrets or credentials; use synthetic examples only.
 - Keep compliance and security claims aligned with the architecture's zero-trust, client-side isolation model.
+
+- [Demo Script](./demo-script.md)
+- [ADRs](./adr/README.md)
+- [Demo Samples](./demo-samples/README.md)
+
