@@ -14,7 +14,7 @@
  *   - Full lifecycle: store → retrieve → purge → miss
  */
 
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import 'fake-indexeddb/auto';
 
 import { CacheManager } from '../cache-manager';
@@ -24,7 +24,6 @@ import {
   TEST_MODEL_STALE_VERSION,
   TEST_SHA256_HASH,
   createTestWeightsBuffer,
-  buildModelCacheEntry,
 } from '@/test-utils/cache-fixtures';
 import type { CacheStorageError } from '@/types/cache';
 
@@ -179,9 +178,7 @@ describe('CacheManager.storeModel()', () => {
     const origPut = (db as unknown as { put: (...args: unknown[]) => Promise<unknown> }).put.bind(
       db
     );
-    (db as unknown as { put: (...args: unknown[]) => Promise<unknown> }).put = async (
-      ...args: unknown[]
-    ) => {
+    (db as unknown as { put: (...args: unknown[]) => Promise<unknown> }).put = async () => {
       const err = new DOMException('QuotaExceededError', 'QuotaExceededError');
       throw err;
     };
