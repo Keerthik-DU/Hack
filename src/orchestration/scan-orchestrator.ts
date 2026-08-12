@@ -81,10 +81,13 @@ export class ScanOrchestrator implements IScanOrchestrator {
     const scanToken = ++this.scanToken;
     const rawText = typeof input === 'string' ? input : input.text;
     const abortPromise = new Promise<'aborted'>((resolve) => {
-      this.abortNotify = resolve;
+      this.abortNotify = () => resolve('aborted');
     });
 
-    const buildAbortNote = (layerStates: Record<string, 'pending' | 'completed' | 'failed' | 'interrupted' | 'skipped'>) => {
+    type LayerState = 'pending' | 'completed' | 'failed' | 'interrupted' | 'skipped';
+    type LayerStateMap = Record<'Layer 1 (Regex)' | 'Layer 3 (Entropy)' | 'Layer 2 (LLM)', LayerState>;
+
+    const buildAbortNote = (layerStates: LayerStateMap) => {
       const completed = Object.entries(layerStates)
         .filter(([, status]) => status === 'completed')
         .map(([label]) => label);
@@ -104,7 +107,7 @@ export class ScanOrchestrator implements IScanOrchestrator {
 
     const abortYield = (
       findings: Finding[],
-      layerStates: Record<string, 'pending' | 'completed' | 'failed' | 'interrupted' | 'skipped'>,
+      layerStates: LayerStateMap,
       percentage: number,
       stage: string
     ): ScanProgress => ({
@@ -146,10 +149,7 @@ export class ScanOrchestrator implements IScanOrchestrator {
     const text = sanitizeInput(rawText);
     const lines = text.split('\n');
     const engineInput: EngineInput = { text, lines, signal };
-    const layerStates: Record<
-      'Layer 1 (Regex)' | 'Layer 3 (Entropy)' | 'Layer 2 (LLM)',
-      'pending' | 'completed' | 'failed' | 'interrupted' | 'skipped'
-    > = {
+    const layerStates: LayerStateMap = {
       'Layer 1 (Regex)': 'pending',
       'Layer 3 (Entropy)': 'pending',
       'Layer 2 (LLM)': 'skipped',
@@ -344,7 +344,9 @@ export class ScanOrchestrator implements IScanOrchestrator {
         return;
       }
 
-      if (layerStates['Layer 2 (LLM)'] === 'completed') {
+      const llmState = layerStates['Layer 2 (LLM)'] as LayerState;
+
+      if (llmState === 'completed') {
         yield {
           status: 'scanning',
           stage: 'Layer 2 (LLM) analysis complete',
@@ -352,7 +354,7 @@ export class ScanOrchestrator implements IScanOrchestrator {
           currentEngine: layer2Engine.name,
           findings: [...accumulatedFindings],
         };
-      } else if (layerStates['Layer 2 (LLM)'] === 'failed') {
+      } else if (llmState === 'failed') {
         yield {
           status: 'scanning',
           stage: 'Layer 2 LLM analysis failed',

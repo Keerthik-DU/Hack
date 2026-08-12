@@ -5,8 +5,6 @@ import {
   MockScanOrchestrator,
   MOCK_PROGRESS_EVENTS,
 } from '../fixtures/mock-orchestrator';
-import { ScanOrchestrator } from '../../orchestration/scan-orchestrator';
-import { MockDetectionEngine, SlowMockEngine } from '../fixtures/mock-engines';
 import { ScanProgress } from '@/types';
 
 // ---------------------------------------------------------------------------
