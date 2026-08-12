@@ -45,10 +45,18 @@ export class RegexEngine implements IDetectionEngine {
       return [];
     }
 
+    if (input.signal?.aborted) {
+      return [];
+    }
+
     const lines = prepareForRegex(input.text);
     const findings: Finding[] = [];
 
     for (const line of lines) {
+      if (input.signal?.aborted) {
+        return findings;
+      }
+
       const { lineText, lineNumber: zeroBasedLineNumber } = line;
       if (!lineText.trim()) {
         continue;
@@ -58,6 +66,10 @@ export class RegexEngine implements IDetectionEngine {
       const candidatePatterns = this.registry.getPatternsForLine(lineText);
 
       for (const pattern of candidatePatterns) {
+        if (input.signal?.aborted) {
+          return findings;
+        }
+
         // Reset RegExp state before executing against line
         pattern.regex.lastIndex = 0;
         let match: RegExpExecArray | null;

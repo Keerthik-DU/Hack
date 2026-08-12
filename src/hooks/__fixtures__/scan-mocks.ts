@@ -9,6 +9,7 @@ export const mockScanCapabilities: ScanCapabilities = {
 };
 
 export const mockScanProgress: ScanProgress = {
+  status: 'complete',
   stage: 'Scan complete',
   percentage: 100,
   currentEngine: 'LLM Engine',

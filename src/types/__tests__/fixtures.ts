@@ -25,6 +25,7 @@ export function createMockFinding(overrides?: Partial<Finding>): Finding {
  */
 export function createMockScanProgress(overrides?: Partial<ScanProgress>): ScanProgress {
   return {
+    status: 'scanning',
     stage: 'Layer 1 Regex Scan',
     percentage: 33,
     currentEngine: 'RegexEngine',

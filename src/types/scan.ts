@@ -1,5 +1,5 @@
-import { EngineInput } from './detection';
-import { Finding } from './finding';
+import { EngineInput, IDetectionEngine } from './detection';
+import { Finding, AmbiguousFinding } from './finding';
 
 /**
  * Standard error codes across AirGap Scanner detection pipeline and Web Worker layers.
@@ -15,9 +15,21 @@ export enum ErrorCode {
 }
 
 /**
+ * State machine status of the scanning pipeline.
+ */
+export type ScanState = 'idle' | 'scanning' | 'complete' | 'error';
+
+/**
+ * Status emitted by ScanProgress events.
+ */
+export type ScanProgressStatus = ScanState | 'aborted';
+
+/**
  * Real-time progress update yielded during scanning pipeline execution.
  */
 export interface ScanProgress {
+  /** Pipeline execution state status */
+  readonly status: ScanProgressStatus;
   /** Current scan stage description */
   readonly stage: string;
   /** Overall scan completion percentage (0..100) */
@@ -26,6 +38,13 @@ export interface ScanProgress {
   readonly currentEngine?: string;
   /** Accumulated findings detected so far */
   readonly findings: readonly Finding[];
+  /** Optional error details if stage or pipeline failed */
+  readonly error?: {
+    readonly message: string;
+    readonly failedLayer?: string;
+  };
+  /** Optional note for aborted scans */
+  readonly note?: string;
 }
 
 /**
@@ -34,9 +53,9 @@ export interface ScanProgress {
 export interface ScanCapabilities {
   /** Availability of Layer 1 Regex engine */
   readonly regexAvailable: boolean;
-  /** Availability of Layer 2 Entropy engine */
+  /** Availability of Layer 3 Entropy engine */
   readonly entropyAvailable: boolean;
-  /** Availability of Layer 3 WebGPU LLM engine */
+  /** Availability of Layer 2 WebGPU LLM engine */
   readonly llmAvailable: boolean;
   /** Hardware WebGPU support status */
   readonly webgpuSupported: boolean;
@@ -48,17 +67,21 @@ export interface ScanCapabilities {
 export interface IScanOrchestrator {
   /**
    * Initiates pipeline scan, yielding progress steps asynchronously.
-   * @param input EngineInput containing text to analyze
-   * @returns AsyncGenerator of ScanProgress
+   * @param input Raw text string or EngineInput containing text to analyze
+   * @returns AsyncGenerator yielding ScanProgress events
    */
-  scan(input: EngineInput): AsyncGenerator<ScanProgress, void, unknown>;
+  scan(input: string | EngineInput): AsyncGenerator<ScanProgress, void, unknown>;
+
   /**
    * Aborts active scan pipeline execution.
    */
   abort(): void;
+
   /**
    * Queries active capability matrix.
    * @returns ScanCapabilities
    */
   getCapabilities(): ScanCapabilities;
 }
+
+export type { EngineInput, IDetectionEngine, Finding, AmbiguousFinding };
