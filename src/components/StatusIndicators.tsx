@@ -1,17 +1,24 @@
 import React from 'react';
 import { useModelStatus, EngineStatus } from '@/hooks';
+import { CapabilityCard } from './CapabilityCard';
 
-function getStatusColorClass(status: EngineStatus): string {
-  switch (status) {
-    case 'ready':
-      return 'bg-emerald-500';
-    case 'loading':
-      return 'bg-amber-500 animate-pulse';
-    case 'unavailable':
-      return 'bg-gray-400 dark:bg-gray-600';
-  }
+/**
+ * Maps an EngineStatus to the CapabilityCard status prop.
+ */
+function toCapabilityStatus(status: EngineStatus): 'ok' | 'unavailable' {
+  return status === 'ready' ? 'ok' : 'unavailable';
 }
 
+/**
+ * StatusIndicators renders per-layer availability indicators in the app header.
+ *
+ * In degraded mode (WebGPU unavailable or under memory pressure):
+ *   - Regex → green checkmark
+ *   - Entropy → green checkmark
+ *   - LLM → amber warning icon with 'Unavailable' label
+ *
+ * In full capability mode all three layers show a green checkmark.
+ */
 export const StatusIndicators: React.FC = () => {
   const statusMap = useModelStatus();
 
@@ -28,18 +35,20 @@ export const StatusIndicators: React.FC = () => {
       className="hidden md:flex items-center gap-3 px-3 py-1.5 rounded-lg bg-surface-light-bg/50 dark:bg-surface-dark-bg/50 border border-surface-light-border dark:border-surface-dark-border text-xs text-surface-light-textSecondary dark:text-surface-dark-textSecondary"
     >
       {layers.map(({ key, label }) => {
-        const status: EngineStatus = statusMap[key] ?? 'unavailable';
-        const dotColorClass = getStatusColorClass(status);
+        const engineStatus: EngineStatus = statusMap[key] ?? 'unavailable';
+        const capStatus = toCapabilityStatus(engineStatus);
+        const reason =
+          key === 'llm' && capStatus === 'unavailable'
+            ? (statusMap.webgpuUnavailableReason ?? statusMap.degradedMessage)
+            : undefined;
+
         return (
-          <div key={key} className="flex items-center gap-1.5" title={`${label} Engine: ${status}`}>
-            <span
-              data-testid={`status-dot-${key}`}
-              className={`w-2 h-2 rounded-full ${dotColorClass}`}
-            />
-            <span className="font-medium text-surface-light-textPrimary dark:text-surface-dark-textPrimary">
-              {label}
-            </span>
-          </div>
+          <CapabilityCard
+            key={key}
+            layer={label}
+            status={capStatus}
+            reason={reason}
+          />
         );
       })}
     </div>

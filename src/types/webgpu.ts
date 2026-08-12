@@ -24,4 +24,10 @@ export interface WebGPUCapability {
   readonly reason?: string;
   /** Wall-clock time in milliseconds spent on detection (for observability) */
   readonly detectionTimeMs: number;
+  /**
+   * Whether the browser is under significant memory pressure (Chrome-only).
+   * When true, the LLM layer should be skipped even if WebGPU is supported.
+   * Undefined on non-Chrome browsers where performance.memory is unavailable.
+   */
+  readonly memoryPressure?: boolean;
 }
