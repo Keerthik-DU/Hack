@@ -7,14 +7,17 @@ import {
   DegradationBanner,
   ScanButton,
 } from '@/components';
-import { useScanEngine } from '@/hooks';
+import { useScanEngine, useBeforeUnload } from '@/hooks';
 import { createDefaultScanOrchestrator } from '@/orchestration';
 
 export const ScannerPage: React.FC = () => {
+  // Input state lives above scan/error UI so it survives layer failures (WO-045).
   const [inputText, setInputText] = useState<string>('');
 
   const orchestrator = useMemo(() => createDefaultScanOrchestrator(), []);
   const scanEngine = useScanEngine(orchestrator);
+
+  useBeforeUnload(scanEngine.state === 'error' && inputText.length > 0);
 
   // Deterministic scan-phase marker for Playwright zero-network monitoring (WO-050).
   useEffect(() => {
